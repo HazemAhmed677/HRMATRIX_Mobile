@@ -46,6 +46,7 @@ class CommonContainer extends StatelessWidget {
               subtitle!,
               style: AppStyles.mediumDarkGrey14.copyWith(
                 color: AppColors.fontSecondayColor,
+                fontWeight: FontWeightHelper.bold,
               ),
             ),
           if (child != null) verticalSpace(8),

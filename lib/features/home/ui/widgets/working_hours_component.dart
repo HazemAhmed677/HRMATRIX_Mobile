@@ -61,7 +61,7 @@ class WorkingHoursComponent extends StatelessWidget {
                             style: AppStyles.boldSecondaryColor22.copyWith(
                               color: AppColors.fontSecondayColor,
                               fontSize: 12.sp,
-                              fontWeight: FontWeightHelper.regular,
+                              fontWeight: FontWeightHelper.bold,
                             ),
                           ),
                         ],

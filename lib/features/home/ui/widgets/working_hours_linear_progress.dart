@@ -31,7 +31,7 @@ class WorkingHoursLinearProgress extends StatelessWidget {
               style: AppStyles.mediumDarkGrey14.copyWith(
                 color: AppColors.fontSecondayColor,
                 fontSize: 12.sp,
-                fontWeight: FontWeightHelper.medium,
+                fontWeight: FontWeightHelper.bold,
               ),
             ),
             verticalSpace(8),
@@ -40,7 +40,7 @@ class WorkingHoursLinearProgress extends StatelessWidget {
               style: AppStyles.boldNoColor18.copyWith(
                 color: AppColors.fontPrimaryColor,
                 fontSize: 16.sp,
-                fontWeight: FontWeightHelper.bold,
+                fontWeight: FontWeightHelper.extraBold,
               ),
             ),
           ],

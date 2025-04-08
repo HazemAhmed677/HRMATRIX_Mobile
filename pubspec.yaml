@@ -55,7 +55,7 @@ flutter:
   fonts:
     - family: Nexa
       fonts:
-        - asset: assets/fonts/Nexa_Thin.ttf
+        - asset: assets/fonts/Nexa-Thin.ttf
           weight: 100
         - asset: assets/fonts/NexaLight.ttf
           weight: 300

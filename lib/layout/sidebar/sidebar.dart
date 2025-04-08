@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hrmatrix/core/helper/spacing.dart';
+import 'package:hrmatrix/core/theming/app_color.dart';
+import 'package:hrmatrix/core/typography/app_images.dart';
+import 'package:hrmatrix/core/typography/app_padding.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_state.dart';
+import 'package:hrmatrix/layout/sidebar/widgets/sidebar_item.dart';
+
+import '../../core/theming/app_styles.dart';
+import '../../core/typography/font_weight_helper.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({super.key});
@@ -27,6 +36,21 @@ class _SidebarState extends State<Sidebar> {
     'Commission',
     'Hierarchical Tree',
   ];
+  final List<IconData> icons = [
+    FontAwesomeIcons.house, // Home
+    FontAwesomeIcons.calendarDays, // Calendar
+    FontAwesomeIcons.user, // User Profile
+    FontAwesomeIcons.users, // Employees
+    FontAwesomeIcons.clipboardCheck, // Tasks
+    FontAwesomeIcons.chartColumn, // Reports
+    FontAwesomeIcons.bolt, // Mass Action
+    FontAwesomeIcons.moneyBillWave, // Salary
+    FontAwesomeIcons.envelopeOpenText, // Requests
+    FontAwesomeIcons.thumbsUp, // Approvals
+    FontAwesomeIcons.folderOpen, // Company Docs
+    FontAwesomeIcons.coins, // Commission
+    FontAwesomeIcons.sitemap, // Hierarchical Tree
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,54 +58,59 @@ class _SidebarState extends State<Sidebar> {
       builder: (context, state) {
         return AnimatedPositioned(
           duration: Duration(milliseconds: 300),
-          left: state.isDrawerOpen ? 0 : -250,
-          top: 0,
-          bottom: 0,
-          child: SizedBox(
-            width: 250,
-            child: Material(
-              color: Colors.blueGrey.shade800,
+          left: 0,
+          top: 65 + 30,
+          width: MediaQuery.sizeOf(context).width * 0.7,
+          height:
+              MediaQuery.sizeOf(context).height -
+              kToolbarHeight, // 👈 Exact height
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              border: Border.all(color: AppColors.borderColor),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppPadding.pMainHorizental22.w,
+              ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 80,
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: Text(
-                      "Menu",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                  verticalSpace(12),
+                  SizedBox(
+                    height: 100.h,
+                    child: Image.asset(AppImages.aimatrix),
+                  ),
+                  verticalSpace(18),
+
+                  Text(
+                    "MENU",
+                    style: AppStyles.boldNoColor18.copyWith(
+                      color: AppColors.grey400,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeightHelper.bold,
                     ),
                   ),
+                  verticalSpace(12),
+
                   Expanded(
                     child: ListView.builder(
+                      padding: EdgeInsets.zero,
                       itemCount: items.length,
                       itemBuilder: (context, index) {
                         final selected = state.selectedIndex == index;
-                        return ListTile(
-                          selected: selected,
-                          leading: Icon(
-                            Icons.circle,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                          title: Text(
-                            items[index],
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight:
-                                  selected
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                            ),
-                          ),
-                          onTap:
-                              () => context.read<SidebarCubit>().selectIndex(
-                                index,
-                              ),
+                        return SidebarItem(
+                          title: items[index],
+                          iconData: icons[index],
+                          onTap: () {
+                            context.read<SidebarCubit>().selectIndex(index);
+                          },
+                          isActive: selected,
                         );
                       },
                     ),
                   ),
+                  verticalSpace(45),
                 ],
               ),
             ),

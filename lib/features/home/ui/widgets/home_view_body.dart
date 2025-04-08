@@ -20,11 +20,7 @@ class HomeViewBody extends StatelessWidget {
           CommonContainer(title: '0', subtitle: "This Week's Tasks"),
           verticalSpace(24),
 
-          CommonContainer(
-            title: "This Week's Tasks",
-            titleFontSize: 17,
-            titleFontWeight: FontWeightHelper.medium,
-          ),
+          CommonContainer(title: "This Week's Tasks", titleFontSize: 17),
           verticalSpace(24),
           WorkingHoursComponent(
             progressPercentage: 0.5, // 75% filled
@@ -33,8 +29,8 @@ class HomeViewBody extends StatelessWidget {
 
           CommonContainer(
             title: "No One Works Remotly Today",
-            titleFontSize: 26,
-            titleFontWeight: FontWeightHelper.medium,
+            titleFontSize: 25,
+            titleFontWeight: FontWeightHelper.semiBold,
           ),
         ],
       ),
