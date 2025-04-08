@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/typography/app_padding.dart';
-import 'package:hrmatrix/layout/main_layout/helper.dart/build_content.dart';
+import 'package:hrmatrix/layout/main_layout/helpers/build_content.dart';
 
 import '../../core/theming/app_styles.dart';
 import '../../core/typography/font_weight_helper.dart';
 import '../sidebar/logic/sidebar_cubit.dart';
 import '../sidebar/logic/sidebar_state.dart';
 import '../sidebar/sidebar.dart';
+import 'widgets/custom_pop_up_menu.dart';
 
 class MainLayout extends StatelessWidget {
   const MainLayout({super.key});
@@ -57,6 +58,10 @@ class MainLayout extends StatelessWidget {
                         ),
 
                         centerTitle: true,
+                        actions: [
+                          // Three-dot menu icon
+                          CustomPopUpMenu(),
+                        ],
                       ),
 
                       Expanded(

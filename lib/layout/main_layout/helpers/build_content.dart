@@ -20,7 +20,6 @@ Widget buildContent(int index) {
   ];
   return AnimatedSwitcher(
     duration: const Duration(milliseconds: 500),
-
     child: pages[index],
   );
 }
