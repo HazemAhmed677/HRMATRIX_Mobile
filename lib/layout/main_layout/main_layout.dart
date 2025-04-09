@@ -3,10 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/typography/app_padding.dart';
-import 'package:hrmatrix/layout/main_layout/helper.dart/build_content.dart';
+import 'package:hrmatrix/layout/main_layout/helpers/build_content.dart';
+import 'package:hrmatrix/layout/main_layout/helpers/custom_app_bar.dart';
 
-import '../../core/theming/app_styles.dart';
-import '../../core/typography/font_weight_helper.dart';
 import '../sidebar/logic/sidebar_cubit.dart';
 import '../sidebar/logic/sidebar_state.dart';
 import '../sidebar/sidebar.dart';
@@ -25,63 +24,40 @@ class MainLayout extends StatelessWidget {
             body: Stack(
               children: [
                 // Main content
-                Positioned.fill(
-                  child: Column(
-                    children: [
-                      AppBar(
-                        title: Text(
-                          "HRMATRIX",
-                          style: AppStyles.boldNoColor20.copyWith(
-                            fontSize: 30.sp,
-                            fontWeight: FontWeightHelper.extraBold,
+                Column(
+                  children: [
+                    customAppBar(context, state),
+                    Expanded(
+                      child: AbsorbPointer(
+                        absorbing: state.isDrawerOpen,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppPadding.pMainHorizental22.w,
+                            vertical: AppPadding.pMainVertical16,
                           ),
-                        ),
-                        flexibleSpace: Container(
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: AppColors.borderColor,
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                        backgroundColor: AppColors.white,
-                        leading: IconButton(
-                          icon: Icon(
-                            state.isDrawerOpen ? Icons.close : Icons.menu,
-                            color: AppColors.fontPrimaryColor,
-                          ),
-                          onPressed:
-                              () => context.read<SidebarCubit>().toggleDrawer(),
-                        ),
-
-                        centerTitle: true,
-                      ),
-
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            context.read<SidebarCubit>().closeDrawer();
-                          },
-                          child: AnimatedOpacity(
-                            duration: Duration(milliseconds: 300),
-                            opacity: state.isDrawerOpen ? 0.3 : 1.0,
-
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: AppPadding.pMainHorizental22.w,
-                                vertical: AppPadding.pMainVertical16,
-                              ),
-                              child: buildContent(state.selectedIndex),
-                            ),
-                          ),
+                          child: buildContent(state.selectedIndex),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-
+                if (state.isDrawerOpen)
+                  Positioned(
+                    top: (65 + 30).h,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        context.read<SidebarCubit>().closeDrawer();
+                      },
+                      child: Container(
+                        color: AppColors.grey500.withValues(
+                          alpha: 0.5,
+                        ), // or Colors.grey.shade800
+                      ),
+                    ),
+                  ),
                 if (state.isDrawerOpen) Sidebar(),
               ],
             ),

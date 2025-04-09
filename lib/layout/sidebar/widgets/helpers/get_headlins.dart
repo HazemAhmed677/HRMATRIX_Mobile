@@ -1,0 +1,15 @@
+List<String> getHeadlines() => [
+  'Home',
+  'Calendar',
+  'User Profile',
+  'Employees',
+  'Tasks',
+  'Reports',
+  'Mass Action',
+  'Salary',
+  'Requests',
+  'Approvals',
+  'Company Docs',
+  'Commission',
+  'Hierarchical Tree',
+];

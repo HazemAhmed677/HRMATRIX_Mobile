@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hrmatrix/core/helper/spacing.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/typography/app_images.dart';
 import 'package:hrmatrix/core/typography/app_padding.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_state.dart';
+import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_headlins.dart';
+import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_icons.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/sidebar_item.dart';
 
 import '../../core/theming/app_styles.dart';
@@ -21,49 +22,19 @@ class Sidebar extends StatefulWidget {
 }
 
 class _SidebarState extends State<Sidebar> {
-  final List<String> items = [
-    'Home',
-    'Calendar',
-    'User Profile',
-    'Employees',
-    'Tasks',
-    'Reports',
-    'Mass Action',
-    'Salary',
-    'Requests',
-    'Approvals',
-    'Company Docs',
-    'Commission',
-    'Hierarchical Tree',
-  ];
-  final List<IconData> icons = [
-    FontAwesomeIcons.house, // Home
-    FontAwesomeIcons.calendarDays, // Calendar
-    FontAwesomeIcons.user, // User Profile
-    FontAwesomeIcons.users, // Employees
-    FontAwesomeIcons.clipboardCheck, // Tasks
-    FontAwesomeIcons.chartColumn, // Reports
-    FontAwesomeIcons.bolt, // Mass Action
-    FontAwesomeIcons.moneyBillWave, // Salary
-    FontAwesomeIcons.envelopeOpenText, // Requests
-    FontAwesomeIcons.thumbsUp, // Approvals
-    FontAwesomeIcons.folderOpen, // Company Docs
-    FontAwesomeIcons.coins, // Commission
-    FontAwesomeIcons.sitemap, // Hierarchical Tree
-  ];
-
+  final List<String> items = getHeadlines();
+  final List<IconData> icons = getIcons();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SidebarCubit, SidebarState>(
       builder: (context, state) {
         return AnimatedPositioned(
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
           left: 0,
-          top: 65 + 30,
+          top: (65 + 30).h,
           width: MediaQuery.sizeOf(context).width * 0.7,
-          height:
-              MediaQuery.sizeOf(context).height -
-              kToolbarHeight, // 👈 Exact height
+          height: MediaQuery.sizeOf(context).height - kToolbarHeight,
           child: Container(
             decoration: BoxDecoration(
               color: AppColors.white,
@@ -81,7 +52,7 @@ class _SidebarState extends State<Sidebar> {
                     height: 100.h,
                     child: Image.asset(AppImages.aimatrix),
                   ),
-                  verticalSpace(18),
+                  verticalSpace(22),
 
                   Text(
                     "MENU",
