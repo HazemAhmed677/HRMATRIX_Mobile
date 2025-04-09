@@ -29,7 +29,7 @@ class SidebarItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.r),
             color: isActive ? AppColors.blue.withValues(alpha: 0.1) : null,
           ),
-          duration: Duration(milliseconds: 200),
+          duration: Duration(milliseconds: 120),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             child: Row(

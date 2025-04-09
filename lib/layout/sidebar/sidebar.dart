@@ -29,13 +29,12 @@ class _SidebarState extends State<Sidebar> {
     return BlocBuilder<SidebarCubit, SidebarState>(
       builder: (context, state) {
         return AnimatedPositioned(
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
           left: 0,
           top: (65 + 30).h,
           width: MediaQuery.sizeOf(context).width * 0.7,
-          height:
-              MediaQuery.sizeOf(context).height -
-              kToolbarHeight, // 👈 Exact height
+          height: MediaQuery.sizeOf(context).height - kToolbarHeight,
           child: Container(
             decoration: BoxDecoration(
               color: AppColors.white,
@@ -53,7 +52,7 @@ class _SidebarState extends State<Sidebar> {
                     height: 100.h,
                     child: Image.asset(AppImages.aimatrix),
                   ),
-                  verticalSpace(18),
+                  verticalSpace(22),
 
                   Text(
                     "MENU",

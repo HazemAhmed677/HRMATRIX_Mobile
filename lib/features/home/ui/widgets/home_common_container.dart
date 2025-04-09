@@ -5,8 +5,8 @@ import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/core/typography/font_weight_helper.dart';
 
-class CommonContainer extends StatelessWidget {
-  const CommonContainer({
+class HomeCommonContainer extends StatelessWidget {
+  const HomeCommonContainer({
     super.key,
     required this.title,
     this.subtitle,

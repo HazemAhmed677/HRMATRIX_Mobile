@@ -6,7 +6,7 @@ import 'package:hrmatrix/features/home/ui/widgets/top_half_circle_progress_paint
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/typography/font_weight_helper.dart';
-import '../../../../core/widgets/common_container.dart';
+import 'home_common_container.dart';
 import 'working_hours_linear_progress.dart'; // Add this package
 
 class WorkingHoursComponent extends StatelessWidget {
@@ -16,7 +16,7 @@ class WorkingHoursComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommonContainer(
+    return HomeCommonContainer(
       title: "Working Hours",
       titleFontSize: 17,
       titleFontWeight: FontWeightHelper.bold,

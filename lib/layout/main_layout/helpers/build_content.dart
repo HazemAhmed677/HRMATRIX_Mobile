@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/hierarchical_tree/ui/widgets/hierarchical_tree.dart';
 import '../../../features/home/ui/widgets/home_view_body.dart';
 
 Widget buildContent(int index) {
@@ -16,7 +17,7 @@ Widget buildContent(int index) {
     Center(child: Text("Approvals Page")),
     Center(child: Text("Company Docs Page")),
     Center(child: Text("Commission Page")),
-    Center(child: Text("Hierarchical Tree Page")),
+    Center(child: HierarchicalTree()),
   ];
   return AnimatedSwitcher(
     duration: const Duration(milliseconds: 500),
