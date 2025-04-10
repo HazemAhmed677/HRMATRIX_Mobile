@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrmatrix/core/helper/spacing.dart';
 import 'package:hrmatrix/features/profile/logic/cubit/bar_ui_cubit.dart';
@@ -6,6 +7,7 @@ import 'package:hrmatrix/features/profile/ui/widgets/bank_account_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bar_list_view.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/documents_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_ui.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/over_time_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_ui.dart';
 
 import 'widgets/swipe_to_explore.dart';
@@ -32,12 +34,34 @@ class _ProfileBodyState extends State<ProfileBody> {
             BlocBuilder<BarUiCubit, BarUiState>(
               builder: (context, state) {
                 if (state is BankAccountState) {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.portraitUp,
+                    DeviceOrientation.portraitDown,
+                  ]);
                   return BankAccountUI();
                 } else if (state is FamilyInfoState) {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.portraitUp,
+                    DeviceOrientation.portraitDown,
+                  ]);
                   return FamilyInfoUI();
                 } else if (state is DocumentsState) {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.landscapeLeft,
+                    DeviceOrientation.landscapeRight,
+                  ]);
                   return DocumentsUI();
+                } else if (state is OverTimeState) {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.landscapeLeft,
+                    DeviceOrientation.landscapeRight,
+                  ]);
+                  return OverTimeUI();
                 }
+                SystemChrome.setPreferredOrientations([
+                  DeviceOrientation.portraitUp,
+                  DeviceOrientation.portraitDown,
+                ]);
                 return ProfileUI();
               },
             ),

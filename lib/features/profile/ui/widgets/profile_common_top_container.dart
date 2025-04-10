@@ -15,7 +15,10 @@ class ProfileCommonTopContainer extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            radius: 32.r,
+            radius:
+                MediaQuery.of(context).orientation == Orientation.landscape
+                    ? 74.r
+                    : 32.r,
             backgroundImage: AssetImage(AppImages.profile),
           ),
           verticalSpace(22),

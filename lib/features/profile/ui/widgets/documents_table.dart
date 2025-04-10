@@ -20,7 +20,7 @@ class DocumentsTable extends StatelessWidget {
             readOnly: false,
             hintText: 'Search documents...',
           ),
-          verticalSpace(18),
+          verticalSpace(28),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -29,16 +29,19 @@ class DocumentsTable extends StatelessWidget {
               CustomActionButton(
                 onPressed: () {},
                 text: 'Add Document',
-                edgeColor: AppColors.blue,
-                backgroundColor: AppColors.blue,
+                edgeColor: AppColors.customActionButton,
+                backgroundColor: AppColors.customActionButton,
                 textColor: AppColors.white,
                 overlayColor: AppColors.white,
-                size: Size(40.w, 70.h),
+                size: Size(40.w, 80.h),
                 fontSize: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
               ),
             ],
           ),
-          verticalSpace(18),
+          verticalSpace(28),
           Container(
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.grey300),
