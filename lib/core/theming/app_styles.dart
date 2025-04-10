@@ -70,7 +70,7 @@ class AppStyles {
   static TextStyle primaryStyle = TextStyle(
     color: AppColors.fontPrimaryColor,
     fontSize: 18.sp,
-    fontWeight: FontWeightHelper.extraBold,
+    fontWeight: FontWeightHelper.bold,
   );
   static TextStyle secondaryStyle = TextStyle(
     color: AppColors.fontSecondayColor,
