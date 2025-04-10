@@ -62,13 +62,11 @@ class TimeOffTable extends StatelessWidget {
         ),
       );
     }
-    // For any status that is not approved or rejected.
     return buildTextCell(status);
   }
 
   @override
   Widget build(BuildContext context) {
-    // Dummy data for off time
     final List<Map<String, String>> data = [
       {
         'Content': 'Meeting',

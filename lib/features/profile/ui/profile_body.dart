@@ -10,9 +10,10 @@ import 'package:hrmatrix/features/profile/ui/widgets/bar_list_view.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/documents_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/financial_transaction_ui.dart';
-import 'package:hrmatrix/features/profile/ui/widgets/off_time_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/over_time_ui.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/part_time_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_ui.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/time_off_ui.dart';
 
 import 'widgets/swipe_to_explore.dart';
 
@@ -85,6 +86,12 @@ class _ProfileBodyState extends State<ProfileBody> {
                     DeviceOrientation.landscapeRight,
                   ]);
                   return TimeOffUI();
+                } else if (state is PartTimeState) {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.portraitUp,
+                    DeviceOrientation.portraitDown,
+                  ]);
+                  return PartTimeUI();
                 }
                 SystemChrome.setPreferredOrientations([
                   DeviceOrientation.portraitUp,

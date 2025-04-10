@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrmatrix/features/profile/ui/widgets/off_time_table.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/time_off_table.dart';
 
 import '../../../../core/helper/spacing.dart';
 import 'profile_common_top_container.dart';
