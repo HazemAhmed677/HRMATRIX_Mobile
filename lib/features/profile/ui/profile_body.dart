@@ -7,6 +7,7 @@ import 'package:hrmatrix/features/profile/ui/widgets/air_tickets_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/assets_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bank_account_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bar_list_view.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/disciplinary_actions_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/documents_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/financial_transaction_ui.dart';
@@ -92,6 +93,12 @@ class _ProfileBodyState extends State<ProfileBody> {
                     DeviceOrientation.portraitDown,
                   ]);
                   return PartTimeUI();
+                } else if (state is DisciplinaryActionsState) {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.landscapeLeft,
+                    DeviceOrientation.landscapeRight,
+                  ]);
+                  return DisciplinaryActionsUI();
                 }
                 SystemChrome.setPreferredOrientations([
                   DeviceOrientation.portraitUp,
