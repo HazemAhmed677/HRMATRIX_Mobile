@@ -19,7 +19,8 @@ class DocumentsTable extends StatelessWidget {
             hintText: 'Search documents...',
           ),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Add Document'),
+          if (MediaQuery.of(context).orientation == Orientation.landscape)
+            ProfileCommonRow(text: 'Add Document'),
           verticalSpace(28),
           Container(
             decoration: BoxDecoration(

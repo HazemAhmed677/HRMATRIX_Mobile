@@ -32,7 +32,7 @@ class BarItem extends StatelessWidget {
             item['icon'],
             size:
                 MediaQuery.of(context).orientation == Orientation.landscape
-                    ? 16.sp
+                    ? 12.sp
                     : 26.sp,
             color: isActive ? AppColors.white : AppColors.deepPurple,
           ),
@@ -43,7 +43,7 @@ class BarItem extends StatelessWidget {
             style: TextStyle(
               fontSize:
                   MediaQuery.of(context).orientation == Orientation.landscape
-                      ? 8.sp
+                      ? 7.sp
                       : 12.sp,
               color: isActive ? AppColors.white : AppColors.black,
             ),

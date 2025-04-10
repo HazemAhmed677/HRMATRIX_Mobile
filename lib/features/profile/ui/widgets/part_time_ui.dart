@@ -12,7 +12,7 @@ import 'package:hrmatrix/features/profile/ui/widgets/show_options.dart';
 class PartTimeUI extends StatelessWidget {
   const PartTimeUI({super.key});
 
-  Widget buildTextCell(String text, {double fontSize = 14.0}) {
+  Widget buildTextCell(String text, {double fontSize = 7.0}) {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Text(
@@ -49,7 +49,7 @@ class PartTimeUI extends StatelessWidget {
       child: Column(
         children: [
           CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
-          verticalSpace(28),
+          verticalSpace(38),
           Row(
             children: [
               ShowDropDownOptions(onEntriesChanged: (int value) {}),
@@ -57,7 +57,7 @@ class PartTimeUI extends StatelessWidget {
               const SaveAsWidget(),
             ],
           ),
-          verticalSpace(28),
+          verticalSpace(38),
 
           Table(
             border: TableBorder.all(color: AppColors.grey300, width: 1),

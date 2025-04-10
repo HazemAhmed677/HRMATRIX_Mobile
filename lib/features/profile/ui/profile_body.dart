@@ -7,6 +7,7 @@ import 'package:hrmatrix/features/profile/ui/widgets/air_tickets_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/assets_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bank_account_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bar_list_view.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/contracts_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/disciplinary_actions_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/documents_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_ui.dart';
@@ -40,70 +41,112 @@ class _ProfileBodyState extends State<ProfileBody> {
             BlocBuilder<BarUiCubit, BarUiState>(
               builder: (context, state) {
                 if (state is BankAccountState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.portraitUp,
-                    DeviceOrientation.portraitDown,
-                  ]);
+                  if (MediaQuery.of(context).orientation ==
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.portraitUp,
+                      DeviceOrientation.portraitDown,
+                    ]);
+                  }
                   return BankAccountUI();
                 } else if (state is FamilyInfoState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.portraitUp,
-                    DeviceOrientation.portraitDown,
-                  ]);
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
                   return FamilyInfoUI();
                 } else if (state is DocumentsState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.landscapeLeft,
-                    DeviceOrientation.landscapeRight,
-                  ]);
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
                   return DocumentsUI();
                 } else if (state is OverTimeState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.landscapeLeft,
-                    DeviceOrientation.landscapeRight,
-                  ]);
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
                   return OverTimeUI();
                 } else if (state is AssetsState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.landscapeLeft,
-                    DeviceOrientation.landscapeRight,
-                  ]);
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
                   return AssetsUI();
                 } else if (state is AirTicketsState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.landscapeLeft,
-                    DeviceOrientation.landscapeRight,
-                  ]);
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
                   return AirTicketsUI();
                 } else if (state is FinancialTransactionState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.landscapeLeft,
-                    DeviceOrientation.landscapeRight,
-                  ]);
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
                   return FinancialTransactionUI();
                 } else if (state is TimeOffState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.landscapeLeft,
-                    DeviceOrientation.landscapeRight,
-                  ]);
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
                   return TimeOffUI();
                 } else if (state is PartTimeState) {
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
+                  return PartTimeUI();
+                } else if (state is DisciplinaryActionsState) {
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
+                  return DisciplinaryActionsUI();
+                } else if (state is ContractsState) {
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
+                  return ContractsUI();
+                }
+                if (MediaQuery.of(context).orientation ==
+                    Orientation.landscape) {
                   SystemChrome.setPreferredOrientations([
                     DeviceOrientation.portraitUp,
                     DeviceOrientation.portraitDown,
                   ]);
-                  return PartTimeUI();
-                } else if (state is DisciplinaryActionsState) {
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.landscapeLeft,
-                    DeviceOrientation.landscapeRight,
-                  ]);
-                  return DisciplinaryActionsUI();
                 }
-                SystemChrome.setPreferredOrientations([
-                  DeviceOrientation.portraitUp,
-                  DeviceOrientation.portraitDown,
-                ]);
                 return ProfileUI();
               },
             ),
