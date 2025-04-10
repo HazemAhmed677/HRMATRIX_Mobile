@@ -106,6 +106,11 @@ class CustomPopUpMenu extends StatelessWidget {
                   textColor: AppColors.white,
                   overlayColor: AppColors.white,
                   size: Size(150.w, 40),
+                  fontSize:
+                      MediaQuery.of(context).orientation ==
+                              Orientation.landscape
+                          ? 8
+                          : 14,
                 ),
               ),
             ),

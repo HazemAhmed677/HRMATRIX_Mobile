@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
-import 'package:hrmatrix/core/widgets/custom_logout_button.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/profile_common_row.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/widgets/custom_search_text_field.dart';
-import 'save_as_widget.dart';
 
 class AssetsTable extends StatelessWidget {
   const AssetsTable({super.key});
@@ -98,26 +97,7 @@ class AssetsTable extends StatelessWidget {
         children: [
           CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
           verticalSpace(28),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SaveAsWidget(),
-              horizontalSpace(18),
-              CustomActionButton(
-                onPressed: () {},
-                text: 'Request Asset',
-                edgeColor: AppColors.customActionButton,
-                backgroundColor: AppColors.customActionButton,
-                textColor: AppColors.white,
-                overlayColor: AppColors.white,
-                size: Size(40.w, 80.h),
-                fontSize: 8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-              ),
-            ],
-          ),
+          ProfileCommonRow(text: 'Request Asset'),
           verticalSpace(28),
           // Table Widget
           Container(
