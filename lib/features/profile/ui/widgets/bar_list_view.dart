@@ -62,9 +62,11 @@ class _BarListViewState extends State<BarListView> {
               final item = categories[index];
               return GestureDetector(
                 onTap: () {
-                  currentIndex = index;
-                  setState(() {});
-                  BlocProvider.of<BarUiCubit>(context).rebuild(index: index);
+                  if (index != currentIndex) {
+                    currentIndex = index;
+                    setState(() {});
+                    BlocProvider.of<BarUiCubit>(context).rebuild(index: index);
+                  }
                 },
                 child: BarItem(item: item, isActive: currentIndex == index),
               );

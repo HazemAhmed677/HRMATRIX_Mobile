@@ -9,7 +9,11 @@ class FamilyInfoHeaderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(12),
-      child: Text(text, style: AppStyles.secondaryStyle),
+      child: Text(
+        text,
+        style: AppStyles.secondaryStyle,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

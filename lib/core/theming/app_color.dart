@@ -7,6 +7,7 @@ class AppColors {
   static const Color fontSecondayColor = Color(0xff626B7B);
   static const Color emptyCircleProgressColor = Color(0xffE4E7EC);
   static const Color deepPurple = Colors.deepPurple;
+  static const Color customActionButton = Color(0xff2563EA);
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const Color grey = Colors.grey;

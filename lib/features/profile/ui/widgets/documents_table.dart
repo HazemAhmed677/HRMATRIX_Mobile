@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
-import 'package:hrmatrix/core/widgets/custom_logout_button.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/profile_common_row.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/widgets/custom_search_text_field.dart';
-import 'save_as_widget.dart';
 
 class DocumentsTable extends StatelessWidget {
   const DocumentsTable({super.key});
@@ -20,25 +18,9 @@ class DocumentsTable extends StatelessWidget {
             readOnly: false,
             hintText: 'Search documents...',
           ),
-          verticalSpace(18),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SaveAsWidget(),
-              horizontalSpace(18),
-              CustomActionButton(
-                onPressed: () {},
-                text: 'Add Document',
-                edgeColor: AppColors.blue,
-                backgroundColor: AppColors.blue,
-                textColor: AppColors.white,
-                overlayColor: AppColors.white,
-                size: Size(40.w, 70.h),
-                fontSize: 8,
-              ),
-            ],
-          ),
-          verticalSpace(18),
+          verticalSpace(28),
+          ProfileCommonRow(text: 'Add Document'),
+          verticalSpace(28),
           Container(
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.grey300),

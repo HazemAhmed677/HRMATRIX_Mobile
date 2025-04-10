@@ -13,11 +13,17 @@ PreferredSizeWidget customAppBar(BuildContext context, SidebarState state) =>
     AppBar(
       elevation: 0,
       scrolledUnderElevation: 0,
-
+      toolbarHeight:
+          MediaQuery.of(context).orientation == Orientation.landscape
+              ? 130.h
+              : null,
       title: Text(
         "HRMATRIX",
         style: AppStyles.boldNoColor20.copyWith(
-          fontSize: 30.sp,
+          fontSize:
+              MediaQuery.of(context).orientation == Orientation.landscape
+                  ? 24.sp
+                  : 30.sp,
           fontWeight: FontWeightHelper.extraBold,
         ),
       ),
@@ -38,8 +44,5 @@ PreferredSizeWidget customAppBar(BuildContext context, SidebarState state) =>
       ),
 
       centerTitle: true,
-      actions: [
-        // Three-dot menu icon
-        CustomPopUpMenu(),
-      ],
+      actions: [CustomPopUpMenu()],
     );
