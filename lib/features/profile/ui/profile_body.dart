@@ -9,6 +9,7 @@ import 'package:hrmatrix/features/profile/ui/widgets/bank_account_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bar_list_view.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/documents_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_ui.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/financial_transaction_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/over_time_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_ui.dart';
 
@@ -71,6 +72,12 @@ class _ProfileBodyState extends State<ProfileBody> {
                     DeviceOrientation.landscapeRight,
                   ]);
                   return AirTicketsUI();
+                } else if (state is FinancialTransactionState) {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.landscapeLeft,
+                    DeviceOrientation.landscapeRight,
+                  ]);
+                  return FinancialTransactionUI();
                 }
                 SystemChrome.setPreferredOrientations([
                   DeviceOrientation.portraitUp,

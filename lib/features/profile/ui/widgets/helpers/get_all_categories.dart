@@ -9,7 +9,7 @@ List<Map<String, dynamic>> getAllCategories() => [
   {'label': 'Over Time', 'icon': Icons.access_time},
   {'label': 'Assets', 'icon': Icons.inventory},
   {'label': 'Air Tickets', 'icon': Icons.flight},
-  {'label': 'Financial', 'icon': Icons.account_balance_wallet},
+  {'label': 'Financial Transaction', 'icon': Icons.account_balance_wallet},
   {'label': 'Time-Off', 'icon': Icons.beach_access},
   {'label': 'Part-Time', 'icon': Icons.work_outline},
   {'label': 'Disciplinary', 'icon': Icons.gavel},

@@ -14,7 +14,7 @@ class BarItem extends StatelessWidget {
       width:
           MediaQuery.of(context).orientation == Orientation.landscape
               ? 70.w
-              : 90.w,
+              : 94.w,
       decoration: BoxDecoration(
         color: isActive ? AppColors.deepPurple : AppColors.white,
         borderRadius: BorderRadius.circular(14.r),
