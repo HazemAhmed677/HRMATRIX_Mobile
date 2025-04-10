@@ -48,7 +48,10 @@ class _BarListViewState extends State<BarListView> {
     return Column(
       children: [
         SizedBox(
-          height: 110.h,
+          height:
+              MediaQuery.of(context).orientation == Orientation.landscape
+                  ? 200.h
+                  : 110.h,
           child: ListView.separated(
             controller: _scrollController,
             scrollDirection: Axis.horizontal,

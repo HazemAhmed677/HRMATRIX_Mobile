@@ -5,7 +5,7 @@ import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_header_item.dart';
-import 'package:hrmatrix/features/profile/ui/widgets/family_info_save_as.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/save_as_widget.dart';
 
 import '../../../../core/widgets/custom_search_text_field.dart';
 
@@ -30,7 +30,7 @@ class FamilyInfoTable extends StatelessWidget {
         children: [
           CustomSearchTextFeild(readOnly: false),
           verticalSpace(18),
-          FamilyInfoSaveAs(),
+          SaveAsWidget(),
           verticalSpace(18),
 
           Table(

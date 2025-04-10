@@ -16,6 +16,7 @@ class CustomSearchTextFeild extends StatelessWidget {
     required this.readOnly,
     this.controller,
     this.suffixIcon,
+    this.hintText = 'Search...',
   });
   final TextEditingController? controller;
   final Function()? onTap;
@@ -25,7 +26,7 @@ class CustomSearchTextFeild extends StatelessWidget {
   final Function()? onPressedOnIcon;
   final Function(String)? onChanged;
   final Widget? suffixIcon;
-
+  final String hintText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -47,13 +48,22 @@ class CustomSearchTextFeild extends StatelessWidget {
           onPressed: onPressedOnIcon,
           icon: Icon(
             FontAwesomeIcons.magnifyingGlass,
-            size: 18.sp,
+            size:
+                MediaQuery.of(context).orientation == Orientation.landscape
+                    ? 12.sp
+                    : 18.sp,
             color: AppColors.grey400,
           ),
           color: AppColors.grey900,
         ),
-        hintText: 'Search...',
-        hintStyle: TextStyle(color: AppColors.grey, fontSize: 14.sp),
+        hintText: hintText,
+        hintStyle: TextStyle(
+          color: AppColors.grey,
+          fontSize:
+              MediaQuery.of(context).orientation == Orientation.landscape
+                  ? 8.sp
+                  : 14.sp,
+        ),
         enabledBorder: buildBorder(color: AppColors.grey500),
         focusedBorder: buildBorder(color: AppColors.grey500),
         errorBorder: buildBorder(color: Colors.redAccent.shade100),

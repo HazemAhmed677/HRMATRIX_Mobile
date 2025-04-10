@@ -11,7 +11,10 @@ class BarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: 90.w,
+      width:
+          MediaQuery.of(context).orientation == Orientation.landscape
+              ? 70.w
+              : 90.w,
       decoration: BoxDecoration(
         color: isActive ? AppColors.deepPurple : AppColors.white,
         borderRadius: BorderRadius.circular(14.r),
@@ -27,7 +30,10 @@ class BarItem extends StatelessWidget {
         children: [
           Icon(
             item['icon'],
-            size: 26.sp,
+            size:
+                MediaQuery.of(context).orientation == Orientation.landscape
+                    ? 16.sp
+                    : 26.sp,
             color: isActive ? AppColors.white : AppColors.deepPurple,
           ),
           verticalSpace(8),
@@ -35,7 +41,10 @@ class BarItem extends StatelessWidget {
             item['label'],
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 12.sp,
+              fontSize:
+                  MediaQuery.of(context).orientation == Orientation.landscape
+                      ? 8.sp
+                      : 12.sp,
               color: isActive ? AppColors.white : AppColors.black,
             ),
             maxLines: 2,

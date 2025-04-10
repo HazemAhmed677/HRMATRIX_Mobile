@@ -4,6 +4,7 @@ import 'package:hrmatrix/core/helper/spacing.dart';
 import 'package:hrmatrix/features/profile/logic/cubit/bar_ui_cubit.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bank_account_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bar_list_view.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/documents_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_ui.dart';
 
@@ -34,6 +35,8 @@ class _ProfileBodyState extends State<ProfileBody> {
                   return BankAccountUI();
                 } else if (state is FamilyInfoState) {
                   return FamilyInfoUI();
+                } else if (state is DocumentsState) {
+                  return DocumentsUI();
                 }
                 return ProfileUI();
               },

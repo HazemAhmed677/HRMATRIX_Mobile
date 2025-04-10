@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/helper/spacing.dart';
 
-class FamilyInfoSaveAs extends StatelessWidget {
-  const FamilyInfoSaveAs({super.key});
+class SaveAsWidget extends StatelessWidget {
+  const SaveAsWidget({super.key});
 
   void _showSaveOptions(BuildContext context) async {
     final RenderBox button = context.findRenderObject() as RenderBox;
@@ -59,9 +59,9 @@ class FamilyInfoSaveAs extends StatelessWidget {
               color: color.withValues(alpha: 0.2),
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, color: color, size: 20),
+            child: Icon(icon, color: color, size: 20.sp),
           ),
-          const SizedBox(width: 12),
+          horizontalSpace(12),
           Text(
             label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -99,7 +99,7 @@ class FamilyInfoSaveAs extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.download_rounded, color: Colors.blueGrey[700], size: 22),
+            Icon(Icons.download_rounded, color: Colors.blueGrey[600], size: 22),
             horizontalSpace(8),
             Text(
               'Save as',
