@@ -36,16 +36,31 @@ class SidebarItem extends StatelessWidget {
               children: [
                 Icon(
                   iconData,
-                  size: 18.sp,
+                  size:
+                      MediaQuery.of(context).orientation ==
+                              Orientation.landscape
+                          ? 10.sp
+                          : 18.sp,
                   color: isActive ? AppColors.blue : AppColors.grey300,
                 ),
                 horizontalSpace(12),
-                Text(
-                  title,
-                  style: AppStyles.boldSecondaryColor22.copyWith(
-                    color:
-                        isActive ? AppColors.blue : AppColors.fontPrimaryColor,
-                    fontSize: 14.sp,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    title,
+                    style: AppStyles.boldSecondaryColor22.copyWith(
+                      color:
+                          isActive
+                              ? AppColors.blue
+                              : AppColors.fontPrimaryColor,
+                      fontSize:
+                          MediaQuery.of(context).orientation ==
+                                  Orientation.landscape
+                              ? 8.sp
+                              : 14.sp,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],

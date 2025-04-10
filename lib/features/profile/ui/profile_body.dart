@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrmatrix/core/helper/spacing.dart';
 import 'package:hrmatrix/features/profile/logic/cubit/bar_ui_cubit.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/assets_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bank_account_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/bar_list_view.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/documents_ui.dart';
@@ -57,6 +58,12 @@ class _ProfileBodyState extends State<ProfileBody> {
                     DeviceOrientation.landscapeRight,
                   ]);
                   return OverTimeUI();
+                } else if (state is AssetsState) {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.landscapeLeft,
+                    DeviceOrientation.landscapeRight,
+                  ]);
+                  return AssetsUI();
                 }
                 SystemChrome.setPreferredOrientations([
                   DeviceOrientation.portraitUp,

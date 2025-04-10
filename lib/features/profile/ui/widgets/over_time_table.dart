@@ -10,8 +10,6 @@ import 'save_as_widget.dart';
 
 class OverTimeTable extends StatelessWidget {
   const OverTimeTable({super.key});
-
-  // Dummy data for table rows
   final List<Map<String, String>> dummyData = const [
     {
       'content': 'Project A',
