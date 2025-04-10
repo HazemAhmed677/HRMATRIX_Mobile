@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hrmatrix/features/profile/ui/widgets/profile_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hrmatrix/features/profile/ui/profile_body.dart';
 
 import '../../../features/hierarchical_tree/ui/widgets/hierarchical_tree.dart';
 import '../../../features/home/ui/widgets/home_view_body.dart';
+import '../../../features/profile/logic/cubit/bar_ui_cubit.dart';
 
 Widget buildContent(int index) {
   List<Widget> pages = [
     HomeViewBody(),
     Center(child: Text("Calendar Page")),
-    Center(child: ProfileBody()),
+    BlocProvider(create: (context) => BarUiCubit(), child: ProfileBody()),
     Center(child: Text("Employees Page")),
     Center(child: Text("Tasks Page")),
     Center(child: Text("Reports Page")),

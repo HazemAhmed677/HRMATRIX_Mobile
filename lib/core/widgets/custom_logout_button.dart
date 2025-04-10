@@ -15,6 +15,8 @@ class CustomActionButton extends StatelessWidget {
     required this.overlayColor,
     this.shape,
     required this.size,
+    this.fontWeight = FontWeightHelper.extraBold,
+    this.fontSize = 15,
   });
   final Color edgeColor;
   final Color backgroundColor;
@@ -24,6 +26,8 @@ class CustomActionButton extends StatelessWidget {
   final Function()? onPressed;
   final RoundedRectangleBorder? shape;
   final Size size;
+  final FontWeight fontWeight;
+  final double fontSize;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -42,8 +46,8 @@ class CustomActionButton extends StatelessWidget {
         text,
         style: AppStyles.boldNoColor18.copyWith(
           color: textColor,
-          fontSize: 15.sp,
-          fontWeight: FontWeightHelper.extraBold,
+          fontSize: fontSize.sp,
+          fontWeight: fontWeight,
         ),
       ),
     );

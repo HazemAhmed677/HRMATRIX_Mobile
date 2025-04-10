@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hrmatrix/core/theming/app_color.dart';
 
 import '../typography/font_weight_helper.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart'; // Assuming you're using screen util
@@ -64,5 +65,15 @@ class AppStyles {
     fontSize: 14.sp,
     fontFamily: 'Nexa',
     fontWeight: FontWeightHelper.semiBold,
+  );
+
+  static TextStyle primaryStyle = TextStyle(
+    color: AppColors.fontPrimaryColor,
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.extraBold,
+  );
+  static TextStyle secondaryStyle = TextStyle(
+    color: AppColors.fontSecondayColor,
+    fontWeight: FontWeightHelper.bold,
   );
 }
