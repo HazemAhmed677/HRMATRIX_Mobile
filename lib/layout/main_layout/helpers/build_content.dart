@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/profile_body.dart';
 
 import '../../../features/hierarchical_tree/ui/widgets/hierarchical_tree.dart';
 import '../../../features/home/ui/widgets/home_view_body.dart';
@@ -7,7 +8,7 @@ Widget buildContent(int index) {
   List<Widget> pages = [
     HomeViewBody(),
     Center(child: Text("Calendar Page")),
-    Center(child: Text("User Profile Page")),
+    Center(child: ProfileBody()),
     Center(child: Text("Employees Page")),
     Center(child: Text("Tasks Page")),
     Center(child: Text("Reports Page")),
