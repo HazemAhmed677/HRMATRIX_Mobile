@@ -12,6 +12,9 @@ import 'package:hrmatrix/features/profile/ui/widgets/disciplinary_actions_ui.dar
 import 'package:hrmatrix/features/profile/ui/widgets/documents_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/financial_transaction_ui.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/loans_ui.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/off_boarding_ui.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/on_boarding_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/over_time_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/part_time_ui.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_ui.dart';
@@ -67,6 +70,15 @@ class _ProfileBodyState extends State<ProfileBody> {
                     ]);
                   }
                   return DocumentsUI();
+                } else if (state is LoansState) {
+                  if (MediaQuery.of(context).orientation !=
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.landscapeLeft,
+                      DeviceOrientation.landscapeRight,
+                    ]);
+                  }
+                  return LoansUI();
                 } else if (state is OverTimeState) {
                   if (MediaQuery.of(context).orientation !=
                       Orientation.landscape) {
@@ -139,6 +151,24 @@ class _ProfileBodyState extends State<ProfileBody> {
                     ]);
                   }
                   return ContractsUI();
+                } else if (state is OnBoardingState) {
+                  if (MediaQuery.of(context).orientation ==
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.portraitUp,
+                      DeviceOrientation.portraitDown,
+                    ]);
+                  }
+                  return OnBoardingUI();
+                } else if (state is OffBoardingState) {
+                  if (MediaQuery.of(context).orientation ==
+                      Orientation.landscape) {
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.portraitUp,
+                      DeviceOrientation.portraitDown,
+                    ]);
+                  }
+                  return OffBoardingUI();
                 }
                 if (MediaQuery.of(context).orientation ==
                     Orientation.landscape) {

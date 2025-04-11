@@ -45,49 +45,55 @@ class PartTimeUI extends StatelessWidget {
       },
     ];
 
-    return CommonContainerProfile(
-      child: Column(
-        children: [
-          CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
-          verticalSpace(38),
-          Row(
-            children: [
-              ShowDropDownOptions(onEntriesChanged: (int value) {}),
-              Spacer(),
-              const SaveAsWidget(),
-            ],
-          ),
-          verticalSpace(38),
+    return Column(
+      children: [
+        verticalSpace(38),
 
-          Table(
-            border: TableBorder.all(color: AppColors.grey300, width: 1),
-            columnWidths: const {
-              0: FlexColumnWidth(2),
-              1: FlexColumnWidth(2),
-              2: FlexColumnWidth(2),
-            },
+        CommonContainerProfile(
+          child: Column(
             children: [
-              TableRow(
-                decoration: BoxDecoration(color: AppColors.grey100),
-                children: const [
-                  FamilyInfoHeaderItem(text: 'Working Hours'),
-                  FamilyInfoHeaderItem(text: 'Worked Hours'),
-                  FamilyInfoHeaderItem(text: 'Remaining Hours'),
+              CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
+              verticalSpace(28),
+              Row(
+                children: [
+                  ShowDropDownOptions(onEntriesChanged: (int value) {}),
+                  Spacer(),
+                  const SaveAsWidget(),
                 ],
               ),
-              ...data.map((row) {
-                return TableRow(
-                  children: [
-                    buildTextCell(row['Working Hours']!),
-                    buildTextCell(row['Worked Hours']!),
-                    buildTextCell(row['Remaining Hours']!),
-                  ],
-                );
-              }),
+              verticalSpace(28),
+
+              Table(
+                border: TableBorder.all(color: AppColors.grey300, width: 1),
+                columnWidths: const {
+                  0: FlexColumnWidth(2),
+                  1: FlexColumnWidth(2),
+                  2: FlexColumnWidth(2),
+                },
+                children: [
+                  TableRow(
+                    decoration: BoxDecoration(color: AppColors.grey100),
+                    children: const [
+                      FamilyInfoHeaderItem(text: 'Working Hours'),
+                      FamilyInfoHeaderItem(text: 'Worked Hours'),
+                      FamilyInfoHeaderItem(text: 'Remaining Hours'),
+                    ],
+                  ),
+                  ...data.map((row) {
+                    return TableRow(
+                      children: [
+                        buildTextCell(row['Working Hours']!),
+                        buildTextCell(row['Worked Hours']!),
+                        buildTextCell(row['Remaining Hours']!),
+                      ],
+                    );
+                  }),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
