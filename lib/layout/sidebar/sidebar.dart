@@ -42,7 +42,6 @@ class _SidebarState extends State<Sidebar> {
         return AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          // Use _sidebarLeft for horizontal offset (0 = open, negative = slid left)
           left: _sidebarLeft,
           top: isLandscape ? 160.h : (65 + 30).h,
           width: sidebarWidth,
@@ -51,7 +50,6 @@ class _SidebarState extends State<Sidebar> {
             onHorizontalDragUpdate: (details) {
               setState(() {
                 _sidebarLeft += details.delta.dx;
-                // Constrain the sidebar offset between fully closed and open.
                 if (_sidebarLeft > 0) _sidebarLeft = 0;
                 if (_sidebarLeft < -sidebarWidth) _sidebarLeft = -sidebarWidth;
               });
