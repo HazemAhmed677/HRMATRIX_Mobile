@@ -9,9 +9,19 @@ class CloseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: 18.r,
+      radius:
+          MediaQuery.orientationOf(context) == Orientation.landscape
+              ? 28.r
+              : 18.r,
       backgroundColor: AppColors.grey100,
-      child: Icon(Icons.close, color: AppColors.black, size: 18.sp),
+      child: Icon(
+        Icons.close,
+        color: AppColors.black,
+        size:
+            MediaQuery.orientationOf(context) == Orientation.landscape
+                ? 9.sp
+                : 18.sp,
+      ),
     );
   }
 }

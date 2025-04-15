@@ -110,7 +110,7 @@ class TimeOffTable extends StatelessWidget {
           verticalSpace(28),
           // Row with common actions (like add request)
           if (MediaQuery.orientationOf(context) == Orientation.landscape)
-            ProfileCommonRow(text: 'Add Time Off Request'),
+            ProfileCommonRow(text: 'Add Time Off Request', onPressed: () {}),
           verticalSpace(28),
 
           // Table Widget with the new columns

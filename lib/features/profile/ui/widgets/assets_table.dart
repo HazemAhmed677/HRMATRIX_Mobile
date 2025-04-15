@@ -97,7 +97,7 @@ class AssetsTable extends StatelessWidget {
         children: [
           CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Request Asset'),
+          ProfileCommonRow(text: 'Request Asset', onPressed: () {}),
           verticalSpace(28),
           // Table Widget
           Container(

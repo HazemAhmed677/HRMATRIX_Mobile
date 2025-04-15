@@ -43,7 +43,7 @@ class OverTimeTable extends StatelessWidget {
           CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
           verticalSpace(28),
           if (MediaQuery.of(context).orientation == Orientation.landscape)
-            ProfileCommonRow(text: 'Request Overtime'),
+            ProfileCommonRow(text: 'Request Overtime', onPressed: () {}),
           verticalSpace(28),
           // Table Widget
           Container(

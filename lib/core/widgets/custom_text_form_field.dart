@@ -18,6 +18,9 @@ class CustomTextFormField extends StatefulWidget {
     this.keyboardType,
     this.filled = true,
     this.label,
+    this.readOnly,
+    this.onTap,
+    this.maxLines = 1,
   });
   final String? label;
   final bool filled;
@@ -29,7 +32,9 @@ class CustomTextFormField extends StatefulWidget {
   final Function(String)? onSubmitted;
   final TextEditingController? textEditingController;
   final TextInputType? keyboardType;
-
+  final bool? readOnly;
+  final void Function()? onTap;
+  final int maxLines;
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
@@ -45,6 +50,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: widget.maxLines,
+      onTap: widget.onTap,
+      readOnly: widget.readOnly ?? false,
       keyboardType: widget.keyboardType,
       onChanged: widget.onChanged,
       onFieldSubmitted: widget.onSubmitted,
@@ -57,7 +65,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 ? Text(
                   widget.label!,
                   style: AppStyles.boldNoColor18.copyWith(
-                    fontSize: 12.sp,
+                    fontSize:
+                        MediaQuery.orientationOf(context) ==
+                                Orientation.landscape
+                            ? 8.sp
+                            : 12.sp,
                     color: AppColors.fontPrimaryColor,
                   ),
                 )
@@ -86,7 +98,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         hintText: widget.hint,
         hintStyle: AppStyles.boldNoColor18.copyWith(
           color: AppColors.grey600,
-          fontSize: 12.sp,
+          fontSize:
+              MediaQuery.orientationOf(context) == Orientation.landscape
+                  ? 8.sp
+                  : 12.sp,
           fontWeight: FontWeightHelper.semiBold,
         ),
         enabledBorder: buildBorder(color: AppColors.grey100),
@@ -100,7 +115,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   OutlineInputBorder buildBorder({required Color color}) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: color),
-      borderRadius: BorderRadius.circular(8.0.sp),
+      borderRadius: BorderRadius.circular(8.0.r),
     );
   }
 }

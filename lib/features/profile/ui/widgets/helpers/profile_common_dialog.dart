@@ -4,7 +4,7 @@ import 'package:hrmatrix/core/theming/app_color.dart';
 
 import '../profile_common_dialog_widget.dart';
 
-void profileCommonDialog({
+void showProfileCommonDialog({
   required Widget child,
   required BuildContext context,
 }) {

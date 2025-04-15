@@ -8,8 +8,13 @@ import '../../../../core/widgets/custom_logout_button.dart';
 import 'show_options.dart';
 
 class ProfileCommonRow extends StatelessWidget {
-  const ProfileCommonRow({super.key, required this.text});
+  const ProfileCommonRow({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
   final String text;
+  final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,7 +25,7 @@ class ProfileCommonRow extends StatelessWidget {
         const SaveAsWidget(),
         horizontalSpace(12),
         CustomActionButton(
-          onPressed: () {},
+          onPressed: onPressed,
           text: text,
           edgeColor: AppColors.customActionButton,
           backgroundColor: AppColors.customActionButton,

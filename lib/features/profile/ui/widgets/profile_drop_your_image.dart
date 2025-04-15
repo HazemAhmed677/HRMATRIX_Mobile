@@ -21,9 +21,7 @@ class _ProfileDropYourImageState extends State<ProfileDropYourImage> {
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(
-      source: ImageSource.gallery,
-    ); // You can also allow camera
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       setState(() {
@@ -37,7 +35,7 @@ class _ProfileDropYourImageState extends State<ProfileDropYourImage> {
     return GestureDetector(
       onTap: _pickImage,
       child: Container(
-        width: double.infinity,
+        width: MediaQuery.sizeOf(context).width,
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
           color: const Color(0xFFF9FAFB),

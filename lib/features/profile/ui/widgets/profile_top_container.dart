@@ -31,7 +31,7 @@ class ProfileTopContainer extends StatelessWidget {
           verticalSpace(12),
           CustomActionButton(
             onPressed: () {
-              profileCommonDialog(
+              showProfileCommonDialog(
                 child: ProfileResetButtonDialogWidget(),
                 context: context,
               );
@@ -48,7 +48,7 @@ class ProfileTopContainer extends StatelessWidget {
           verticalSpace(22),
           CustomActionButton(
             onPressed: () {
-              profileCommonDialog(
+              showProfileCommonDialog(
                 child: ProfileEditDialogWidget(),
                 context: context,
               );

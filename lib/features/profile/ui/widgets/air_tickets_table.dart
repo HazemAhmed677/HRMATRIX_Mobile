@@ -106,7 +106,8 @@ class AirTicketsTable extends StatelessWidget {
             hintText: 'Search air tickets...',
           ),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Request Air Ticket'), verticalSpace(28),
+          ProfileCommonRow(text: 'Request Air Ticket', onPressed: () {}),
+          verticalSpace(28),
 
           // Table Widget
           Table(

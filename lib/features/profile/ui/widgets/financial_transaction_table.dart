@@ -94,7 +94,8 @@ class FinancialTransactionTable extends StatelessWidget {
             hintText: 'Search air tickets...',
           ),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Request'), verticalSpace(28),
+          ProfileCommonRow(text: 'Request', onPressed: () {}),
+          verticalSpace(28),
 
           // Table Widget
           Table(
