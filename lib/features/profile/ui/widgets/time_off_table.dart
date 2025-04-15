@@ -6,7 +6,9 @@ import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_header_item.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_common_row.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/time_off_dialog.dart';
 
 class TimeOffTable extends StatelessWidget {
   const TimeOffTable({super.key});
@@ -110,7 +112,15 @@ class TimeOffTable extends StatelessWidget {
           verticalSpace(28),
           // Row with common actions (like add request)
           if (MediaQuery.orientationOf(context) == Orientation.landscape)
-            ProfileCommonRow(text: 'Add Time Off Request', onPressed: () {}),
+            ProfileCommonRow(
+              text: 'Add Time Off Request',
+              onPressed: () {
+                showProfileCommonDialog(
+                  child: TimeOffDialog(),
+                  context: context,
+                );
+              },
+            ),
           verticalSpace(28),
 
           // Table Widget with the new columns
