@@ -6,6 +6,8 @@ import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_header_item.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/financial_transaction_dialog.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
 
 import 'profile_common_row.dart';
 
@@ -94,7 +96,15 @@ class FinancialTransactionTable extends StatelessWidget {
             hintText: 'Search air tickets...',
           ),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Request', onPressed: () {}),
+          ProfileCommonRow(
+            text: 'Request',
+            onPressed: () {
+              showProfileCommonDialog(
+                child: FinancialTransactionDialog(),
+                context: context,
+              );
+            },
+          ),
           verticalSpace(28),
 
           // Table Widget
