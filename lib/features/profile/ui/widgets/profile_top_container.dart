@@ -5,7 +5,8 @@ import 'package:hrmatrix/core/typography/font_weight_helper.dart';
 import 'package:hrmatrix/core/widgets/custom_logout_button.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
-import 'package:hrmatrix/features/profile/ui/widgets/reset_button_dialog_widget.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/profile_edit_dialog_widget.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/profile_reset_button_dialog_widget.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theming/app_styles.dart';
@@ -31,7 +32,7 @@ class ProfileTopContainer extends StatelessWidget {
           CustomActionButton(
             onPressed: () {
               profileCommonDialog(
-                child: ResetButtonDialogWidget(),
+                child: ProfileResetButtonDialogWidget(),
                 context: context,
               );
             },
@@ -46,7 +47,12 @@ class ProfileTopContainer extends StatelessWidget {
           ),
           verticalSpace(22),
           CustomActionButton(
-            onPressed: () {},
+            onPressed: () {
+              profileCommonDialog(
+                child: ProfileEditDialogWidget(),
+                context: context,
+              );
+            },
             text: 'Edit',
             edgeColor: AppColors.grey300,
             backgroundColor: AppColors.white,

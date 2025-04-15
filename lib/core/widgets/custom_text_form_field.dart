@@ -62,7 +62,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   ),
                 )
                 : null,
-        fillColor: AppColors.grey100,
+        fillColor: AppColors.grey50,
         filled: widget.filled,
         suffixIcon:
             widget.obscure != null

@@ -24,4 +24,9 @@ class AppColors {
   static const Color grey900 = Color(0xFF212121);
   static const orange = Colors.orange;
   static const blue = Colors.blue;
+  static const green = Colors.green;
+  static const red = Colors.red;
+  static const yellow = Colors.yellow;
+  static const purple = Colors.purple;
+  static const dropFilledColor = Color(0xffF9FAFB);
 }

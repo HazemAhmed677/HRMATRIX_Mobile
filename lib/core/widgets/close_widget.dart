@@ -10,7 +10,7 @@ class CloseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 18.r,
-      backgroundColor: AppColors.grey200,
+      backgroundColor: AppColors.grey100,
       child: Icon(Icons.close, color: AppColors.black, size: 18.sp),
     );
   }

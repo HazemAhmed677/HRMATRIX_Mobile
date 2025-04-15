@@ -8,15 +8,16 @@ import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/close_widget.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
-class ResetButtonDialogWidget extends StatefulWidget {
-  const ResetButtonDialogWidget({super.key});
+class ProfileResetButtonDialogWidget extends StatefulWidget {
+  const ProfileResetButtonDialogWidget({super.key});
 
   @override
-  State<ResetButtonDialogWidget> createState() =>
-      _ResetButtonDialogWidgetState();
+  State<ProfileResetButtonDialogWidget> createState() =>
+      _ProfileResetButtonDialogWidgetState();
 }
 
-class _ResetButtonDialogWidgetState extends State<ResetButtonDialogWidget> {
+class _ProfileResetButtonDialogWidgetState
+    extends State<ProfileResetButtonDialogWidget> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
