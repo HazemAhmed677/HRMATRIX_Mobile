@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/over_time_dialog_widget.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_common_row.dart';
 
 import '../../../../core/helper/spacing.dart';
@@ -42,7 +44,16 @@ class OverTimeTable extends StatelessWidget {
         children: [
           CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Request Overtime'),
+          if (MediaQuery.of(context).orientation == Orientation.landscape)
+            ProfileCommonRow(
+              text: 'Request Overtime',
+              onPressed: () {
+                showProfileCommonDialog(
+                  child: OverTimeDialogWidget(),
+                  context: context,
+                );
+              },
+            ),
           verticalSpace(28),
           // Table Widget
           Container(

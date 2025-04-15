@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/assets_request_dialog.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_common_row.dart';
 
 import '../../../../core/helper/spacing.dart';
@@ -97,7 +99,16 @@ class AssetsTable extends StatelessWidget {
         children: [
           CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Request Asset'),
+          if (MediaQuery.orientationOf(context) == Orientation.landscape)
+            ProfileCommonRow(
+              text: 'Request Asset',
+              onPressed: () {
+                showProfileCommonDialog(
+                  child: AssetsRequestDialog(),
+                  context: context,
+                );
+              },
+            ),
           verticalSpace(28),
           // Table Widget
           Container(

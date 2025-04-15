@@ -14,7 +14,7 @@ class BarItem extends StatelessWidget {
       width:
           MediaQuery.of(context).orientation == Orientation.landscape
               ? 70.w
-              : 90.w,
+              : 94.w,
       decoration: BoxDecoration(
         color: isActive ? AppColors.deepPurple : AppColors.white,
         borderRadius: BorderRadius.circular(14.r),
@@ -32,7 +32,7 @@ class BarItem extends StatelessWidget {
             item['icon'],
             size:
                 MediaQuery.of(context).orientation == Orientation.landscape
-                    ? 16.sp
+                    ? 12.sp
                     : 26.sp,
             color: isActive ? AppColors.white : AppColors.deepPurple,
           ),
@@ -43,7 +43,7 @@ class BarItem extends StatelessWidget {
             style: TextStyle(
               fontSize:
                   MediaQuery.of(context).orientation == Orientation.landscape
-                      ? 8.sp
+                      ? 7.sp
                       : 12.sp,
               color: isActive ? AppColors.white : AppColors.black,
             ),

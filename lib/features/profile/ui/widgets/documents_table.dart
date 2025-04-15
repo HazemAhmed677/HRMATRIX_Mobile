@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_common_row.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/widgets/custom_search_text_field.dart';
+import 'document_add_dialog_widget.dart';
 
 class DocumentsTable extends StatelessWidget {
   const DocumentsTable({super.key});
@@ -19,7 +21,16 @@ class DocumentsTable extends StatelessWidget {
             hintText: 'Search documents...',
           ),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Add Document'),
+          if (MediaQuery.of(context).orientation == Orientation.landscape)
+            ProfileCommonRow(
+              text: 'Add Document',
+              onPressed: () {
+                showProfileCommonDialog(
+                  context: context,
+                  child: DocumentAddDialogWidget(),
+                );
+              },
+            ),
           verticalSpace(28),
           Container(
             decoration: BoxDecoration(

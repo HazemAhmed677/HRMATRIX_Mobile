@@ -29,9 +29,9 @@ class FamilyInfoTable extends StatelessWidget {
       child: Column(
         children: [
           CustomSearchTextFeild(readOnly: false),
-          verticalSpace(18),
+          verticalSpace(28),
           SaveAsWidget(),
-          verticalSpace(18),
+          verticalSpace(28),
 
           Table(
             border: TableBorder.all(color: AppColors.grey300, width: 1),
@@ -61,7 +61,7 @@ class FamilyInfoTable extends StatelessWidget {
                         child: Text(
                           row['Name']!,
                           style: AppStyles.primaryStyle.copyWith(
-                            fontSize: 14.sp,
+                            fontSize: 7.sp,
                           ),
                         ),
                       ),
@@ -73,7 +73,7 @@ class FamilyInfoTable extends StatelessWidget {
                         child: Text(
                           row['Phone']!,
                           style: AppStyles.primaryStyle.copyWith(
-                            fontSize: 14.sp,
+                            fontSize: 7.sp,
                           ),
                         ),
                       ),
@@ -86,7 +86,7 @@ class FamilyInfoTable extends StatelessWidget {
                         child: Text(
                           row['Relation']!,
                           style: AppStyles.primaryStyle.copyWith(
-                            fontSize: 14.sp,
+                            fontSize: 7.sp,
                           ),
                         ),
                       ),

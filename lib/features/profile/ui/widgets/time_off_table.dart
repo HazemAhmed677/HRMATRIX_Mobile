@@ -4,15 +4,14 @@ import 'package:hrmatrix/core/helper/spacing.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
-import 'package:hrmatrix/features/profile/ui/widgets/air_tickets_request_dialog.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_header_item.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/profile_common_row.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/time_off_dialog.dart';
 
-import 'profile_common_row.dart';
-
-class AirTicketsTable extends StatelessWidget {
-  const AirTicketsTable({super.key});
+class TimeOffTable extends StatelessWidget {
+  const TimeOffTable({super.key});
 
   /// Builds a cell containing text with common styling.
   Widget buildTextCell(String text, {double fontSize = 7.0}) {
@@ -36,15 +35,10 @@ class AirTicketsTable extends StatelessWidget {
     Color? bgColor;
     String displayText = status;
 
-    if (lowerStatus == 'approved' ||
-        lowerStatus == 'rejected' ||
-        lowerStatus == 'pending') {
-      bgColor =
-          lowerStatus == 'approved'
-              ? Colors.green.withOpacity(0.1)
-              : lowerStatus == 'rejected'
-              ? Colors.red.withOpacity(0.1)
-              : AppColors.orange.withOpacity(0.1);
+    if (lowerStatus == 'approved') {
+      bgColor = Colors.green;
+    } else if (lowerStatus == 'rejected') {
+      bgColor = Colors.red;
     }
 
     if (bgColor != null) {
@@ -62,20 +56,14 @@ class AirTicketsTable extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppStyles.primaryStyle.copyWith(
-                fontSize: 7.sp,
-                color:
-                    lowerStatus == 'approved'
-                        ? Colors.green
-                        : lowerStatus == 'rejected'
-                        ? Colors.red
-                        : AppColors.orange,
+                fontSize: 8.sp,
+                color: Colors.white,
               ),
             ),
           ),
         ),
       );
     }
-    // For any status that is not approved or rejected.
     return buildTextCell(status);
   }
 
@@ -83,27 +71,35 @@ class AirTicketsTable extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, String>> data = [
       {
-        'Name': 'Ticket A',
-        'Amount': '1000',
-        'EffectiveDate': '01/01/2023',
+        'Content': 'Meeting',
+        'From Hour': '09:00 AM',
+        'To Hour': '10:00 AM',
+        'Time Off': '1 hr',
+        'Time Off Date': '15/08/2023',
         'Status': 'Approved',
       },
       {
-        'Name': 'Ticket B',
-        'Amount': '90',
-        'EffectiveDate': '15/02/2023',
-        'Status': 'Rejected',
-      },
-      {
-        'Name': 'Ticket C',
-        'Amount': '120',
-        'EffectiveDate': '20/03/2023',
+        'Content': 'Lunch Break',
+        'From Hour': '12:00 PM',
+        'To Hour': '13:00 PM',
+        'Time Off': '1 hr',
+        'Time Off Date': '15/08/2023',
         'Status': 'Pending',
       },
       {
-        'Name': 'Ticket D',
-        'Amount': '819',
-        'EffectiveDate': '05/04/2023',
+        'Content': 'Doctor Appointment',
+        'From Hour': '14:30 PM',
+        'To Hour': '15:30 PM',
+        'Time Off': '1 hr',
+        'Time Off Date': '16/08/2023',
+        'Status': 'Rejected',
+      },
+      {
+        'Content': 'Training',
+        'From Hour': '10:00 AM',
+        'To Hour': '12:00 PM',
+        'Time Off': '2 hrs',
+        'Time Off Date': '17/08/2023',
         'Status': 'Approved',
       },
     ];
@@ -111,45 +107,55 @@ class AirTicketsTable extends StatelessWidget {
     return CommonContainerProfile(
       child: Column(
         children: [
-          CustomSearchTextFeild(
-            readOnly: false,
-            hintText: 'Search air tickets...',
-          ),
+          // Search Bar
+          CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
           verticalSpace(28),
-          ProfileCommonRow(
-            text: 'Request Air Ticket',
-            onPressed: () {
-              showProfileCommonDialog(
-                child: AirTicketsRequestDialog(),
-                context: context,
-              );
-            },
-          ),
+          // Row with common actions (like add request)
+          if (MediaQuery.orientationOf(context) == Orientation.landscape)
+            ProfileCommonRow(
+              text: 'Add Time Off Request',
+              onPressed: () {
+                showProfileCommonDialog(
+                  child: TimeOffDialog(),
+                  context: context,
+                );
+              },
+            ),
           verticalSpace(28),
+
+          // Table Widget with the new columns
           Table(
             border: TableBorder.all(color: AppColors.grey300, width: 1),
             columnWidths: const {
               0: FlexColumnWidth(2),
               1: FlexColumnWidth(1.5),
-              2: FlexColumnWidth(2),
+              2: FlexColumnWidth(1.5),
               3: FlexColumnWidth(1.5),
+              4: FlexColumnWidth(2),
+              5: FlexColumnWidth(1.5),
             },
             children: [
+              // Header Row
               TableRow(
                 decoration: BoxDecoration(color: AppColors.grey100),
                 children: const [
-                  FamilyInfoHeaderItem(text: 'Name'),
-                  FamilyInfoHeaderItem(text: 'Amount'),
-                  FamilyInfoHeaderItem(text: 'Effective Date'),
+                  FamilyInfoHeaderItem(text: 'Content'),
+                  FamilyInfoHeaderItem(text: 'From Hour'),
+                  FamilyInfoHeaderItem(text: 'To Hour'),
+                  FamilyInfoHeaderItem(text: 'Time Off'),
+                  FamilyInfoHeaderItem(text: 'Time Off Date'),
                   FamilyInfoHeaderItem(text: 'Status'),
                 ],
               ),
+              // Data Rows
               ...data.map((row) {
                 return TableRow(
                   children: [
-                    buildTextCell(row['Name']!),
-                    buildTextCell(row['Amount']!),
-                    buildTextCell(row['EffectiveDate']!),
+                    buildTextCell(row['Content']!),
+                    buildTextCell(row['From Hour']!),
+                    buildTextCell(row['To Hour']!),
+                    buildTextCell(row['Time Off']!),
+                    buildTextCell(row['Time Off Date']!),
                     buildStatusWidget(row['Status']!),
                   ],
                 );
