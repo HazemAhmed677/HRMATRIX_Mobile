@@ -8,8 +8,11 @@ import 'package:hrmatrix/features/profile/ui/widgets/helpers/show_calendar_dialo
 import '../../../../core/theming/app_styles.dart';
 
 class DocumentDialogExpirationDate extends StatefulWidget {
-  const DocumentDialogExpirationDate({super.key});
-
+  const DocumentDialogExpirationDate({
+    super.key,
+    this.label = 'Expiration Date',
+  });
+  final String label;
   @override
   State<DocumentDialogExpirationDate> createState() =>
       _DocumentDialogExpirationDateState();
@@ -46,7 +49,6 @@ class _DocumentDialogExpirationDateState
 
   void _pickDate(BuildContext context) async {
     final picked = await showTableCalendarDialog(context);
-    // loggerError(picked.toString());
     if (picked != null && picked is DateTime) {
       setState(() {
         _selectedDate = picked;
@@ -61,7 +63,7 @@ class _DocumentDialogExpirationDateState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Expiration Date',
+          widget.label,
           style: AppStyles.secondaryStyle.copyWith(fontSize: 7.sp),
         ),
         verticalSpace(24),

@@ -100,12 +100,11 @@ class _ProfileBodyState extends State<ProfileBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
         children: [
           SwipeToExplore(),
           verticalSpace(12),
-
-          /// Sticky bar list view
           const BarListView(),
 
           verticalSpace(18),

@@ -4,8 +4,10 @@ import 'package:hrmatrix/core/helper/spacing.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/air_tickets_request_dialog.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/family_info_header_item.dart';
+import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
 
 import 'profile_common_row.dart';
 
@@ -34,10 +36,15 @@ class AirTicketsTable extends StatelessWidget {
     Color? bgColor;
     String displayText = status;
 
-    if (lowerStatus == 'approved') {
-      bgColor = Colors.green;
-    } else if (lowerStatus == 'rejected') {
-      bgColor = Colors.red;
+    if (lowerStatus == 'approved' ||
+        lowerStatus == 'rejected' ||
+        lowerStatus == 'pending') {
+      bgColor =
+          lowerStatus == 'approved'
+              ? Colors.green.withOpacity(0.1)
+              : lowerStatus == 'rejected'
+              ? Colors.red.withOpacity(0.1)
+              : AppColors.orange.withOpacity(0.1);
     }
 
     if (bgColor != null) {
@@ -55,8 +62,13 @@ class AirTicketsTable extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppStyles.primaryStyle.copyWith(
-                fontSize: 8.sp,
-                color: Colors.white,
+                fontSize: 7.sp,
+                color:
+                    lowerStatus == 'approved'
+                        ? Colors.green
+                        : lowerStatus == 'rejected'
+                        ? Colors.red
+                        : AppColors.orange,
               ),
             ),
           ),
@@ -69,7 +81,6 @@ class AirTicketsTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Dummy data for air tickets
     final List<Map<String, String>> data = [
       {
         'Name': 'Ticket A',
@@ -100,16 +111,21 @@ class AirTicketsTable extends StatelessWidget {
     return CommonContainerProfile(
       child: Column(
         children: [
-          // Search & Save As Bar
           CustomSearchTextFeild(
             readOnly: false,
             hintText: 'Search air tickets...',
           ),
           verticalSpace(28),
-          ProfileCommonRow(text: 'Request Air Ticket', onPressed: () {}),
+          ProfileCommonRow(
+            text: 'Request Air Ticket',
+            onPressed: () {
+              showProfileCommonDialog(
+                child: AirTicketsRequestDialog(),
+                context: context,
+              );
+            },
+          ),
           verticalSpace(28),
-
-          // Table Widget
           Table(
             border: TableBorder.all(color: AppColors.grey300, width: 1),
             columnWidths: const {
@@ -119,7 +135,6 @@ class AirTicketsTable extends StatelessWidget {
               3: FlexColumnWidth(1.5),
             },
             children: [
-              // Header Row
               TableRow(
                 decoration: BoxDecoration(color: AppColors.grey100),
                 children: const [
@@ -129,7 +144,6 @@ class AirTicketsTable extends StatelessWidget {
                   FamilyInfoHeaderItem(text: 'Status'),
                 ],
               ),
-              // Data Rows
               ...data.map((row) {
                 return TableRow(
                   children: [

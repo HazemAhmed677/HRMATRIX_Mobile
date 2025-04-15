@@ -8,8 +8,8 @@ import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class DocumentDialogChooseOne extends StatefulWidget {
-  const DocumentDialogChooseOne({super.key});
-
+  const DocumentDialogChooseOne({super.key, this.text = "Upload a document"});
+  final String text;
   @override
   State<DocumentDialogChooseOne> createState() =>
       _DocumentDialogChooseOneState();
@@ -53,7 +53,7 @@ class _DocumentDialogChooseOneState extends State<DocumentDialogChooseOne> {
             ),
             verticalSpace(12.h),
             Text(
-              "Upload a document",
+              widget.text,
               style: TextStyle(
                 fontSize: 8.sp,
                 fontWeight: FontWeight.w600,

@@ -93,14 +93,20 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   ),
                 )
                 : null,
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal:
+              MediaQuery.orientationOf(context) == Orientation.landscape
+                  ? 10.w
+                  : 20.w,
+          vertical: 14.h,
+        ),
         hintFadeDuration: const Duration(milliseconds: 200),
         hintText: widget.hint,
         hintStyle: AppStyles.boldNoColor18.copyWith(
           color: AppColors.grey600,
           fontSize:
               MediaQuery.orientationOf(context) == Orientation.landscape
-                  ? 8.sp
+                  ? 6.sp
                   : 12.sp,
           fontWeight: FontWeightHelper.semiBold,
         ),

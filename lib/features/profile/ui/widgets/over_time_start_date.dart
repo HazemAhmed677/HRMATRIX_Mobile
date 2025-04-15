@@ -56,7 +56,13 @@ class _OverTimeStartAndEndDateState extends State<OverTimeStartAndEndDate> {
         GestureDetector(
           onTap: _pickTime,
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+            padding: EdgeInsets.symmetric(
+              horizontal:
+                  MediaQuery.orientationOf(context) == Orientation.landscape
+                      ? 10.w
+                      : 16.w,
+              vertical: 14.h,
+            ),
             decoration: BoxDecoration(
               color: const Color(0xFFF9FAFB),
               border: Border.all(color: const Color(0xFFD1D5DB)),
