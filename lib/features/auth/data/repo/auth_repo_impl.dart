@@ -57,30 +57,31 @@ class AuthRepoImpl extends AuthRepo {
     }
   }
 
-  // @override
-  // Future<Either<FailureService, void>> logout() async {
-  //   try {
-  //     String secutedToken =
-  //         await SharedPrefHelper.getSecuredString(SharedPrefKeys.employeeToken);
-  //     await apiService.post(
-  //       headers: {'Authorization': 'Bearer $secutedToken'},
-  //     );
+  @override
+  Future<Either<FailureService, void>> refreshToken({
+    required String oldToken,
+  }) async {
+    try {
+      Response loginResponse = await apiService.post(
+        endpoint: ApiEndpoints.refreshToken,
+        headers: {'Authorization': 'Bearer $oldToken'},
+      );
+      await saveUserToken(loginResponse.data['access_token']);
+      await SharedPrefHelper.storeCurrentDate();
 
-  //     return Right(null);
-  //   } on DioException catch (e) {
-  //     return Left(
-  //       FailureService.fromDioException(
-  //         dioExecption: e,
-  //         statusCode: e.response?.statusCode,
-  //         dioExecptionType: e.type,
-  //       ),
-  //     );
-  //   } catch (e) {
-  //     return Left(
-  //       FailureService(e.toString()),
-  //     );
-  //   }
-  // }
+      return Right(null);
+    } on DioException catch (e) {
+      return Left(
+        FailureService.fromDioException(
+          dioExecption: e,
+          statusCode: e.response?.statusCode,
+          dioExecptionType: e.type,
+        ),
+      );
+    } catch (e) {
+      return Left(FailureService(e.toString()));
+    }
+  }
 }
 
 Future<void> saveUserToken(String token) async {

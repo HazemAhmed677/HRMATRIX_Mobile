@@ -18,7 +18,7 @@ class LoginView extends StatelessWidget {
     return BlocConsumer<LogInCubit, LogInState>(
       listener: (context, state) {
         if (state is LogInSuccess) {
-          context.go(Routes.mainLayout);
+          context.go(Routes.initial);
         } else if (state is LogInFailure) {
           loggerError(state.errorMsg);
           showErrorSnackBar(
