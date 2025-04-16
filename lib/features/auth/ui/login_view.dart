@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hrmatrix/core/helper/logger.dart';
 import 'package:hrmatrix/core/helper/show_top_snack_bar.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
-import 'package:hrmatrix/features/login/logic/login/login_cubit.dart';
-import 'package:hrmatrix/features/login/ui/widgets/login_view_body.dart';
+import 'package:hrmatrix/features/auth/logic/login/login_cubit.dart';
+import 'package:hrmatrix/features/auth/ui/widgets/login_view_body.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../core/routing/routes.dart';

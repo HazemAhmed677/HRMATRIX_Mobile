@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:hrmatrix/core/di/set_up.dart';
 import 'package:hrmatrix/core/routing/routes.dart';
 import 'package:hrmatrix/core/widgets/custom_slider_transition.dart';
-import 'package:hrmatrix/features/login/data/repo/login_repo_impl.dart';
+import 'package:hrmatrix/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:hrmatrix/layout/main_layout/main_layout.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
 
-import '../../features/login/logic/login/login_cubit.dart';
-import '../../features/login/ui/login_view.dart';
+import '../../features/auth/logic/login/login_cubit.dart';
+import '../../features/auth/ui/login_view.dart';
 
 abstract class AppRouter {
   static final GoRouter router = GoRouter(
@@ -20,7 +20,7 @@ abstract class AppRouter {
               child: BlocProvider(
                 create:
                     (context) =>
-                        LogInCubit(loginRepoImpl: getIt.get<LoginRepoImpl>()),
+                        LogInCubit(loginRepoImpl: getIt.get<AuthRepoImpl>()),
                 child: const LoginView(),
               ),
               key: state.pageKey,

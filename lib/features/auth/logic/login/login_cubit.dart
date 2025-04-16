@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:hrmatrix/features/login/data/repo/login_repo_impl.dart';
+import 'package:hrmatrix/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/helper/logger.dart';
@@ -9,7 +9,7 @@ part 'login_state.dart';
 
 class LogInCubit extends Cubit<LogInState> {
   LogInCubit({required this.loginRepoImpl}) : super(LogInInitial());
-  final LoginRepoImpl loginRepoImpl;
+  final AuthRepoImpl loginRepoImpl;
 
   Future<void> login({required String email, required String password}) async {
     if (isClosed) return;

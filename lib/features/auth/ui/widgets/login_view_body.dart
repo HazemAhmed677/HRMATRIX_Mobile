@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/features/login/ui/widgets/login_top_section.dart';
+import 'package:hrmatrix/features/auth/ui/widgets/login_top_section.dart';
 
 import '../../../../core/helper/spacing.dart';
 

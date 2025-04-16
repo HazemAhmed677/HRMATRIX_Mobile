@@ -1,5 +1,4 @@
 import 'department.dart';
-import 'hierarchical_manager.dart';
 import 'over_time_request.dart';
 import 'salary_details.dart';
 
@@ -65,7 +64,6 @@ class EmployeeModel {
   List<OverTimeRequest>? overTimeRequests;
   List<dynamic>? airTicketAllowances;
   SalaryDetails? salaryDetails;
-  HierarchicalManager? hierarchicalManager;
   String? subRole;
 
   EmployeeModel({
@@ -130,7 +128,6 @@ class EmployeeModel {
     this.overTimeRequests,
     this.airTicketAllowances,
     this.salaryDetails,
-    this.hierarchicalManager,
     this.subRole,
   });
 
@@ -207,12 +204,7 @@ class EmployeeModel {
             : SalaryDetails.fromJson(
               json['salaryDetails'] as Map<String, dynamic>,
             ),
-    hierarchicalManager:
-        json['hierarchicalManager'] == null
-            ? null
-            : HierarchicalManager.fromJson(
-              json['hierarchicalManager'] as Map<String, dynamic>,
-            ),
+
     subRole: json['subRole'] as String?,
   );
 
@@ -278,7 +270,6 @@ class EmployeeModel {
     'overTimeRequests': overTimeRequests?.map((e) => e.toJson()).toList(),
     'airTicketAllowances': airTicketAllowances,
     'salaryDetails': salaryDetails?.toJson(),
-    'hierarchicalManager': hierarchicalManager?.toJson(),
     'subRole': subRole,
   };
 }

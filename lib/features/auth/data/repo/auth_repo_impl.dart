@@ -3,17 +3,17 @@ import 'package:either_dart/either.dart';
 import 'package:hrmatrix/core/errors/failure_service.dart';
 import 'package:hrmatrix/core/networking/api_endpoints.dart';
 import 'package:hrmatrix/core/networking/api_service.dart';
-import 'package:hrmatrix/features/login/data/repo/login_repo.dart';
+import 'package:hrmatrix/features/auth/data/repo/auth_repo.dart';
 
 import '../../../../core/helper/constants.dart';
 import '../../../../core/helper/logger.dart';
 import '../../../../core/helper/shard_pref_helper.dart';
 import '../models/employee_model/employee_model.dart';
 
-class LoginRepoImpl extends LoginRepo {
+class AuthRepoImpl extends AuthRepo {
   final ApiService apiService;
 
-  LoginRepoImpl({required this.apiService});
+  AuthRepoImpl({required this.apiService});
 
   @override
   Future<Either<FailureService, EmployeeModel>> login({
@@ -55,6 +55,31 @@ class LoginRepoImpl extends LoginRepo {
       return Left(FailureService(e.toString()));
     }
   }
+
+  // @override
+  // Future<Either<FailureService, void>> logout() async {
+  //   try {
+  //     String secutedToken =
+  //         await SharedPrefHelper.getSecuredString(SharedPrefKeys.employeeToken);
+  //     await apiService.post(
+  //       headers: {'Authorization': 'Bearer $secutedToken'},
+  //     );
+
+  //     return Right(null);
+  //   } on DioException catch (e) {
+  //     return Left(
+  //       FailureService.fromDioException(
+  //         dioExecption: e,
+  //         statusCode: e.response?.statusCode,
+  //         dioExecptionType: e.type,
+  //       ),
+  //     );
+  //   } catch (e) {
+  //     return Left(
+  //       FailureService(e.toString()),
+  //     );
+  //   }
+  // }
 }
 
 Future<void> saveUserToken(String token) async {
