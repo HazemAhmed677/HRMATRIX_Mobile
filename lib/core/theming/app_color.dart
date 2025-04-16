@@ -29,4 +29,5 @@ class AppColors {
   static const yellow = Colors.yellow;
   static const purple = Colors.purple;
   static const dropFilledColor = Color(0xffF9FAFB);
+  static const authColor = Color(0xff161950);
 }

@@ -85,9 +85,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     });
                   },
                   child: Icon(
-                    obsecureOne! ? Icons.visibility : Icons.visibility_off,
+                    !obsecureOne! ? Icons.visibility : Icons.visibility_off,
                     color:
-                        obsecureOne!
+                        !obsecureOne!
                             ? AppColors.fontPrimaryColor
                             : AppColors.grey,
                   ),
