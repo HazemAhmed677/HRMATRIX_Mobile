@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
-import 'package:hrmatrix/features/auth/ui/widgets/sign_word.dart';
+import 'package:hrmatrix/features/login/ui/widgets/sign_word.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/typography/app_images.dart';
@@ -56,6 +56,7 @@ class _LogInTopSectionState extends State<LogInTopSection> {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
                 autovalidateMode = AutovalidateMode.disabled;
+                // trigger logic here
                 // context.push(Routes.switcherView);
               } else {
                 autovalidateMode = AutovalidateMode.always;
@@ -64,10 +65,14 @@ class _LogInTopSectionState extends State<LogInTopSection> {
             },
             text: 'Log In',
             edgeColor: AppColors.customActionButton,
-            backgroundColor: AppColors.customActionButton,
+            backgroundColor: AppColors.authColor,
             textColor: AppColors.white,
             overlayColor: AppColors.white,
-            size: Size(MediaQuery.sizeOf(context).width, 70.h),
+            size: Size(MediaQuery.sizeOf(context).width, 50.h),
+            fontSize: 18,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.r),
+            ),
           ),
         ],
       ),

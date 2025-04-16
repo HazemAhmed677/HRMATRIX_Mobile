@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/features/auth/ui/widgets/login_top_section.dart';
+import 'package:hrmatrix/features/login/ui/widgets/login_top_section.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theming/app_color.dart';
@@ -16,7 +16,7 @@ class LogInViewBody extends StatelessWidget {
         child: SizedBox(
           width: MediaQuery.sizeOf(context).width,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 22.0.sp),
+            padding: EdgeInsets.symmetric(horizontal: 22.0.w),
             child: Center(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),

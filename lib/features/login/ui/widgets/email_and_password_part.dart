@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hrmatrix/features/auth/ui/widgets/word_of_textfield.dart';
+import 'package:hrmatrix/features/login/ui/widgets/word_of_textfield.dart';
 
 import '../../../../core/helper/spacing.dart';
-import '../../../../core/theming/app_color.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
 class EmailAndPasswordPart extends StatefulWidget {
@@ -18,7 +17,6 @@ class EmailAndPasswordPart extends StatefulWidget {
 }
 
 class _EmailAndPasswordPartState extends State<EmailAndPasswordPart> {
-  bool flag = false;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,18 +49,8 @@ class _EmailAndPasswordPartState extends State<EmailAndPasswordPart> {
               return null;
             }
           },
-          hint: '**********',
-          suffixIcon: IconButton(
-            onPressed: () {
-              flag = !flag;
-              setState(() {});
-            },
-            icon:
-                (!flag)
-                    ? Icon(Icons.visibility_off, color: Colors.grey.shade800)
-                    : const Icon(Icons.visibility, color: AppColors.grey300),
-          ),
-          obscure: !flag,
+          hint: '----------',
+          obscure: true,
           onChanged: widget.onChanged2,
         ),
       ],

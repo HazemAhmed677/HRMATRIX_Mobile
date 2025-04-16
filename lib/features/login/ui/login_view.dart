@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrmatrix/features/auth/ui/widgets/login_view_body.dart';
+import 'package:hrmatrix/features/login/ui/widgets/login_view_body.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
