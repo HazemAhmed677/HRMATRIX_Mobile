@@ -5,11 +5,11 @@ import 'package:hrmatrix/core/di/set_up.dart';
 import 'package:hrmatrix/core/routing/routes.dart';
 import 'package:hrmatrix/core/widgets/custom_slider_transition.dart';
 import 'package:hrmatrix/features/auth/data/repo/auth_repo_impl.dart';
-import 'package:hrmatrix/layout/main_layout/main_layout.dart';
-import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
+import 'package:hrmatrix/features/auth/logic/refresh_token/refresh_token_cubit.dart';
 
 import '../../features/auth/logic/login/login_cubit.dart';
 import '../../features/auth/ui/login_view.dart';
+import '../../layout/main_layout/shold_refresh_token.dart';
 import '../helper/constants.dart';
 import '../helper/logger.dart';
 import '../helper/shard_pref_helper.dart';
@@ -52,14 +52,13 @@ abstract class AppRouter {
 
       GoRoute(
         path: Routes.initial,
-        pageBuilder:
-            (context, state) => CustomSliderTransition(
-              child: BlocProvider(
-                create: (context) => SidebarCubit(),
-                child: const MainLayout(),
-              ),
-              key: state.pageKey,
-              duration: 300,
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (context) => RefreshTokenCubit(
+                    authRepoImpl: getIt.get<AuthRepoImpl>(),
+                  ),
+              child: const SholdRefreshToken(),
             ),
       ),
     ],
