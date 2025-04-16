@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/features/login/ui/widgets/sign_word.dart';
@@ -7,6 +8,7 @@ import 'package:hrmatrix/features/login/ui/widgets/sign_word.dart';
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/typography/app_images.dart';
 import '../../../../core/widgets/custom_logout_button.dart';
+import '../../logic/login/login_cubit.dart';
 import 'email_and_password_part.dart';
 
 class LogInTopSection extends StatefulWidget {
@@ -57,7 +59,10 @@ class _LogInTopSectionState extends State<LogInTopSection> {
                 formKey.currentState!.save();
                 autovalidateMode = AutovalidateMode.disabled;
                 // trigger logic here
-                // context.push(Routes.switcherView);
+                context.read<LogInCubit>().login(
+                  email: email,
+                  password: password,
+                );
               } else {
                 autovalidateMode = AutovalidateMode.always;
               }

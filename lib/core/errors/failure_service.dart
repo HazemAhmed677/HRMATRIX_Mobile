@@ -2,7 +2,6 @@
 import 'dart:math';
 
 import 'package:dio/dio.dart';
-import 'package:hrmatrix/core/helper/logger.dart';
 
 class FailureService {
   final String errorMsg;
@@ -44,7 +43,6 @@ class FailureService {
     required DioException dioExecption,
   }) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      loggerError(dioExecption.response?.data['error'].toString() ?? 'null');
       return FailureService(
         dioExecption.response?.data['message'] ?? 'Something went wrong',
       );

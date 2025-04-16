@@ -3,12 +3,12 @@ import 'package:either_dart/either.dart';
 import 'package:hrmatrix/core/errors/failure_service.dart';
 import 'package:hrmatrix/core/networking/api_endpoints.dart';
 import 'package:hrmatrix/core/networking/api_service.dart';
-import 'package:hrmatrix/features/login/data/models/employee_model.dart';
 import 'package:hrmatrix/features/login/data/repo/login_repo.dart';
 
 import '../../../../core/helper/constants.dart';
 import '../../../../core/helper/logger.dart';
 import '../../../../core/helper/shard_pref_helper.dart';
+import '../models/employee_model/employee_model.dart';
 
 class LoginRepoImpl extends LoginRepo {
   final ApiService apiService;
@@ -25,15 +25,14 @@ class LoginRepoImpl extends LoginRepo {
         endpoint: ApiEndpoints.login,
         data: {'email': email, 'password': password},
       );
-      if (loginResponse.data != null &&
-          loginResponse.data['data']['token'] != null) {
-        await saveUserToken(loginResponse.data['data']['token']);
+      if (loginResponse.data != null && loginResponse.data['token'] != null) {
+        await saveUserToken(loginResponse.data['token']);
         await SharedPrefHelper.storeCurrentDate();
 
         String securedOne = await SharedPrefHelper.getSecuredString(
           SharedPrefKeys.employeeToken,
         );
-        Response userResponse = await apiService.post(
+        Response userResponse = await apiService.get(
           endpoint: ApiEndpoints.getProfile,
           headers: {'Authorization': 'Bearer $securedOne'},
         );

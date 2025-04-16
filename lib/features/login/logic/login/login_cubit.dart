@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:hrmatrix/features/login/data/models/employee_model.dart';
 import 'package:hrmatrix/features/login/data/repo/login_repo_impl.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/helper/logger.dart';
+import '../../data/models/employee_model/employee_model.dart';
 
 part 'login_state.dart';
 

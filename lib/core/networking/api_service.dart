@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:hrmatrix/core/errors/failure_service.dart';
+import 'package:hrmatrix/core/networking/api_structure.dart';
 
 class ApiService {
   final Dio _dio = Dio();
@@ -10,8 +11,16 @@ class ApiService {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
   }) async {
+    _dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestBody: true,
+        responseBody: true,
+        error: true,
+      ),
+    );
     final response = await _dio.get(
-      endpoint,
+      '${ApiStructure.baseURL}$endpoint',
       queryParameters: queryParameters,
       options: Options(headers: headers),
     );
@@ -23,8 +32,16 @@ class ApiService {
     Map<String, dynamic>? data,
     Map<String, String>? headers,
   }) async {
+    _dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestBody: true,
+        responseBody: true,
+        error: true,
+      ),
+    );
     final response = await _dio.post(
-      endpoint,
+      '${ApiStructure.baseURL}$endpoint',
       data: data,
       options: Options(headers: headers),
     );
@@ -36,8 +53,16 @@ class ApiService {
     Map<String, dynamic>? data,
     Map<String, String>? headers,
   }) async {
+    _dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestBody: true,
+        responseBody: true,
+        error: true,
+      ),
+    );
     final response = await _dio.delete(
-      endpoint,
+      '${ApiStructure.baseURL}$endpoint',
       data: data,
       options: Options(headers: headers),
     );
