@@ -1,26 +1,32 @@
-// import 'package:hrmatrix/features/login/data/models/employee_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-// class UserModelHiveServices {
-//   static Future<void> saveUserLocally(EmployeeModel user) async {
-//     loggerInfo('🟢 Saving user locally: $user');
+import '../../../../core/helper/constants.dart';
+import '../../../../core/helper/logger.dart';
+import '../models/employee_model/employee_model.dart';
 
-//     var box = await Hive.openBox<UserModel>(Constants.kUserModelBox);
-//     await box.put('user', user);
-//   }
+class EmployeeHiveServices {
+  static Future<void> saveemployeeLocally(EmployeeModel employee) async {
+    loggerInfo('🟢 Saving employee locally: $employee');
 
-//   static Future<UserModel?> getUserLocally() async {
-//     loggerInfo('🟢 getting user locally');
-//     var box = await Hive.openBox<UserModel>(Constants.kUserModelBox);
-//     return box.get('user');
-//   }
+    var box = await Hive.openBox<EmployeeModel>(Constants.kEmployeeBox);
+    await box.put('employee', employee);
+  }
 
-//   static Future<void> deleteUserLocally() async {
-//     var box = await Hive.openBox<UserModel>(Constants.kUserModelBox);
-//     await box.delete('user');
-//   }
+  static Future<EmployeeModel?> getemployeeLocally() async {
+    loggerInfo('🟢 getting employee locally');
+    var box = await Hive.openBox<EmployeeModel>(Constants.kEmployeeBox);
+    return box.get('employee');
+  }
 
-//   static Future<void> updateUserLocally(UserModel updatedUser) async {
-//     var box = await Hive.openBox<UserModel>(Constants.kUserModelBox);
-//     await box.put('user', updatedUser);
-//   }
-// }
+  static Future<void> deleteemployeeLocally() async {
+    var box = await Hive.openBox<EmployeeModel>(Constants.kEmployeeBox);
+    await box.delete('employee');
+  }
+
+  static Future<void> updateemployeeLocally(
+    EmployeeModel updatedemployee,
+  ) async {
+    var box = await Hive.openBox<EmployeeModel>(Constants.kEmployeeBox);
+    await box.put('employee', updatedemployee);
+  }
+}

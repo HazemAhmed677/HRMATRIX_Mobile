@@ -1,29 +1,55 @@
+import 'package:hive/hive.dart';
+
 import 'department.dart';
 import 'over_time_request.dart';
 import 'salary_details.dart';
 
+part 'employee_model.g.dart';
+
+@HiveType(typeId: 0)
 class EmployeeModel {
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? name;
+  @HiveField(2)
   String? email;
   String? password;
+  @HiveField(3)
   String? phoneNumber;
+  @HiveField(4)
   dynamic secondaryPhoneNumber;
+  @HiveField(5)
   String? birthDate;
+  @HiveField(6)
   String? gender;
+  @HiveField(7)
   String? shift;
+  @HiveField(8)
   String? maritalStatus;
+  @HiveField(9)
   String? nationality;
+  @HiveField(10)
   String? nationalId;
+  @HiveField(11)
   String? citizen;
+  @HiveField(12)
   String? religion;
+  @HiveField(13)
   String? dateOfJoining;
+  @HiveField(14)
   String? endOfProbation;
+  @HiveField(15)
   String? role;
+  @HiveField(16)
   dynamic bankAccountNumber;
+  @HiveField(17)
   String? bankAccountStatus;
+  @HiveField(18)
   String? jobType;
+  @HiveField(19)
   String? jobTitle;
+  @HiveField(20)
   String? baseSalary;
   String? housingAllowance;
   String? transportationAllowance;
@@ -44,14 +70,19 @@ class EmployeeModel {
   int? actualScore;
   String? performanceScore;
   dynamic evaluationHistory;
+  @HiveField(21)
   int? departmentId;
   int? companyId;
   dynamic updatedBy;
+  @HiveField(22)
   String? address;
+  @HiveField(23)
   dynamic avatar;
+  @HiveField(24)
   String? branch;
   String? createdAt;
   String? updatedAt;
+
   Department? department;
   dynamic updater;
   List<dynamic>? vacations;

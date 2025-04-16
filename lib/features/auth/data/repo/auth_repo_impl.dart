@@ -8,6 +8,7 @@ import 'package:hrmatrix/features/auth/data/repo/auth_repo.dart';
 import '../../../../core/helper/constants.dart';
 import '../../../../core/helper/logger.dart';
 import '../../../../core/helper/shard_pref_helper.dart';
+import '../local/user_model_hive_services.dart';
 import '../models/employee_model/employee_model.dart';
 
 class AuthRepoImpl extends AuthRepo {
@@ -37,7 +38,7 @@ class AuthRepoImpl extends AuthRepo {
           headers: {'Authorization': 'Bearer $securedOne'},
         );
         EmployeeModel user = EmployeeModel.fromJson(userResponse.data);
-        // await EmployeeModelHiveServices.saveUserLocally(user);
+        await EmployeeHiveServices.saveemployeeLocally(user);
         return Right(user);
       } else {
         return Left(FailureService('There is no token'));

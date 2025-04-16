@@ -8,6 +8,4 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
-
-  // Future<Either<FailureService, void>> logout();
 }

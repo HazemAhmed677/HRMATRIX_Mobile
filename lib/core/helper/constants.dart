@@ -1,8 +1,7 @@
 bool isLoggedInUser = false;
 
 class Constants {
-  static const kUserModelBox = 'kUserModelBox';
-  static const kSelleBox = 'kSelleBox';
+  static const kEmployeeBox = 'kEmployeeBox';
 }
 
 class SharedPrefKeys {
