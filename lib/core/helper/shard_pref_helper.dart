@@ -15,7 +15,7 @@ class SharedPrefHelper {
     await sharedPreferences.remove(key);
   }
 
-  static clearAllData() async {
+  static Future<void> clearAllData() async {
     debugPrint('SharedPrefHelper : all data has been cleared');
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.clear();
@@ -73,7 +73,7 @@ class SharedPrefHelper {
   }
 
   /// Removes all keys and values in the FlutterSecureStorage
-  static clearAllSecuredData() async {
+  static Future<void> clearAllSecuredData() async {
     debugPrint('FlutterSecureStorage : all data has been cleared');
     const flutterSecureStorage = FlutterSecureStorage();
     await flutterSecureStorage.deleteAll();

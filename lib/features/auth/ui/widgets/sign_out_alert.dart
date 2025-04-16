@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hrmatrix/core/helper/shard_pref_helper.dart';
+import 'package:hrmatrix/core/routing/routes.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:lottie/lottie.dart';
 
@@ -187,7 +189,11 @@ class _SignOutAlertState extends State<SignOutAlert>
   Widget _buildConfirmButton() {
     return ElevatedButton(
       onPressed: () async {
-        // sign out here
+        await SharedPrefHelper.clearAllSecuredData();
+        await SharedPrefHelper.clearAllData();
+        if (mounted) {
+          context.go(Routes.login);
+        }
       },
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 14.h),
