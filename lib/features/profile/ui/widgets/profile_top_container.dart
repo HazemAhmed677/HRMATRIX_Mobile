@@ -7,6 +7,7 @@ import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.da
 import 'package:hrmatrix/features/profile/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_edit_dialog_widget.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_reset_button_dialog_widget.dart';
+import 'package:hrmatrix/main.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theming/app_styles.dart';
@@ -25,9 +26,9 @@ class ProfileTopContainer extends StatelessWidget {
             backgroundImage: AssetImage(AppImages.profile),
           ),
           verticalSpace(22),
-          Text('Hazem Ahmed', style: AppStyles.primaryStyle),
+          Text(employeeModel!.name!, style: AppStyles.primaryStyle),
           verticalSpace(8),
-          Text('ID: 5', style: AppStyles.secondaryStyle),
+          Text('ID: ${employeeModel!.id}', style: AppStyles.secondaryStyle),
           verticalSpace(12),
           CustomActionButton(
             onPressed: () {

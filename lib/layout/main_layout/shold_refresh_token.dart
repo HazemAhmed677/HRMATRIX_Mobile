@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hrmatrix/features/auth/data/models/employee_model/employee_model.dart';
 import 'package:hrmatrix/layout/main_layout/main_layout.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
 
@@ -12,6 +11,7 @@ import '../../core/routing/routes.dart';
 import '../../core/theming/app_color.dart';
 import '../../features/auth/data/local/user_model_hive_services.dart';
 import '../../features/auth/logic/refresh_token/refresh_token_cubit.dart';
+import '../../main.dart';
 
 class SholdRefreshToken extends StatefulWidget {
   const SholdRefreshToken({super.key});
@@ -21,7 +21,6 @@ class SholdRefreshToken extends StatefulWidget {
 }
 
 class _SholdRefreshTokenState extends State<SholdRefreshToken> {
-  EmployeeModel? employeeModel;
   bool isLoading1 = true;
   String? token;
   bool isLoading2 = true;
@@ -34,12 +33,11 @@ class _SholdRefreshTokenState extends State<SholdRefreshToken> {
   }
 
   Future<void> _loadUser() async {
-    final user = await EmployeeHiveServices.getemployeeLocally();
+    employeeModel = await EmployeeHiveServices.getemployeeLocally();
     setState(() {
-      employeeModel = user;
       isLoading1 = false;
     });
-    loggerError(user?.email?.toString() ?? 'USER MODEL IS NULL');
+    loggerError(employeeModel?.email?.toString() ?? 'USER MODEL IS NULL');
   }
 
   Future<void> _loadToken() async {

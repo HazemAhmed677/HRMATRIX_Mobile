@@ -38,17 +38,25 @@ class EmployeeModelAdapter extends TypeAdapter<EmployeeModel> {
       jobType: fields[18] as String?,
       jobTitle: fields[19] as String?,
       baseSalary: fields[20] as String?,
-      departmentId: fields[21] as int?,
-      address: fields[22] as String?,
-      avatar: fields[23] as dynamic,
-      branch: fields[24] as String?,
+      housingAllowance: fields[21] as String?,
+      transportationAllowance: fields[22] as String?,
+      otherAllowance: fields[23] as String?,
+      gosi: fields[24] as String?,
+      salaryOnGosi: fields[25] as String?,
+      hourlyRate: fields[26] as int?,
+      departmentId: fields[27] as int?,
+      address: fields[28] as String?,
+      avatar: fields[29] as dynamic,
+      branch: fields[30] as String?,
+      department: fields[31] as DepartmentModel?,
+      directManager: fields[32] as dynamic,
     );
   }
 
   @override
   void write(BinaryWriter writer, EmployeeModel obj) {
     writer
-      ..writeByte(25)
+      ..writeByte(33)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -92,13 +100,29 @@ class EmployeeModelAdapter extends TypeAdapter<EmployeeModel> {
       ..writeByte(20)
       ..write(obj.baseSalary)
       ..writeByte(21)
-      ..write(obj.departmentId)
+      ..write(obj.housingAllowance)
       ..writeByte(22)
-      ..write(obj.address)
+      ..write(obj.transportationAllowance)
       ..writeByte(23)
-      ..write(obj.avatar)
+      ..write(obj.otherAllowance)
       ..writeByte(24)
-      ..write(obj.branch);
+      ..write(obj.gosi)
+      ..writeByte(25)
+      ..write(obj.salaryOnGosi)
+      ..writeByte(26)
+      ..write(obj.hourlyRate)
+      ..writeByte(27)
+      ..write(obj.departmentId)
+      ..writeByte(28)
+      ..write(obj.address)
+      ..writeByte(29)
+      ..write(obj.avatar)
+      ..writeByte(30)
+      ..write(obj.branch)
+      ..writeByte(31)
+      ..write(obj.department)
+      ..writeByte(32)
+      ..write(obj.directManager);
   }
 
   @override

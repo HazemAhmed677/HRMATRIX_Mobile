@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hrmatrix/core/di/set_up.dart';
 import 'package:hrmatrix/core/typography/simple_bloc_observer.dart';
+import 'package:hrmatrix/features/auth/data/models/employee_model/department_model.dart';
 import 'package:hrmatrix/features/auth/data/models/employee_model/employee_model.dart';
 import 'package:hrmatrix/hrmatrix.dart';
 
+EmployeeModel? employeeModel;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
@@ -14,5 +16,6 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(EmployeeModelAdapter());
+  Hive.registerAdapter(DepartmentModelAdapter());
   runApp(const Hrmatrix());
 }
