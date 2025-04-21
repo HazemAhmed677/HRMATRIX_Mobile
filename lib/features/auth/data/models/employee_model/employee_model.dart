@@ -234,7 +234,7 @@ class EmployeeModel {
     updater: json['updater'] as dynamic,
     vacations: json['vacations'] as List<dynamic>?,
     familyInfo:
-        (json['familyInfo'] as List<FamilyInfoModel>?)
+        (json['familyInfo'] as List<dynamic>?)
             ?.map((e) => FamilyInfoModel.fromJson(e as Map<String, dynamic>))
             .toList(),
     modifiedRole: json['modifiedRole'] as String?,

@@ -5,7 +5,9 @@ import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/family_info_header_item.dart';
+import 'package:hrmatrix/features/profile_pt1/ui/widgets/no_data_available.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/save_as_widget.dart';
+import 'package:hrmatrix/main.dart';
 
 import '../../../../core/widgets/custom_search_text_field.dart';
 
@@ -14,17 +16,6 @@ class FamilyInfoTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> data = [
-      {'Name': 'Mariam Loay', 'Phone': '+201097856989', 'Relation': 'Mother'},
-      {'Name': 'Ahmed Zaki', 'Phone': '+201114569874', 'Relation': 'Father'},
-      {'Name': 'Sara Mohamed', 'Phone': '+201223345678', 'Relation': 'Sister'},
-      {'Name': 'Khaled Nour', 'Phone': '+201345987654', 'Relation': 'Brother'},
-      {'Name': 'Laila Samir', 'Phone': '+201009876543', 'Relation': 'Wife'},
-      {'Name': 'Ahmed Zaki', 'Phone': '+201114569874', 'Relation': 'Father'},
-      {'Name': 'Ahmed Zaki', 'Phone': '+201114569874', 'Relation': 'Father'},
-      {'Name': 'Ahmed Zaki', 'Phone': '+201114569874', 'Relation': 'Father'},
-    ];
-
     return CommonContainerProfile(
       child: Column(
         children: [
@@ -33,69 +24,71 @@ class FamilyInfoTable extends StatelessWidget {
           SaveAsWidget(),
           verticalSpace(28),
 
-          Table(
-            border: TableBorder.all(color: AppColors.grey300, width: 1),
-            columnWidths: const {
-              0: FlexColumnWidth(2),
-              1: FlexColumnWidth(2.5),
-              2: FlexColumnWidth(1.5),
-            },
-            children: [
-              TableRow(
-                decoration: BoxDecoration(color: AppColors.grey100),
+          (employeeModel!.familyInfo!.isEmpty)
+              ? NoDataAvailable()
+              : Table(
+                border: TableBorder.all(color: AppColors.grey300, width: 1),
+                columnWidths: const {
+                  0: FlexColumnWidth(2),
+                  1: FlexColumnWidth(2.5),
+                  2: FlexColumnWidth(1.5),
+                },
                 children: [
-                  FamilyInfoHeaderItem(text: 'Name'),
-                  FamilyInfoHeaderItem(text: 'Phone Number'),
-                  FamilyInfoHeaderItem(text: 'Relation'),
+                  TableRow(
+                    decoration: BoxDecoration(color: AppColors.grey100),
+                    children: [
+                      FamilyInfoHeaderItem(text: 'Name'),
+                      FamilyInfoHeaderItem(text: 'Phone Number'),
+                      FamilyInfoHeaderItem(text: 'Relation'),
+                    ],
+                  ),
+                  // Data Rows
+                  ...employeeModel!.familyInfo!.map((row) {
+                    return TableRow(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+
+                            child: Text(
+                              row.name!,
+                              style: AppStyles.primaryStyle.copyWith(
+                                fontSize: 7.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              row.phoneNumber!,
+                              style: AppStyles.primaryStyle.copyWith(
+                                fontSize: 7.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+
+                            child: Text(
+                              row.relation!,
+                              style: AppStyles.primaryStyle.copyWith(
+                                fontSize: 7.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
                 ],
               ),
-              // Data Rows
-              ...data.map((row) {
-                return TableRow(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-
-                        child: Text(
-                          row['Name']!,
-                          style: AppStyles.primaryStyle.copyWith(
-                            fontSize: 7.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          row['Phone']!,
-                          style: AppStyles.primaryStyle.copyWith(
-                            fontSize: 7.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-
-                        child: Text(
-                          row['Relation']!,
-                          style: AppStyles.primaryStyle.copyWith(
-                            fontSize: 7.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              }),
-            ],
-          ),
         ],
       ),
     );
