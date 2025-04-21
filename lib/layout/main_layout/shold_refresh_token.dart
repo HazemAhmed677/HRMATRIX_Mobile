@@ -9,7 +9,7 @@ import '../../core/helper/logger.dart';
 import '../../core/helper/shard_pref_helper.dart';
 import '../../core/routing/routes.dart';
 import '../../core/theming/app_color.dart';
-import '../../features/auth/data/local/user_model_hive_services.dart';
+import '../../features/auth/data/local/employee_hive_services.dart';
 import '../../features/auth/logic/refresh_token/refresh_token_cubit.dart';
 import '../../main.dart';
 
@@ -33,7 +33,7 @@ class _SholdRefreshTokenState extends State<SholdRefreshToken> {
   }
 
   Future<void> _loadUser() async {
-    employeeModel = await EmployeeHiveServices.getemployeeLocally();
+    employeeModel = await EmployeeHiveServices.getEmployeeLocally();
     setState(() {
       isLoading1 = false;
     });

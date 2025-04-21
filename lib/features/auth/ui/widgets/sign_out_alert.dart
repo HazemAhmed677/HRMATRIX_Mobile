@@ -9,6 +9,7 @@ import 'package:lottie/lottie.dart';
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/typography/font_weight_helper.dart';
+import '../../data/local/employee_hive_services.dart';
 
 // ... keep your existing imports ...
 
@@ -113,7 +114,10 @@ class _SignOutAlertState extends State<SignOutAlert>
           Lottie.asset(
             'assets/animations/logout.json',
             width: 120.w,
-            height: 120.h,
+            height:
+                MediaQuery.orientationOf(context) == Orientation.landscape
+                    ? 200.h
+                    : 120.h,
             repeat: true,
             animate: true,
           ),
@@ -126,7 +130,10 @@ class _SignOutAlertState extends State<SignOutAlert>
     return Text(
       'Log Out',
       style: AppStyles.mediumDarkGrey14.copyWith(
-        fontSize: 18.sp,
+        fontSize:
+            MediaQuery.orientationOf(context) == Orientation.landscape
+                ? 8.sp
+                : 18.sp,
         fontWeight: FontWeightHelper.bold,
         color: AppColors.fontSecondayColor,
         letterSpacing: 0.5,
@@ -138,7 +145,10 @@ class _SignOutAlertState extends State<SignOutAlert>
     return Text(
       'Are you sure you want to log out of your account?',
       style: AppStyles.mediumDarkGrey14.copyWith(
-        fontSize: 14.sp,
+        fontSize:
+            MediaQuery.orientationOf(context) == Orientation.landscape
+                ? 7.sp
+                : 14.sp,
         color: AppColors.black.withValues(alpha: 0.8),
         height: 1.4,
       ),
@@ -171,12 +181,22 @@ class _SignOutAlertState extends State<SignOutAlert>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.close_rounded, size: 20.w, color: AppColors.grey600),
+          Icon(
+            Icons.close_rounded,
+            size:
+                MediaQuery.orientationOf(context) == Orientation.landscape
+                    ? 8.w
+                    : 20.w,
+            color: AppColors.grey600,
+          ),
           horizontalSpace(8),
           Text(
             'Cancel',
             style: AppStyles.semiBoldDarkGrey16.copyWith(
-              fontSize: 15.sp,
+              fontSize:
+                  MediaQuery.orientationOf(context) == Orientation.landscape
+                      ? 8.sp
+                      : 15.sp,
               color: AppColors.grey800,
               fontWeight: FontWeightHelper.semiBold,
             ),
@@ -191,6 +211,7 @@ class _SignOutAlertState extends State<SignOutAlert>
       onPressed: () async {
         await SharedPrefHelper.clearAllSecuredData();
         await SharedPrefHelper.clearAllData();
+        await EmployeeHiveServices.deleteEmployeeLocally();
         if (mounted) {
           context.go(Routes.login);
         }
@@ -209,12 +230,22 @@ class _SignOutAlertState extends State<SignOutAlert>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.logout_rounded, size: 20.w, color: AppColors.white),
+            Icon(
+              Icons.logout_rounded,
+              size:
+                  MediaQuery.orientationOf(context) == Orientation.landscape
+                      ? 8.w
+                      : 20.w,
+              color: AppColors.white,
+            ),
             horizontalSpace(8),
             Text(
               'Log Out',
               style: AppStyles.boldNoColor18.copyWith(
-                fontSize: 15.sp,
+                fontSize:
+                    MediaQuery.orientationOf(context) == Orientation.landscape
+                        ? 8.sp
+                        : 15.sp,
                 color: AppColors.white,
                 fontWeight: FontWeightHelper.bold,
               ),

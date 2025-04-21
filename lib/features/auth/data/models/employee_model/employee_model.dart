@@ -247,9 +247,7 @@ class EmployeeModel {
     salaryDetails:
         json['salaryDetails'] == null
             ? null
-            : SalaryDetailsModel.fromJson(
-              json['salaryDetails'] as Map<String, dynamic>,
-            ),
+            : SalaryDetailsModel.fromJson(json['salaryDetails']),
 
     subRole: json['subRole'] as String?,
   );

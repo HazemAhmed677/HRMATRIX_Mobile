@@ -58,29 +58,28 @@ class SalaryDetailsModel {
     this.netSalary,
   });
 
-  factory SalaryDetailsModel.fromJson(Map<String, dynamic> json) =>
-      SalaryDetailsModel(
-        id: json['id'] as int?,
-        baseSalary: json['baseSalary'] as String?,
-        housingAllowance: json['housingAllowance'] as String?,
-        transportationAllowance: json['transportationAllowance'] as String?,
-        otherAllowance: json['otherAllowance'] as String?,
-        gosi: json['GOSI'] as String?,
-        salaryOnGosi: json['salaryOnGOSI'] as String?,
-        commissions: json['commissions'] as int?,
-        overTime: json['overTime'] as int?,
-        vacationWork: json['vacationWork'] as int?,
-        financialTransaction: json['financialTransaction'] as int?,
-        shortageAmount: json['shortageAmount'] as int?,
-        disciplinaryAction: json['disciplinaryAction'] as int?,
-        loan: json['loan'] as int?,
-        massAction: json['massAction'] as int?,
-        posKpis: json['posKPIS'] as int?,
-        negKpis: json['negKPIS'] as int?,
-        tax: json['tax'] as int?,
-        totalSalary: json['totalSalary'] as int?,
-        netSalary: json['netSalary'] as int?,
-      );
+  factory SalaryDetailsModel.fromJson(json) => SalaryDetailsModel(
+    id: json['id'] as int?,
+    baseSalary: json['baseSalary'] as String?,
+    housingAllowance: json['housingAllowance'] as String?,
+    transportationAllowance: json['transportationAllowance'] as String?,
+    otherAllowance: json['otherAllowance'] as String?,
+    gosi: json['GOSI'] as String?,
+    salaryOnGosi: json['salaryOnGOSI'] as String?,
+    commissions: json['commissions'] as int?,
+    overTime: json['overTime'] as int?,
+    vacationWork: json['vacationWork'] as int?,
+    financialTransaction: json['financialTransaction'] as int?,
+    shortageAmount: json['shortageAmount'] as int?,
+    disciplinaryAction: json['disciplinaryAction'] as int?,
+    loan: json['loan'] as int?,
+    massAction: json['massAction'] as int?,
+    posKpis: json['posKPIS'] as int?,
+    negKpis: json['negKPIS'] as int?,
+    tax: json['tax'] as int?,
+    totalSalary: json['totalSalary'] as int?,
+    netSalary: json['netSalary'] as int?,
+  );
 
   Map<String, dynamic> toJson() => {
     'id': id,
