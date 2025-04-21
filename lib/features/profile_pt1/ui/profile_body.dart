@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrmatrix/core/helper/spacing.dart';
+import 'package:hrmatrix/features/profile_pt1/data/repo/profile_pt1_repo_impl.dart';
 import 'package:hrmatrix/features/profile_pt1/logic/bar_ui/bar_ui_cubit.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/assets_ui.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/bank_account_ui.dart';
@@ -20,6 +21,8 @@ import 'package:hrmatrix/features/profile_pt2/ui/widgets/on_boarding_ui.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/part_time_ui.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_ui.dart';
 
+import '../../../core/di/set_up.dart';
+import '../logic/get_my_loans/get_my_loans_cubit.dart';
 import 'widgets/swipe_to_explore.dart';
 
 class ProfileBody extends StatefulWidget {
@@ -81,7 +84,14 @@ class _ProfileBodyState extends State<ProfileBody> {
       BankAccountState: () => BankAccountUI(),
       FamilyInfoState: () => FamilyInfoUI(),
       DocumentsState: () => DocumentsUI(),
-      LoansState: () => LoansUI(),
+      LoansState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyLoansCubit(
+                  profilePt1RepoImpl: getIt.get<ProfilePt1RepoImpl>(),
+                ),
+            child: LoansUI(),
+          ),
       OverTimeState: () => OverTimeUI(),
       AssetsState: () => AssetsUI(),
       AirTicketsState: () => AirTicketsUI(),
