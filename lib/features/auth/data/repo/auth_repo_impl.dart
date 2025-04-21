@@ -66,9 +66,17 @@ class AuthRepoImpl extends AuthRepo {
         endpoint: ApiEndpoints.refreshToken,
         headers: {'Authorization': 'Bearer $oldToken'},
       );
-      await saveUserToken(loginResponse.data['access_token']);
+      await saveUserToken(loginResponse.data['token']);
       await SharedPrefHelper.storeCurrentDate();
-
+      String securedOne = await SharedPrefHelper.getSecuredString(
+        SharedPrefKeys.employeeToken,
+      );
+      Response userResponse = await apiService.get(
+        endpoint: ApiEndpoints.getProfile,
+        headers: {'Authorization': 'Bearer $securedOne'},
+      );
+      EmployeeModel user = EmployeeModel.fromJson(userResponse.data);
+      await EmployeeHiveServices.updateEmployeeLocally(user);
       return Right(null);
     } on DioException catch (e) {
       return Left(

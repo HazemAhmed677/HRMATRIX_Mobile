@@ -76,7 +76,7 @@ class _SholdRefreshTokenState extends State<SholdRefreshToken> {
     );
 
     final int currentDay = DateTime.now().millisecondsSinceEpoch ~/ 86400000;
-    return (currentDay - storedDay) >= 7;
+    return (currentDay - storedDay) >= 3;
   }
 
   @override
