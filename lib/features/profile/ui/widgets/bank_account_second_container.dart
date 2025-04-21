@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_divider_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_middle_container_item.dart';
+import 'package:hrmatrix/main.dart';
 
 import '../../../../core/theming/app_styles.dart';
 
@@ -19,12 +20,12 @@ class BankAccountSecondContainer extends StatelessWidget {
 
           ProfileMiddleContainerItem(
             header: 'Account Number',
-            jobTitle: '65093501849114',
+            jobTitle: employeeModel!.bankAccountNumber ?? "-",
           ),
 
           ProfileMiddleContainerItem(
             header: 'Status',
-            jobTitle: 'Active',
+            jobTitle: employeeModel!.bankAccountStatus ?? "-",
             isLastELement: true,
           ),
         ],

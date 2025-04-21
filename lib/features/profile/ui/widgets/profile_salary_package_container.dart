@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrmatrix/core/helper/employee_model_helpers.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_divider_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_middle_container_item.dart';
@@ -25,20 +26,24 @@ class ProfileSalaryPackageContainer extends StatelessWidget {
 
           ProfileMiddleContainerItem(
             header: 'Total Salary',
-            jobTitle: '15000 EGP',
+            jobTitle: '${employeeModel!.salaryDetails!.totalSalary!} EGP',
           ),
           ProfileMiddleContainerItem(
             header: 'Housing Allowance',
-            jobTitle: '0.00 EGP',
+            jobTitle: '${employeeModel!.salaryDetails!.housingAllowance!} EGP',
           ),
           ProfileMiddleContainerItem(
             header: 'Transportation Allowance',
-            jobTitle: '0.00 EGP',
+            jobTitle:
+                '${employeeModel!.salaryDetails!.transportationAllowance!} EGP',
           ),
 
           ProfileMiddleContainerItem(
             header: 'Employment Period',
-            jobTitle: '3 months, 10 days',
+            jobTitle: calculateEmploymentPeriod(
+              employeeModel!.dateOfJoining!,
+              employeeModel!.endOfProbation!,
+            ),
             isLastELement: true,
           ),
         ],

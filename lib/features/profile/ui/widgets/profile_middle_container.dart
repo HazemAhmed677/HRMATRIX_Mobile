@@ -45,7 +45,10 @@ class ProfileMiddleContainer extends StatelessWidget {
           // temp
           ProfileMiddleContainerItem(
             header: 'Main Project',
-            jobTitle: employeeModel!.employeeMainProjects?[0]['name'] ?? '-',
+            jobTitle:
+                (employeeModel!.employeeMainProjects?.isEmpty ?? true)
+                    ? '-'
+                    : employeeModel!.employeeMainProjects?[0]['name'] ?? '-',
           ),
           ProfileMiddleContainerItem(
             header: 'Job Type',
