@@ -3,4 +3,5 @@ abstract class ApiEndpoints {
   static const refreshToken = 'auth/refresh-token';
   static const getProfile = 'employees/profile/get-profile';
   static const getMyLoans = 'loans/myLoans';
+  static const getMyDocuments = 'employees/documents/MyDocuments';
 }

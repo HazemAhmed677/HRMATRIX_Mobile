@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/helper/employee_model_helpers.dart';
 import 'package:hrmatrix/features/profile_pt1/logic/get_my_loans/get_my_loans_cubit.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
+import 'package:hrmatrix/features/profile_pt1/ui/widgets/loading_widget.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/no_data_available.dart';
 
 import '../../../../core/theming/app_color.dart';
@@ -28,9 +29,7 @@ class _LoansTableState extends State<LoansTable> {
       child: BlocBuilder<GetMyLoansCubit, GetMyLoansState>(
         builder: (context, state) {
           if (state is GetMyLoansLoading) {
-            return const Center(
-              child: CircularProgressIndicator(color: AppColors.blue),
-            );
+            return LoadingWidget();
           } else if (state is GetMyLoansSuccess) {
             if (state.getMyLoansModel.count == 0) {
               return NoDataAvailable();
