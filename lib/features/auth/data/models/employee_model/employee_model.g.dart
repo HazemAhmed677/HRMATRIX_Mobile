@@ -49,17 +49,18 @@ class EmployeeModelAdapter extends TypeAdapter<EmployeeModel> {
       avatar: fields[29] as dynamic,
       branch: fields[30] as String?,
       department: fields[31] as DepartmentModel?,
-      directManager: fields[32] as dynamic,
-      overTimeRequests: (fields[33] as List?)?.cast<OverTimeRequestModel>(),
-      salaryDetails: fields[34] as SalaryDetailsModel?,
-      subRole: fields[35] as String?,
+      familyInfo: (fields[32] as List?)?.cast<FamilyInfoModel>(),
+      directManager: fields[33] as dynamic,
+      overTimeRequests: (fields[34] as List?)?.cast<OverTimeRequestModel>(),
+      salaryDetails: fields[35] as SalaryDetailsModel?,
+      subRole: fields[36] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, EmployeeModel obj) {
     writer
-      ..writeByte(36)
+      ..writeByte(37)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -125,12 +126,14 @@ class EmployeeModelAdapter extends TypeAdapter<EmployeeModel> {
       ..writeByte(31)
       ..write(obj.department)
       ..writeByte(32)
-      ..write(obj.directManager)
+      ..write(obj.familyInfo)
       ..writeByte(33)
-      ..write(obj.overTimeRequests)
+      ..write(obj.directManager)
       ..writeByte(34)
-      ..write(obj.salaryDetails)
+      ..write(obj.overTimeRequests)
       ..writeByte(35)
+      ..write(obj.salaryDetails)
+      ..writeByte(36)
       ..write(obj.subRole);
   }
 

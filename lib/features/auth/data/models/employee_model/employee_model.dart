@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:hrmatrix/features/auth/data/models/employee_model/family_info_model.dart';
 
 import 'department_model.dart';
 import 'over_time_request_model.dart';
@@ -93,19 +94,20 @@ class EmployeeModel {
   DepartmentModel? department;
   dynamic updater;
   List<dynamic>? vacations;
-  List<dynamic>? familyInfo;
+  @HiveField(32)
+  List<FamilyInfoModel>? familyInfo;
   String? modifiedRole;
   List<dynamic>? employeeProjectsHistory;
   List<dynamic>? employeeMainProjects;
-  @HiveField(32)
+  @HiveField(33)
   dynamic directManager;
   List<dynamic>? timeOffRequests;
-  @HiveField(33)
+  @HiveField(34)
   List<OverTimeRequestModel>? overTimeRequests;
   List<dynamic>? airTicketAllowances;
-  @HiveField(34)
-  SalaryDetailsModel? salaryDetails;
   @HiveField(35)
+  SalaryDetailsModel? salaryDetails;
+  @HiveField(36)
   String? subRole;
 
   EmployeeModel({
@@ -231,7 +233,10 @@ class EmployeeModel {
             ),
     updater: json['updater'] as dynamic,
     vacations: json['vacations'] as List<dynamic>?,
-    familyInfo: json['familyInfo'] as List<dynamic>?,
+    familyInfo:
+        (json['familyInfo'] as List<FamilyInfoModel>?)
+            ?.map((e) => FamilyInfoModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
     modifiedRole: json['modifiedRole'] as String?,
     employeeProjectsHistory: json['employeeProjectsHistory'] as List<dynamic>?,
     employeeMainProjects: json['employeeMainProjects'] as List<dynamic>?,
