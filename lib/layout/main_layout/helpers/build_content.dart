@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrmatrix/features/profile/ui/profile_body.dart';
+import 'package:hrmatrix/features/profile_pt1/ui/profile_body.dart';
 
 import '../../../features/hierarchical_tree/ui/widgets/hierarchical_tree.dart';
 import '../../../features/home/ui/widgets/home_view_body.dart';
-import '../../../features/profile/logic/cubit/bar_ui_cubit.dart';
+import '../../../features/profile_pt1/logic/bar_ui/bar_ui_cubit.dart';
 
 Widget buildContent(int index) {
   List<Widget> pages = [

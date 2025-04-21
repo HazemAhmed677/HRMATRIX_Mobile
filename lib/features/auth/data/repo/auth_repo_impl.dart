@@ -8,7 +8,7 @@ import 'package:hrmatrix/features/auth/data/repo/auth_repo.dart';
 import '../../../../core/helper/constants.dart';
 import '../../../../core/helper/logger.dart';
 import '../../../../core/helper/shard_pref_helper.dart';
-import '../local/user_model_hive_services.dart';
+import '../local/employee_hive_services.dart';
 import '../models/employee_model/employee_model.dart';
 
 class AuthRepoImpl extends AuthRepo {
@@ -38,7 +38,7 @@ class AuthRepoImpl extends AuthRepo {
           headers: {'Authorization': 'Bearer $securedOne'},
         );
         EmployeeModel user = EmployeeModel.fromJson(userResponse.data);
-        await EmployeeHiveServices.saveemployeeLocally(user);
+        await EmployeeHiveServices.saveEmployeeLocally(user);
         return Right(user);
       } else {
         return Left(FailureService('There is no token'));
@@ -66,9 +66,17 @@ class AuthRepoImpl extends AuthRepo {
         endpoint: ApiEndpoints.refreshToken,
         headers: {'Authorization': 'Bearer $oldToken'},
       );
-      await saveUserToken(loginResponse.data['access_token']);
+      await saveUserToken(loginResponse.data['token']);
       await SharedPrefHelper.storeCurrentDate();
-
+      String securedOne = await SharedPrefHelper.getSecuredString(
+        SharedPrefKeys.employeeToken,
+      );
+      Response userResponse = await apiService.get(
+        endpoint: ApiEndpoints.getProfile,
+        headers: {'Authorization': 'Bearer $securedOne'},
+      );
+      EmployeeModel user = EmployeeModel.fromJson(userResponse.data);
+      await EmployeeHiveServices.updateEmployeeLocally(user);
       return Right(null);
     } on DioException catch (e) {
       return Left(

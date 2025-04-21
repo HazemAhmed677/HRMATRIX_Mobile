@@ -43,7 +43,7 @@ class _SidebarState extends State<Sidebar> {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           left: _sidebarLeft,
-          top: isLandscape ? 160.h : (65 + 30).h,
+          top: MediaQuery.of(context).padding.top + kToolbarHeight,
           width: sidebarWidth,
           height: MediaQuery.of(context).size.height - kToolbarHeight,
           child: GestureDetector(
@@ -72,46 +72,43 @@ class _SidebarState extends State<Sidebar> {
                 border: Border.all(color: AppColors.borderColor),
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppPadding.pMainHorizental22.w,
+                padding: EdgeInsets.only(
+                  left: AppPadding.pMainHorizental22.w,
+                  right: 10.w,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    verticalSpace(12),
-                    SizedBox(
-                      height: isLandscape ? 200.h : 100.h,
-                      child: Image.asset(AppImages.aimatrix),
-                    ),
-                    verticalSpace(22),
-                    Text(
-                      "MENU",
-                      style: AppStyles.boldNoColor18.copyWith(
-                        color: AppColors.grey400,
-                        fontSize: isLandscape ? 10.sp : 14.sp,
-                        fontWeight: FontWeightHelper.bold,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      isLandscape ? verticalSpace(35) : verticalSpace(12),
+                      SizedBox(
+                        height: isLandscape ? 200.h : 100.h,
+                        child: Image.asset(AppImages.aimatrix),
                       ),
-                    ),
-                    verticalSpace(12),
-                    Expanded(
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: items.length,
-                        itemBuilder: (context, index) {
-                          final selected = state.selectedIndex == index;
-                          return SidebarItem(
-                            title: items[index],
-                            iconData: icons[index],
-                            onTap: () {
-                              context.read<SidebarCubit>().selectIndex(index);
-                            },
-                            isActive: selected,
-                          );
-                        },
+                      verticalSpace(22),
+                      Text(
+                        "MENU",
+                        style: AppStyles.boldNoColor18.copyWith(
+                          color: AppColors.grey400,
+                          fontSize: isLandscape ? 10.sp : 14.sp,
+                          fontWeight: FontWeightHelper.bold,
+                        ),
                       ),
-                    ),
-                    verticalSpace(45),
-                  ],
+                      verticalSpace(12),
+                      ...List.generate(items.length, (index) {
+                        final selected = state.selectedIndex == index;
+                        return SidebarItem(
+                          title: items[index],
+                          iconData: icons[index],
+                          onTap: () {
+                            context.read<SidebarCubit>().selectIndex(index);
+                          },
+                          isActive: selected,
+                        );
+                      }),
+                      (isLandscape) ? verticalSpace(85) : verticalSpace(45),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -1,8 +1,9 @@
 import 'package:hive/hive.dart';
+import 'package:hrmatrix/features/auth/data/models/employee_model/family_info_model.dart';
 
-import 'department.dart';
-import 'over_time_request.dart';
-import 'salary_details.dart';
+import 'department_model.dart';
+import 'over_time_request_model.dart';
+import 'salary_details_model.dart';
 
 part 'employee_model.g.dart';
 
@@ -51,12 +52,19 @@ class EmployeeModel {
   String? jobTitle;
   @HiveField(20)
   String? baseSalary;
+  @HiveField(21)
   String? housingAllowance;
+  @HiveField(22)
   String? transportationAllowance;
+  @HiveField(23)
   String? otherAllowance;
+  @HiveField(24)
   String? gosi;
+  @HiveField(25)
   String? salaryOnGosi;
+  @HiveField(26)
   int? hourlyRate;
+
   int? attendedDays;
   int? absentDays;
   int? absentHours;
@@ -70,31 +78,36 @@ class EmployeeModel {
   int? actualScore;
   String? performanceScore;
   dynamic evaluationHistory;
-  @HiveField(21)
+  @HiveField(27)
   int? departmentId;
   int? companyId;
   dynamic updatedBy;
-  @HiveField(22)
+  @HiveField(28)
   String? address;
-  @HiveField(23)
+  @HiveField(29)
   dynamic avatar;
-  @HiveField(24)
+  @HiveField(30)
   String? branch;
   String? createdAt;
   String? updatedAt;
-
-  Department? department;
+  @HiveField(31)
+  DepartmentModel? department;
   dynamic updater;
   List<dynamic>? vacations;
-  List<dynamic>? familyInfo;
+  @HiveField(32)
+  List<FamilyInfoModel>? familyInfo;
   String? modifiedRole;
   List<dynamic>? employeeProjectsHistory;
   List<dynamic>? employeeMainProjects;
+  @HiveField(33)
   dynamic directManager;
   List<dynamic>? timeOffRequests;
-  List<OverTimeRequest>? overTimeRequests;
+  @HiveField(34)
+  List<OverTimeRequestModel>? overTimeRequests;
   List<dynamic>? airTicketAllowances;
-  SalaryDetails? salaryDetails;
+  @HiveField(35)
+  SalaryDetailsModel? salaryDetails;
+  @HiveField(36)
   String? subRole;
 
   EmployeeModel({
@@ -215,10 +228,15 @@ class EmployeeModel {
     department:
         json['department'] == null
             ? null
-            : Department.fromJson(json['department'] as Map<String, dynamic>),
+            : DepartmentModel.fromJson(
+              json['department'] as Map<String, dynamic>,
+            ),
     updater: json['updater'] as dynamic,
     vacations: json['vacations'] as List<dynamic>?,
-    familyInfo: json['familyInfo'] as List<dynamic>?,
+    familyInfo:
+        (json['familyInfo'] as List<dynamic>?)
+            ?.map((e) => FamilyInfoModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
     modifiedRole: json['modifiedRole'] as String?,
     employeeProjectsHistory: json['employeeProjectsHistory'] as List<dynamic>?,
     employeeMainProjects: json['employeeMainProjects'] as List<dynamic>?,
@@ -226,15 +244,15 @@ class EmployeeModel {
     timeOffRequests: json['timeOffRequests'] as List<dynamic>?,
     overTimeRequests:
         (json['overTimeRequests'] as List<dynamic>?)
-            ?.map((e) => OverTimeRequest.fromJson(e as Map<String, dynamic>))
+            ?.map(
+              (e) => OverTimeRequestModel.fromJson(e as Map<String, dynamic>),
+            )
             .toList(),
     airTicketAllowances: json['airTicketAllowances'] as List<dynamic>?,
     salaryDetails:
         json['salaryDetails'] == null
             ? null
-            : SalaryDetails.fromJson(
-              json['salaryDetails'] as Map<String, dynamic>,
-            ),
+            : SalaryDetailsModel.fromJson(json['salaryDetails']),
 
     subRole: json['subRole'] as String?,
   );
