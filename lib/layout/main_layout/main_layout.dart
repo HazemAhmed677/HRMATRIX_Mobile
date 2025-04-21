@@ -101,7 +101,10 @@ class _MainLayoutState extends State<MainLayout>
               ),
               if (state.isDrawerOpen)
                 Positioned(
-                  top: (65 + 30).h,
+                  top:
+                      MediaQuery.orientationOf(context) == Orientation.landscape
+                          ? kToolbarHeight + MediaQuery.paddingOf(context).top
+                          : (65 + 30).h,
                   bottom: 0,
                   left: 0,
                   right: 0,
