@@ -22,6 +22,7 @@ import 'package:hrmatrix/features/profile_pt2/ui/widgets/part_time_ui.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_ui.dart';
 
 import '../../../core/di/set_up.dart';
+import '../logic/get_my_assets/get_my_assets_cubit.dart';
 import '../logic/get_my_documents/get_my_documents_cubit.dart';
 import '../logic/get_my_loans/get_my_loans_cubit.dart';
 import 'widgets/swipe_to_explore.dart';
@@ -101,7 +102,14 @@ class _ProfileBodyState extends State<ProfileBody> {
             child: LoansUI(),
           ),
       OverTimeState: () => OverTimeUI(),
-      AssetsState: () => AssetsUI(),
+      AssetsState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyAssetsCubit(
+                  profilePt1RepoImpl: getIt.get<ProfilePt1RepoImpl>(),
+                ),
+            child: AssetsUI(),
+          ),
       AirTicketsState: () => AirTicketsUI(),
       FinancialTransactionState: () => FinancialTransactionUI(),
       TimeOffState: () => TimeOffUI(),

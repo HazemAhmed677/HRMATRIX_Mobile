@@ -16,7 +16,7 @@ class GetMyDocumentsCubit extends Cubit<GetMyDocumentsState> {
 
     emit(GetMyDocumentsLoading());
 
-    final result = await profilePt1RepoImpl.getMyDocument();
+    final result = await profilePt1RepoImpl.getMyDocuments();
 
     result.fold(
       (failureService) {

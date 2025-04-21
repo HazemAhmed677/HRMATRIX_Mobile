@@ -19,7 +19,6 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout>
     with SingleTickerProviderStateMixin {
-  final ScrollController _scrollController = ScrollController();
   late final AnimationController _appBarController;
   late final Animation<double> _appBarAnimation;
   double _lastOffset = 0;
@@ -27,7 +26,6 @@ class _MainLayoutState extends State<MainLayout>
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_scrollListener);
 
     _appBarController = AnimationController(
       vsync: this,
@@ -42,9 +40,8 @@ class _MainLayoutState extends State<MainLayout>
     _appBarController.value = 1.0;
   }
 
-  void _scrollListener() {
+  void _scrollListener(double currentOffset) {
     final cubit = context.read<SidebarCubit>();
-    final currentOffset = _scrollController.offset;
 
     if (currentOffset > _lastOffset) {
       cubit.updateAppBarVisibility(false);
@@ -59,7 +56,6 @@ class _MainLayoutState extends State<MainLayout>
 
   @override
   void dispose() {
-    _scrollController.dispose();
     _appBarController.dispose();
     super.dispose();
   }
@@ -89,10 +85,17 @@ class _MainLayoutState extends State<MainLayout>
                           horizontal: AppPadding.pMainHorizental22.w,
                           vertical: AppPadding.pMainVertical16,
                         ),
-                        // here
-                        child: SingleChildScrollView(
-                          controller: _scrollController,
-                          child: buildContent(state.selectedIndex),
+                        child: NotificationListener<ScrollNotification>(
+                          onNotification: (notification) {
+                            if (notification is ScrollUpdateNotification) {
+                              _scrollListener(notification.metrics.pixels);
+                            }
+                            return false;
+                          },
+                          child: SingleChildScrollView(
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            child: buildContent(state.selectedIndex),
+                          ),
                         ),
                       ),
                     ),
@@ -109,6 +112,7 @@ class _MainLayoutState extends State<MainLayout>
                   left: 0,
                   right: 0,
                   child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
                     onTap: () => context.read<SidebarCubit>().closeDrawer(),
                     child: Container(color: AppColors.grey500.withAlpha(100)),
                   ),

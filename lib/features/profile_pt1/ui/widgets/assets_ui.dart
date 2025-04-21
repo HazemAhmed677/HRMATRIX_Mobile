@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/assets_table.dart';
+import 'package:hrmatrix/features/profile_pt1/ui/widgets/assets_table_container.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_top_container.dart';
 
 import '../../../../core/helper/spacing.dart';
@@ -12,10 +12,9 @@ class AssetsUI extends StatelessWidget {
     return Column(
       children: [
         verticalSpace(38),
-
         const ProfileCommonTopContainer(),
         verticalSpace(38),
-        AssetsTable(),
+        AssetsTableContainer(),
       ],
     );
   }
