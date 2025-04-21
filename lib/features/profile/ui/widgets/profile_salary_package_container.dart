@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/common_divider_profile.dart';
 import 'package:hrmatrix/features/profile/ui/widgets/profile_middle_container_item.dart';
+import 'package:hrmatrix/main.dart';
 
 import '../../../../core/theming/app_styles.dart';
 
@@ -19,7 +20,7 @@ class ProfileSalaryPackageContainer extends StatelessWidget {
 
           ProfileMiddleContainerItem(
             header: 'Basic Salary',
-            jobTitle: '15000 EGP',
+            jobTitle: '${employeeModel!.salaryDetails!.baseSalary!} EGP',
           ),
 
           ProfileMiddleContainerItem(

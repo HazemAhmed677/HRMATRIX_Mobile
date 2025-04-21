@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 import 'department_model.dart';
 import 'over_time_request.dart';
-import 'salary_details.dart';
+import 'salary_details_model.dart';
 
 part 'employee_model.g.dart';
 
@@ -102,7 +102,9 @@ class EmployeeModel {
   List<dynamic>? timeOffRequests;
   List<OverTimeRequest>? overTimeRequests;
   List<dynamic>? airTicketAllowances;
-  SalaryDetails? salaryDetails;
+  @HiveField(33)
+  SalaryDetailsModel? salaryDetails;
+  @HiveField(34)
   String? subRole;
 
   EmployeeModel({
@@ -242,7 +244,7 @@ class EmployeeModel {
     salaryDetails:
         json['salaryDetails'] == null
             ? null
-            : SalaryDetails.fromJson(
+            : SalaryDetailsModel.fromJson(
               json['salaryDetails'] as Map<String, dynamic>,
             ),
 

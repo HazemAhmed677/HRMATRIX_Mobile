@@ -6,6 +6,7 @@ import 'package:hrmatrix/core/di/set_up.dart';
 import 'package:hrmatrix/core/typography/simple_bloc_observer.dart';
 import 'package:hrmatrix/features/auth/data/models/employee_model/department_model.dart';
 import 'package:hrmatrix/features/auth/data/models/employee_model/employee_model.dart';
+import 'package:hrmatrix/features/auth/data/models/employee_model/salary_details_model.dart';
 import 'package:hrmatrix/hrmatrix.dart';
 
 EmployeeModel? employeeModel;
@@ -17,5 +18,6 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(EmployeeModelAdapter());
   Hive.registerAdapter(DepartmentModelAdapter());
+  Hive.registerAdapter(SalaryDetailsModelAdapter());
   runApp(const Hrmatrix());
 }

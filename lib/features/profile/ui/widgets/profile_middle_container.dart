@@ -4,6 +4,7 @@ import 'package:hrmatrix/features/profile/ui/widgets/common_divider_profile.dart
 import 'package:hrmatrix/features/profile/ui/widgets/profile_middle_container_item.dart';
 import 'package:hrmatrix/main.dart';
 
+import '../../../../core/helper/employee_model_helpers.dart';
 import '../../../../core/theming/app_styles.dart';
 
 class ProfileMiddleContainer extends StatelessWidget {
@@ -29,26 +30,42 @@ class ProfileMiddleContainer extends StatelessWidget {
           ),
           ProfileMiddleContainerItem(
             header: 'Department',
-            jobTitle: 'Planning',
+            jobTitle: employeeModel!.department!.name!,
           ),
           ProfileMiddleContainerItem(
             header: 'Hierarchal Manager',
-            jobTitle: '-',
+
+            // temp
+            jobTitle: employeeModel!.directManager?['name'] ?? "-",
           ),
-          ProfileMiddleContainerItem(header: 'Branch', jobTitle: 'KSA'),
-          ProfileMiddleContainerItem(header: 'Main Project', jobTitle: '-'),
-          ProfileMiddleContainerItem(header: 'Job Type', jobTitle: 'Part Time'),
+          ProfileMiddleContainerItem(
+            header: 'Branch',
+            jobTitle: employeeModel!.branch!,
+          ),
+          // temp
+          ProfileMiddleContainerItem(
+            header: 'Main Project',
+            jobTitle: employeeModel!.employeeMainProjects?[0]['name'] ?? '-',
+          ),
+          ProfileMiddleContainerItem(
+            header: 'Job Type',
+            jobTitle: employeeModel!.jobType!,
+          ),
           ProfileMiddleContainerItem(
             header: 'Hiring Date',
-            jobTitle: '01/01/2025',
+            jobTitle: convertTimeStmpToDate(employeeModel!.dateOfJoining!),
           ),
           ProfileMiddleContainerItem(
             header: 'End of Probation',
-            jobTitle: '01/04/2025',
+            jobTitle: convertTimeStmpToDate(employeeModel!.endOfProbation!),
           ),
           ProfileMiddleContainerItem(
             header: 'Employment Period',
-            jobTitle: '3 months, 10 days',
+            // here
+            jobTitle: calculateEmploymentPeriod(
+              employeeModel!.dateOfJoining!,
+              employeeModel!.endOfProbation!,
+            ),
             isLastELement: true,
           ),
         ],
