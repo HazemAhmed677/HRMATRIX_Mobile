@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/financial_transaction_table_container.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../profile_pt1/ui/widgets/profile_common_top_container.dart';
 
 class FinancialTransactionUI extends StatelessWidget {

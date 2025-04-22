@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
+import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/typography/font_weight_helper.dart';
 import 'package:hrmatrix/features/home/ui/widgets/home_common_container.dart';
 import 'package:hrmatrix/features/home/ui/widgets/working_hours_component.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 
 class SwipeToExplore extends StatelessWidget {

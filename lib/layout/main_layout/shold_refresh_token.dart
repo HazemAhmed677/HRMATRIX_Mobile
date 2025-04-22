@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hrmatrix/layout/main_layout/main_layout.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
 
-import '../../core/helper/constants.dart';
-import '../../core/helper/logger.dart';
-import '../../core/helper/shard_pref_helper.dart';
+import '../../core/helpers/constants.dart';
+import '../../core/helpers/logger.dart';
+import '../../core/helpers/shard_pref_helper.dart';
 import '../../core/routing/routes.dart';
 import '../../core/theming/app_color.dart';
 import '../../features/auth/data/local/employee_hive_services.dart';

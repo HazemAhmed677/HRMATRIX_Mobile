@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helper/logger.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
+import 'package:hrmatrix/core/helpers/logger.dart';
+import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/widgets/custom_text_form_field.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/show_calendar_dialog.dart';
 

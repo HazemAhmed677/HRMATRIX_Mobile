@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helper/employee_model_helpers.dart';
+import 'package:hrmatrix/core/helpers/employee_model_helpers.dart';
 import 'package:hrmatrix/features/profile_pt2/data/models/get_my_financial_transaction_model/get_my_financial_transaction_model.dart';
 
 import '../../../../core/theming/app_color.dart';

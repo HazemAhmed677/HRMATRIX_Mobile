@@ -8,7 +8,7 @@ import 'package:hrmatrix/features/profile_pt1/data/models/get_my_document_model/
 import 'package:hrmatrix/features/profile_pt1/data/models/get_my_loans_model/get_my_loans_model.dart';
 import 'package:hrmatrix/features/profile_pt1/data/repo/profile_pt1_repo.dart';
 
-import '../../../../core/helper/load_token.dart';
+import '../../../../core/helpers/load_token.dart';
 import '../../../../core/networking/api_endpoints.dart';
 
 class ProfilePt1RepoImpl extends ProfilePt1Repo {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
+import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/features/profile_pt1/data/repo/profile_pt1_repo_impl.dart';
 import 'package:hrmatrix/features/profile_pt1/logic/bar_ui/bar_ui_cubit.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/assets_ui.dart';
@@ -25,6 +25,7 @@ import '../../../core/di/set_up.dart';
 import '../../profile_pt2/data/repo/profile_pt2_repo_impl.dart';
 import '../../profile_pt2/logic/get_my_air_tickets/get_my_air_tickets_cubit.dart';
 import '../../profile_pt2/logic/get_my_financial_transaction/get_my_financial_transaction_cubit.dart';
+import '../../profile_pt2/logic/get_my_time_off/get_my_time_off_cubit.dart';
 import '../logic/get_my_assets/get_my_assets_cubit.dart';
 import '../logic/get_my_documents/get_my_documents_cubit.dart';
 import '../logic/get_my_loans/get_my_loans_cubit.dart';
@@ -129,7 +130,14 @@ class _ProfileBodyState extends State<ProfileBody> {
                 ),
             child: FinancialTransactionUI(),
           ),
-      TimeOffState: () => TimeOffUI(),
+      TimeOffState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyTimeOffCubit(
+                  profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
+                ),
+            child: TimeOffUI(),
+          ),
       PartTimeState: () => PartTimeUI(),
       DisciplinaryActionsState: () => DisciplinaryActionsUI(),
       ContractsState: () => ContractsUI(),

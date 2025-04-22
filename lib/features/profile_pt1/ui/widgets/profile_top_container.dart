@@ -9,7 +9,7 @@ import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_edit_dialog_wid
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_reset_button_dialog_widget.dart';
 import 'package:hrmatrix/main.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/typography/app_images.dart';
 

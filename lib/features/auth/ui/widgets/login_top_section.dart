@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/features/auth/ui/widgets/sign_word.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/typography/app_images.dart';
 import '../../../../core/widgets/custom_logout_button.dart';
 import '../../logic/login/login_cubit.dart';

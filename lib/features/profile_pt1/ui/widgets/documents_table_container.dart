@@ -8,7 +8,7 @@ import 'package:hrmatrix/features/profile_pt1/ui/widgets/loading_widget.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/no_data_available.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_row.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/custom_search_text_field.dart';
 import 'document_add_dialog_widget.dart';
 

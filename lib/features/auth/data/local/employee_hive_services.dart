@@ -1,7 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../../../core/helper/constants.dart';
-import '../../../../core/helper/logger.dart';
+import '../../../../core/helpers/constants.dart';
+import '../../../../core/helpers/logger.dart';
 import '../models/employee_model/employee_model.dart';
 
 class EmployeeHiveServices {

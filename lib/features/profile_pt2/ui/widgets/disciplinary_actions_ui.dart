@@ -3,7 +3,7 @@ import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_top_cont
     show ProfileCommonTopContainer;
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/disciplinary_actions_table.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 
 class DisciplinaryActionsUI extends StatelessWidget {
   const DisciplinaryActionsUI({super.key});

@@ -8,4 +8,6 @@ abstract class ApiEndpoints {
   static const getMyAirTickets = 'my-air-ticket-allowance-transactions/getAll';
   static const getMyFinancialTransactions =
       'financialTransaction/dashboard/myApprovedFinancialTransactions';
+  // time off & vacation (its types) & over time
+  static const getMyRequests = 'requests/my-requests/get';
 }

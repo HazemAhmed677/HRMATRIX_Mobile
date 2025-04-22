@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrmatrix/core/helper/employee_model_helpers.dart';
+import 'package:hrmatrix/core/helpers/employee_model_helpers.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_divider_profile.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_middle_container_item.dart';

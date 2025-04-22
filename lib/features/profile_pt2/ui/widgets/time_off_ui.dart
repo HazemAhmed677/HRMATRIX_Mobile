@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_table.dart';
+import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_table_container.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../profile_pt1/ui/widgets/profile_common_top_container.dart';
 
 class TimeOffUI extends StatelessWidget {
@@ -14,7 +14,7 @@ class TimeOffUI extends StatelessWidget {
         verticalSpace(38),
         const ProfileCommonTopContainer(),
         verticalSpace(38),
-        TimeOffTable(),
+        TimeOffTableContainer(),
       ],
     );
   }

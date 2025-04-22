@@ -5,10 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 
 class SharedPrefHelper {
-  // private constructor as I don't want to allow creating an instance of this class itself.
   SharedPrefHelper._();
-
-  /// Removes a value from SharedPreferences with given [key].
   static removeData(String key) async {
     debugPrint('SharedPrefHelper : data with key : $key has been removed');
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
