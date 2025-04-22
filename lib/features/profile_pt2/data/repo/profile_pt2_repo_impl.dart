@@ -1,0 +1,37 @@
+import 'package:dio/dio.dart';
+import 'package:either_dart/src/either.dart';
+import 'package:hrmatrix/core/errors/failure_service.dart';
+import 'package:hrmatrix/features/profile_pt2/data/models/get_my_air_tickets_model/get_my_air_tickets_model.dart';
+import 'package:hrmatrix/features/profile_pt2/data/repo/profile_pt2_repo.dart';
+
+import '../../../../core/helper/load_token.dart';
+import '../../../../core/networking/api_endpoints.dart';
+import '../../../../core/networking/api_service.dart';
+
+class ProfilePt2RepoImpl extends ProfilePt2Repo {
+  final ApiService apiService;
+
+  ProfilePt2RepoImpl({required this.apiService});
+  @override
+  Future<Either<FailureService, GetMyAirTicketsModel>> getMyAirTickets() async {
+    try {
+      String token = await loadToken();
+
+      Response response = await apiService.get(
+        endpoint: ApiEndpoints.getMyAirTickets,
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(GetMyAirTicketsModel.fromJson(response.data));
+    } on DioException catch (e) {
+      return Left(
+        FailureService.fromDioException(
+          dioExecption: e,
+          statusCode: e.response?.statusCode,
+          dioExecptionType: e.type,
+        ),
+      );
+    } catch (e) {
+      return Left(FailureService(e.toString()));
+    }
+  }
+}

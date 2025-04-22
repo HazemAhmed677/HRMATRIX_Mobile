@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_top_container.dart';
-import 'package:hrmatrix/features/profile_pt2/ui/widgets/air_tickets_table.dart';
+import 'package:hrmatrix/features/profile_pt2/ui/widgets/air_tickets_table_container.dart';
 
 import '../../../../core/helper/spacing.dart';
 
@@ -15,7 +15,7 @@ class AirTicketsUI extends StatelessWidget {
 
         const ProfileCommonTopContainer(),
         verticalSpace(38),
-        AirTicketsTable(),
+        AirTicketsTableContainer(),
       ],
     );
   }

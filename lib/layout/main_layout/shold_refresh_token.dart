@@ -29,7 +29,7 @@ class _SholdRefreshTokenState extends State<SholdRefreshToken> {
   void initState() {
     super.initState();
     _loadUser();
-    _loadToken(); // ✅ THIS WAS MISSING
+    _loadToken();
   }
 
   Future<void> _loadUser() async {

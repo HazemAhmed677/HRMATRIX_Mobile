@@ -5,4 +5,5 @@ abstract class ApiEndpoints {
   static const getMyLoans = 'loans/myLoans';
   static const getMyDocuments = 'employees/documents/MyDocuments';
   static const getMyAssets = 'assets/myAssets';
+  static const getMyAirTickets = 'my-air-ticket-allowance-transactions/getAll';
 }
