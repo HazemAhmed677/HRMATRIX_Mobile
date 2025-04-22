@@ -9,12 +9,10 @@ final class GetMyTimeOffLoading extends GetMyTimeOffState {}
 final class GetMyTimeOffSuccess extends GetMyTimeOffState {
   /// time off & vacation (paid and sick) & over time
   final GetMyRequestsModel getMyRequestsModel;
-
   GetMyTimeOffSuccess({required this.getMyRequestsModel});
 }
 
 final class GetMyTimeOffFailure extends GetMyTimeOffState {
   final String errorMsg;
-
   GetMyTimeOffFailure({required this.errorMsg});
 }

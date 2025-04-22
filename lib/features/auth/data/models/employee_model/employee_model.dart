@@ -72,44 +72,45 @@ class EmployeeModel {
   int? vacationDays;
   int? sickDays;
   int? timeOff;
+  @HiveField(27)
   dynamic workingHours;
+  @HiveField(28)
   int? workedHours;
   int? idealScore;
   int? actualScore;
   String? performanceScore;
   dynamic evaluationHistory;
-  @HiveField(27)
+  @HiveField(29)
   int? departmentId;
   int? companyId;
   dynamic updatedBy;
-  @HiveField(28)
-  String? address;
-  @HiveField(29)
-  dynamic avatar;
   @HiveField(30)
+  String? address;
+  @HiveField(31)
+  dynamic avatar;
+  @HiveField(32)
   String? branch;
   String? createdAt;
   String? updatedAt;
-  @HiveField(31)
+  @HiveField(33)
   DepartmentModel? department;
   dynamic updater;
   List<dynamic>? vacations;
-  @HiveField(32)
+  @HiveField(34)
   List<FamilyInfoModel>? familyInfo;
   String? modifiedRole;
   List<dynamic>? employeeProjectsHistory;
   List<dynamic>? employeeMainProjects;
-  @HiveField(33)
+  @HiveField(35)
   dynamic directManager;
   List<dynamic>? timeOffRequests;
-  @HiveField(34)
+  @HiveField(36)
   List<OverTimeRequestModel>? overTimeRequests;
   List<dynamic>? airTicketAllowances;
-  @HiveField(35)
+  @HiveField(37)
   SalaryDetailsModel? salaryDetails;
-  @HiveField(36)
+  @HiveField(38)
   String? subRole;
-
   EmployeeModel({
     this.id,
     this.name,

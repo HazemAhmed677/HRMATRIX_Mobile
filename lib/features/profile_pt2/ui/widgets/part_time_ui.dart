@@ -8,6 +8,8 @@ import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profil
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/family_info_header_item.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/save_as_widget.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/show_options.dart';
+import 'package:hrmatrix/features/profile_pt2/ui/widgets/invalid_access.dart';
+import 'package:hrmatrix/main.dart';
 
 class PartTimeUI extends StatelessWidget {
   const PartTimeUI({super.key});
@@ -27,73 +29,61 @@ class PartTimeUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> data = [
-      {
-        'Working Hours': '8 hrs',
-        'Worked Hours': '6.5 hrs',
-        'Remaining Hours': '1.5 hrs',
-      },
-      {
-        'Working Hours': '8 hrs',
-        'Worked Hours': '8 hrs',
-        'Remaining Hours': '0 hrs',
-      },
-      {
-        'Working Hours': '8 hrs',
-        'Worked Hours': '5 hrs',
-        'Remaining Hours': '3 hrs',
-      },
-    ];
+    return employeeModel!.jobType! == 'Part Time'
+        ? Column(
+          children: [
+            verticalSpace(38),
 
-    return Column(
-      children: [
-        verticalSpace(38),
-
-        CommonContainerProfile(
-          child: Column(
-            children: [
-              CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
-              verticalSpace(28),
-              Row(
+            CommonContainerProfile(
+              child: Column(
                 children: [
-                  ShowDropDownOptions(onEntriesChanged: (int value) {}),
-                  Spacer(),
-                  const SaveAsWidget(),
-                ],
-              ),
-              verticalSpace(28),
-
-              Table(
-                border: TableBorder.all(color: AppColors.grey300, width: 1),
-                columnWidths: const {
-                  0: FlexColumnWidth(2),
-                  1: FlexColumnWidth(2),
-                  2: FlexColumnWidth(2),
-                },
-                children: [
-                  TableRow(
-                    decoration: BoxDecoration(color: AppColors.grey100),
-                    children: const [
-                      FamilyInfoHeaderItem(text: 'Working Hours'),
-                      FamilyInfoHeaderItem(text: 'Worked Hours'),
-                      FamilyInfoHeaderItem(text: 'Remaining Hours'),
+                  CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
+                  verticalSpace(28),
+                  Row(
+                    children: [
+                      ShowDropDownOptions(onEntriesChanged: (int value) {}),
+                      Spacer(),
+                      const SaveAsWidget(),
                     ],
                   ),
-                  ...data.map((row) {
-                    return TableRow(
-                      children: [
-                        buildTextCell(row['Working Hours']!),
-                        buildTextCell(row['Worked Hours']!),
-                        buildTextCell(row['Remaining Hours']!),
-                      ],
-                    );
-                  }),
+                  verticalSpace(28),
+
+                  Table(
+                    border: TableBorder.all(color: AppColors.grey300, width: 1),
+                    columnWidths: const {
+                      0: FlexColumnWidth(2),
+                      1: FlexColumnWidth(2),
+                      2: FlexColumnWidth(2),
+                    },
+                    children: [
+                      TableRow(
+                        decoration: BoxDecoration(color: AppColors.grey100),
+                        children: const [
+                          FamilyInfoHeaderItem(text: 'Working Hours'),
+                          FamilyInfoHeaderItem(text: 'Worked Hours'),
+                          FamilyInfoHeaderItem(text: 'Remaining Hours'),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          buildTextCell(
+                            employeeModel!.workingHours!.toString(),
+                          ),
+                          buildTextCell(employeeModel!.workedHours!.toString()),
+                          buildTextCell(
+                            (employeeModel!.workingHours! -
+                                    employeeModel!.workedHours!)
+                                .toString(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ],
               ),
-            ],
-          ),
-        ),
-      ],
-    );
+            ),
+          ],
+        )
+        : InvalidAccess();
   }
 }

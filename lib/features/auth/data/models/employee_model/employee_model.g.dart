@@ -44,23 +44,25 @@ class EmployeeModelAdapter extends TypeAdapter<EmployeeModel> {
       gosi: fields[24] as String?,
       salaryOnGosi: fields[25] as String?,
       hourlyRate: fields[26] as int?,
-      departmentId: fields[27] as int?,
-      address: fields[28] as String?,
-      avatar: fields[29] as dynamic,
-      branch: fields[30] as String?,
-      department: fields[31] as DepartmentModel?,
-      familyInfo: (fields[32] as List?)?.cast<FamilyInfoModel>(),
-      directManager: fields[33] as dynamic,
-      overTimeRequests: (fields[34] as List?)?.cast<OverTimeRequestModel>(),
-      salaryDetails: fields[35] as SalaryDetailsModel?,
-      subRole: fields[36] as String?,
+      workingHours: fields[27] as dynamic,
+      workedHours: fields[28] as int?,
+      departmentId: fields[29] as int?,
+      address: fields[30] as String?,
+      avatar: fields[31] as dynamic,
+      branch: fields[32] as String?,
+      department: fields[33] as DepartmentModel?,
+      familyInfo: (fields[34] as List?)?.cast<FamilyInfoModel>(),
+      directManager: fields[35] as dynamic,
+      overTimeRequests: (fields[36] as List?)?.cast<OverTimeRequestModel>(),
+      salaryDetails: fields[37] as SalaryDetailsModel?,
+      subRole: fields[38] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, EmployeeModel obj) {
     writer
-      ..writeByte(37)
+      ..writeByte(39)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -116,24 +118,28 @@ class EmployeeModelAdapter extends TypeAdapter<EmployeeModel> {
       ..writeByte(26)
       ..write(obj.hourlyRate)
       ..writeByte(27)
-      ..write(obj.departmentId)
+      ..write(obj.workingHours)
       ..writeByte(28)
-      ..write(obj.address)
+      ..write(obj.workedHours)
       ..writeByte(29)
-      ..write(obj.avatar)
+      ..write(obj.departmentId)
       ..writeByte(30)
-      ..write(obj.branch)
+      ..write(obj.address)
       ..writeByte(31)
-      ..write(obj.department)
+      ..write(obj.avatar)
       ..writeByte(32)
-      ..write(obj.familyInfo)
+      ..write(obj.branch)
       ..writeByte(33)
-      ..write(obj.directManager)
+      ..write(obj.department)
       ..writeByte(34)
-      ..write(obj.overTimeRequests)
+      ..write(obj.familyInfo)
       ..writeByte(35)
-      ..write(obj.salaryDetails)
+      ..write(obj.directManager)
       ..writeByte(36)
+      ..write(obj.overTimeRequests)
+      ..writeByte(37)
+      ..write(obj.salaryDetails)
+      ..writeByte(38)
       ..write(obj.subRole);
   }
 
