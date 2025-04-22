@@ -24,6 +24,7 @@ import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_ui.dart';
 import '../../../core/di/set_up.dart';
 import '../../profile_pt2/data/repo/profile_pt2_repo_impl.dart';
 import '../../profile_pt2/logic/get_my_air_tickets/get_my_air_tickets_cubit.dart';
+import '../../profile_pt2/logic/get_my_contracts/get_my_contracts_cubit.dart';
 import '../../profile_pt2/logic/get_my_disciplinary_actions/get_my_disciplinary_actions_cubit.dart';
 import '../../profile_pt2/logic/get_my_financial_transaction/get_my_financial_transaction_cubit.dart';
 import '../../profile_pt2/logic/get_my_time_off/get_my_time_off_cubit.dart';
@@ -148,7 +149,14 @@ class _ProfileBodyState extends State<ProfileBody> {
                 ),
             child: DisciplinaryActionsUI(),
           ),
-      ContractsState: () => ContractsUI(),
+      ContractsState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyContractsCubit(
+                  profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
+                ),
+            child: ContractsUI(),
+          ),
       OnBoardingState: () => OnBoardingUI(),
       OffBoardingState: () => OffBoardingUI(),
     };

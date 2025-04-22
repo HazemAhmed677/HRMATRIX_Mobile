@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:either_dart/src/either.dart';
 import 'package:hrmatrix/core/errors/failure_service.dart';
 import 'package:hrmatrix/features/profile_pt2/data/models/get_my_air_tickets_model/get_my_air_tickets_model.dart';
+import 'package:hrmatrix/features/profile_pt2/data/models/get_my_contracts_model/get_my_contracts_model.dart';
 import 'package:hrmatrix/features/profile_pt2/data/models/get_my_disciplinary_ations_model/get_my_disciplinary_ations_model.dart';
 import 'package:hrmatrix/features/profile_pt2/data/models/get_my_financial_transaction_model/get_my_financial_transaction_model.dart';
 import 'package:hrmatrix/features/profile_pt2/data/models/get_my_requests_model/get_my_requests_model.dart';
@@ -100,6 +101,28 @@ class ProfilePt2RepoImpl extends ProfilePt2Repo {
               .toList();
 
       return Right(disciplinaryActions);
+    } on DioException catch (e) {
+      return Left(
+        FailureService.fromDioException(
+          dioExecption: e,
+          statusCode: e.response?.statusCode,
+          dioExecptionType: e.type,
+        ),
+      );
+    } catch (e) {
+      return Left(FailureService(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<FailureService, GetMyContractsModel>> getMyContracts() async {
+    try {
+      String token = await loadToken();
+      Response response = await apiService.get(
+        endpoint: ApiEndpoints.getMyContracts,
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(GetMyContractsModel.fromJson(response.data));
     } on DioException catch (e) {
       return Left(
         FailureService.fromDioException(
