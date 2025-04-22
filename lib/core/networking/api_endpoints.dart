@@ -10,4 +10,6 @@ abstract class ApiEndpoints {
       'financialTransaction/dashboard/myApprovedFinancialTransactions';
   // time off & vacation (its types) & over time
   static const getMyRequests = 'requests/my-requests/get';
+  static const getMyDisciplinaryAtions =
+      'disciplinary-actions/my-disciplinary-actions';
 }
