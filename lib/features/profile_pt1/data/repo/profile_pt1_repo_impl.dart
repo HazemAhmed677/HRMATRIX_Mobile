@@ -8,8 +8,7 @@ import 'package:hrmatrix/features/profile_pt1/data/models/get_my_document_model/
 import 'package:hrmatrix/features/profile_pt1/data/models/get_my_loans_model/get_my_loans_model.dart';
 import 'package:hrmatrix/features/profile_pt1/data/repo/profile_pt1_repo.dart';
 
-import '../../../../core/helper/constants.dart';
-import '../../../../core/helper/shard_pref_helper.dart';
+import '../../../../core/helpers/load_token.dart';
 import '../../../../core/networking/api_endpoints.dart';
 
 class ProfilePt1RepoImpl extends ProfilePt1Repo {
@@ -19,7 +18,7 @@ class ProfilePt1RepoImpl extends ProfilePt1Repo {
   @override
   Future<Either<FailureService, GetMyLoansModel>> getMyLoans() async {
     try {
-      String token = await _loadToken();
+      String token = await loadToken();
       Response response = await apiService.get(
         endpoint: ApiEndpoints.getMyLoans,
         headers: {'Authorization': 'Bearer $token'},
@@ -43,7 +42,7 @@ class ProfilePt1RepoImpl extends ProfilePt1Repo {
   Future<Either<FailureService, List<GetMyDocumentModel>>>
   getMyDocuments() async {
     try {
-      String token = await _loadToken();
+      String token = await loadToken();
 
       Response response = await apiService.get(
         endpoint: ApiEndpoints.getMyDocuments,
@@ -71,7 +70,7 @@ class ProfilePt1RepoImpl extends ProfilePt1Repo {
   @override
   Future<Either<FailureService, List<GetMyAssetModel>>> getMyAssets() async {
     try {
-      String token = await _loadToken();
+      String token = await loadToken();
 
       Response response = await apiService.get(
         endpoint: ApiEndpoints.getMyAssets,
@@ -95,7 +94,4 @@ class ProfilePt1RepoImpl extends ProfilePt1Repo {
       return Left(FailureService(e.toString()));
     }
   }
-
-  Future<String> _loadToken() async =>
-      await SharedPrefHelper.getSecuredString(SharedPrefKeys.employeeToken);
 }

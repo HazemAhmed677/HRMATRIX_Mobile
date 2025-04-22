@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
+import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/features/profile_pt1/logic/bar_ui/bar_ui_cubit.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/bar_item.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/get_all_categories.dart';

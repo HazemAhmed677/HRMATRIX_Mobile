@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/loans_table.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_top_container.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 
 class LoansUI extends StatelessWidget {
   const LoansUI({super.key});

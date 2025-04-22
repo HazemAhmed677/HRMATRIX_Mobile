@@ -3,7 +3,7 @@ import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profil
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_divider_profile.dart';
 import 'package:hrmatrix/main.dart';
 
-import '../../../../core/helper/employee_model_helpers.dart';
+import '../../../../core/helpers/employee_model_helpers.dart';
 import '../../../../core/theming/app_styles.dart';
 import 'profile_middle_container_item.dart';
 import 'profile_personal_info_container_item.dart';

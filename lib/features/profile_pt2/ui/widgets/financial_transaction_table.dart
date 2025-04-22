@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
-import 'package:hrmatrix/core/theming/app_color.dart';
-import 'package:hrmatrix/core/theming/app_styles.dart';
-import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/family_info_header_item.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/profile_common_dialog.dart';
-import 'package:hrmatrix/features/profile_pt2/ui/widgets/financial_transaction_dialog.dart';
+import 'package:hrmatrix/core/helpers/employee_model_helpers.dart';
+import 'package:hrmatrix/features/profile_pt2/data/models/get_my_financial_transaction_model/get_my_financial_transaction_model.dart';
 
-import '../../../profile_pt1/ui/widgets/profile_common_row.dart';
+import '../../../../core/theming/app_color.dart';
+import '../../../../core/theming/app_styles.dart';
+import '../../../profile_pt1/ui/widgets/family_info_header_item.dart';
 
 class FinancialTransactionTable extends StatelessWidget {
-  const FinancialTransactionTable({super.key});
+  const FinancialTransactionTable({
+    super.key,
+    required this.getMyFinancialTransactionModel,
+  });
+  final GetMyFinancialTransactionModel getMyFinancialTransactionModel;
 
   /// Builds a cell containing text with common styling.
   Widget buildTextCell(String text, {double fontSize = 7.0}) {
@@ -71,77 +71,39 @@ class FinancialTransactionTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Dummy data for air tickets
-    final List<Map<String, String>> data = [
-      {
-        'Name': 'Ticket A',
-        'Amount': '1000',
-        'EffectiveDate': '01/01/2023',
-        'Status': 'Approved',
+    return Table(
+      border: TableBorder.all(color: AppColors.grey300, width: 1),
+      columnWidths: const {
+        0: FlexColumnWidth(2),
+        1: FlexColumnWidth(1.5),
+        2: FlexColumnWidth(2),
+        3: FlexColumnWidth(1.5),
       },
-      {
-        'Name': 'Ticket B',
-        'Amount': '90',
-        'EffectiveDate': '15/02/2023',
-        'Status': 'Approved',
-      },
-    ];
-
-    return CommonContainerProfile(
-      child: Column(
-        children: [
-          // Search & Save As Bar
-          CustomSearchTextFeild(
-            readOnly: false,
-            hintText: 'Search air tickets...',
-          ),
-          verticalSpace(28),
-          ProfileCommonRow(
-            text: 'Request',
-            onPressed: () {
-              showProfileCommonDialog(
-                child: FinancialTransactionDialog(),
-                context: context,
-              );
-            },
-          ),
-          verticalSpace(28),
-
-          // Table Widget
-          Table(
-            border: TableBorder.all(color: AppColors.grey300, width: 1),
-            columnWidths: const {
-              0: FlexColumnWidth(2),
-              1: FlexColumnWidth(1.5),
-              2: FlexColumnWidth(2),
-              3: FlexColumnWidth(1.5),
-            },
+      children: [
+        // Header Row
+        TableRow(
+          decoration: BoxDecoration(color: AppColors.grey100),
+          children: const [
+            FamilyInfoHeaderItem(text: 'Name'),
+            FamilyInfoHeaderItem(text: 'Amount'),
+            FamilyInfoHeaderItem(text: 'Effective Date'),
+            FamilyInfoHeaderItem(text: 'Status'),
+          ],
+        ),
+        // Data Rows
+        ...getMyFinancialTransactionModel.myApprovedFinancialTransaction!.map((
+          row,
+        ) {
+          return TableRow(
             children: [
-              // Header Row
-              TableRow(
-                decoration: BoxDecoration(color: AppColors.grey100),
-                children: const [
-                  FamilyInfoHeaderItem(text: 'Name'),
-                  FamilyInfoHeaderItem(text: 'Amount'),
-                  FamilyInfoHeaderItem(text: 'Effective Date'),
-                  FamilyInfoHeaderItem(text: 'Status'),
-                ],
-              ),
-              // Data Rows
-              ...data.map((row) {
-                return TableRow(
-                  children: [
-                    buildTextCell(row['Name']!),
-                    buildTextCell(row['Amount']!),
-                    buildTextCell(row['EffectiveDate']!),
-                    buildStatusWidget(row['Status']!),
-                  ],
-                );
-              }),
+              buildTextCell(row.name!),
+              buildTextCell(row.amount!),
+              buildTextCell(convertTimeStmpToDate(row.effectiveDate!)),
+              buildStatusWidget(row.status!),
             ],
-          ),
-        ],
-      ),
+          );
+        }),
+      ],
     );
   }
 }

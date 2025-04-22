@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hrmatrix/core/helper/shard_pref_helper.dart';
+import 'package:hrmatrix/core/helpers/shard_pref_helper.dart';
 import 'package:hrmatrix/core/routing/routes.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/typography/font_weight_helper.dart';
 import '../../data/local/employee_hive_services.dart';

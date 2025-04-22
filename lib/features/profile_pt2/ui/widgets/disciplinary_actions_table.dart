@@ -1,38 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
-import 'package:hrmatrix/core/theming/app_color.dart';
-import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/save_as_widget.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/app_color.dart';
+import '../../../../core/widgets/custom_search_text_field.dart';
+import '../../../profile_pt1/ui/widgets/common_container_profile.dart';
+import '../../../profile_pt1/ui/widgets/save_as_widget.dart';
+import '../../data/models/get_my_disciplinary_ations_model/get_my_disciplinary_ations_model.dart';
 
 class DisciplinaryActionsTable extends StatelessWidget {
-  const DisciplinaryActionsTable({super.key});
-
-  final List<Map<String, String>> dummyData = const [
-    {
-      'rule': 'Hshshsh',
-      'amount': '10',
-      'type': 'Salary Deduction',
-      'duration': '1',
-      'attachment': 'View',
-    },
-    {
-      'rule': 'Late Arrival',
-      'amount': '5',
-      'type': 'Salary Deduction',
-      'duration': '2',
-      'attachment': 'View',
-    },
-    {
-      'rule': 'Absent Without Notice',
-      'amount': '20',
-      'type': 'Salary Deduction',
-      'duration': '3',
-      'attachment': 'View',
-    },
-  ];
-
+  const DisciplinaryActionsTable({
+    super.key,
+    required this.getMyDisciplinaryActions,
+  });
+  final List<GetMyDisciplinaryAtionsModel> getMyDisciplinaryActions;
   @override
   Widget build(BuildContext context) {
     return CommonContainerProfile(
@@ -72,14 +53,14 @@ class DisciplinaryActionsTable extends StatelessWidget {
                   ],
                 ),
                 // Data rows
-                ...dummyData.map((row) {
+                ...getMyDisciplinaryActions.map((row) {
                   return TableRow(
                     children: [
-                      _buildCell(row['rule']!),
-                      _buildCell(row['amount']!),
-                      _buildCell(row['type']!),
-                      _buildCell(row['duration']!),
-                      _buildAttachmentCell(row['attachment']!),
+                      _buildCell(row.rule!),
+                      _buildCell(row.actionType!.toString()),
+                      _buildCell(row.deductionType!),
+                      _buildCell(row.duration!.toString()),
+                      _buildAttachmentCell(row.attachment!),
                     ],
                   );
                 }),
@@ -114,7 +95,7 @@ class DisciplinaryActionsTable extends StatelessWidget {
           // Handle view logic here
         },
         child: Text(
-          text,
+          'View',
           style: TextStyle(
             fontSize: 6.sp,
             color: AppColors.blue,

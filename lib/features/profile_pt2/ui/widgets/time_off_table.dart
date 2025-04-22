@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
-import 'package:hrmatrix/core/theming/app_color.dart';
-import 'package:hrmatrix/core/theming/app_styles.dart';
-import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/family_info_header_item.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/profile_common_dialog.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_row.dart';
-import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_dialog.dart';
+import 'package:hrmatrix/core/helpers/employee_model_helpers.dart';
+
+import '../../../../core/theming/app_color.dart';
+import '../../../../core/theming/app_styles.dart';
+import '../../../profile_pt1/ui/widgets/family_info_header_item.dart';
+import '../../data/models/get_my_requests_model/request.dart';
 
 class TimeOffTable extends StatelessWidget {
-  const TimeOffTable({super.key});
+  const TimeOffTable({super.key, required this.timeOffRequests});
+  final List<Request> timeOffRequests;
 
   /// Builds a cell containing text with common styling.
   Widget buildTextCell(String text, {double fontSize = 7.0}) {
@@ -69,101 +67,43 @@ class TimeOffTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> data = [
-      {
-        'Content': 'Meeting',
-        'From Hour': '09:00 AM',
-        'To Hour': '10:00 AM',
-        'Time Off': '1 hr',
-        'Time Off Date': '15/08/2023',
-        'Status': 'Approved',
+    return Table(
+      border: TableBorder.all(color: AppColors.grey300, width: 1),
+      columnWidths: const {
+        0: FlexColumnWidth(2),
+        1: FlexColumnWidth(1.5),
+        2: FlexColumnWidth(1.5),
+        3: FlexColumnWidth(1.5),
+        4: FlexColumnWidth(2),
+        5: FlexColumnWidth(1.5),
       },
-      {
-        'Content': 'Lunch Break',
-        'From Hour': '12:00 PM',
-        'To Hour': '13:00 PM',
-        'Time Off': '1 hr',
-        'Time Off Date': '15/08/2023',
-        'Status': 'Pending',
-      },
-      {
-        'Content': 'Doctor Appointment',
-        'From Hour': '14:30 PM',
-        'To Hour': '15:30 PM',
-        'Time Off': '1 hr',
-        'Time Off Date': '16/08/2023',
-        'Status': 'Rejected',
-      },
-      {
-        'Content': 'Training',
-        'From Hour': '10:00 AM',
-        'To Hour': '12:00 PM',
-        'Time Off': '2 hrs',
-        'Time Off Date': '17/08/2023',
-        'Status': 'Approved',
-      },
-    ];
-
-    return CommonContainerProfile(
-      child: Column(
-        children: [
-          // Search Bar
-          CustomSearchTextFeild(readOnly: false, hintText: 'Search...'),
-          verticalSpace(28),
-          // Row with common actions (like add request)
-          if (MediaQuery.orientationOf(context) == Orientation.landscape)
-            ProfileCommonRow(
-              text: 'Add Time Off Request',
-              onPressed: () {
-                showProfileCommonDialog(
-                  child: TimeOffDialog(),
-                  context: context,
-                );
-              },
-            ),
-          verticalSpace(28),
-
-          // Table Widget with the new columns
-          Table(
-            border: TableBorder.all(color: AppColors.grey300, width: 1),
-            columnWidths: const {
-              0: FlexColumnWidth(2),
-              1: FlexColumnWidth(1.5),
-              2: FlexColumnWidth(1.5),
-              3: FlexColumnWidth(1.5),
-              4: FlexColumnWidth(2),
-              5: FlexColumnWidth(1.5),
-            },
+      children: [
+        // Header Row
+        TableRow(
+          decoration: BoxDecoration(color: AppColors.grey100),
+          children: const [
+            FamilyInfoHeaderItem(text: 'Content'),
+            FamilyInfoHeaderItem(text: 'From Hour'),
+            FamilyInfoHeaderItem(text: 'To Hour'),
+            FamilyInfoHeaderItem(text: 'Time Off'),
+            FamilyInfoHeaderItem(text: 'Time Off Date'),
+            FamilyInfoHeaderItem(text: 'Status'),
+          ],
+        ),
+        // Data Rows
+        ...timeOffRequests.map((row) {
+          return TableRow(
             children: [
-              // Header Row
-              TableRow(
-                decoration: BoxDecoration(color: AppColors.grey100),
-                children: const [
-                  FamilyInfoHeaderItem(text: 'Content'),
-                  FamilyInfoHeaderItem(text: 'From Hour'),
-                  FamilyInfoHeaderItem(text: 'To Hour'),
-                  FamilyInfoHeaderItem(text: 'Time Off'),
-                  FamilyInfoHeaderItem(text: 'Time Off Date'),
-                  FamilyInfoHeaderItem(text: 'Status'),
-                ],
-              ),
-              // Data Rows
-              ...data.map((row) {
-                return TableRow(
-                  children: [
-                    buildTextCell(row['Content']!),
-                    buildTextCell(row['From Hour']!),
-                    buildTextCell(row['To Hour']!),
-                    buildTextCell(row['Time Off']!),
-                    buildTextCell(row['Time Off Date']!),
-                    buildStatusWidget(row['Status']!),
-                  ],
-                );
-              }),
+              buildTextCell(row.content!),
+              buildTextCell(row.timeOffFromHour!),
+              buildTextCell(row.timeOffToHour!),
+              buildTextCell(row.timeOff!.toString()),
+              buildTextCell(convertTimeStmpToDate(row.timeOffDate!)),
+              buildStatusWidget(row.status!),
             ],
-          ),
-        ],
-      ),
+          );
+        }),
+      ],
     );
   }
 }

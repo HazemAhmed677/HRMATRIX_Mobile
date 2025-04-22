@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helper/employee_model_helpers.dart';
+import 'package:hrmatrix/core/helpers/employee_model_helpers.dart';
 import 'package:hrmatrix/features/profile_pt1/logic/get_my_loans/get_my_loans_cubit.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/loading_widget.dart';

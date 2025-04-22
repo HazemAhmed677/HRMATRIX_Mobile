@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrmatrix/features/auth/ui/widgets/word_of_textfield.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
 class EmailAndPasswordPart extends StatefulWidget {

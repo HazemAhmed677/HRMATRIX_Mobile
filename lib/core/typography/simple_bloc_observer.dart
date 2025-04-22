@@ -1,7 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 
-import '../helper/logger.dart';
+import '../helpers/logger.dart';
 
 class SimpleBlocObserver extends BlocObserver {
   @override

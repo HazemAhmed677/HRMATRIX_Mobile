@@ -5,9 +5,9 @@ import 'package:hrmatrix/core/networking/api_endpoints.dart';
 import 'package:hrmatrix/core/networking/api_service.dart';
 import 'package:hrmatrix/features/auth/data/repo/auth_repo.dart';
 
-import '../../../../core/helper/constants.dart';
-import '../../../../core/helper/logger.dart';
-import '../../../../core/helper/shard_pref_helper.dart';
+import '../../../../core/helpers/constants.dart';
+import '../../../../core/helpers/logger.dart';
+import '../../../../core/helpers/shard_pref_helper.dart';
 import '../local/employee_hive_services.dart';
 import '../models/employee_model/employee_model.dart';
 

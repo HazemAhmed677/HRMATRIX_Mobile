@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/widgets/custom_logout_button.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 
 class TableCalendarForDialog extends StatefulWidget {

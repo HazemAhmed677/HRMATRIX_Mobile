@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
+import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/features/profile_pt1/data/repo/profile_pt1_repo_impl.dart';
 import 'package:hrmatrix/features/profile_pt1/logic/bar_ui/bar_ui_cubit.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/assets_ui.dart';
@@ -22,6 +22,12 @@ import 'package:hrmatrix/features/profile_pt2/ui/widgets/part_time_ui.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_ui.dart';
 
 import '../../../core/di/set_up.dart';
+import '../../profile_pt2/data/repo/profile_pt2_repo_impl.dart';
+import '../../profile_pt2/logic/get_my_air_tickets/get_my_air_tickets_cubit.dart';
+import '../../profile_pt2/logic/get_my_contracts/get_my_contracts_cubit.dart';
+import '../../profile_pt2/logic/get_my_disciplinary_actions/get_my_disciplinary_actions_cubit.dart';
+import '../../profile_pt2/logic/get_my_financial_transaction/get_my_financial_transaction_cubit.dart';
+import '../../profile_pt2/logic/get_my_time_off/get_my_time_off_cubit.dart';
 import '../logic/get_my_assets/get_my_assets_cubit.dart';
 import '../logic/get_my_documents/get_my_documents_cubit.dart';
 import '../logic/get_my_loans/get_my_loans_cubit.dart';
@@ -110,12 +116,47 @@ class _ProfileBodyState extends State<ProfileBody> {
                 ),
             child: AssetsUI(),
           ),
-      AirTicketsState: () => AirTicketsUI(),
-      FinancialTransactionState: () => FinancialTransactionUI(),
-      TimeOffState: () => TimeOffUI(),
+      AirTicketsState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyAirTicketsCubit(
+                  profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
+                ),
+            child: AirTicketsUI(),
+          ),
+      FinancialTransactionState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyFinancialTransactionCubit(
+                  profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
+                ),
+            child: FinancialTransactionUI(),
+          ),
+      TimeOffState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyTimeOffCubit(
+                  profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
+                ),
+            child: TimeOffUI(),
+          ),
       PartTimeState: () => PartTimeUI(),
-      DisciplinaryActionsState: () => DisciplinaryActionsUI(),
-      ContractsState: () => ContractsUI(),
+      DisciplinaryActionsState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyDisciplinaryActionsCubit(
+                  profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
+                ),
+            child: DisciplinaryActionsUI(),
+          ),
+      ContractsState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyContractsCubit(
+                  profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
+                ),
+            child: ContractsUI(),
+          ),
       OnBoardingState: () => OnBoardingUI(),
       OffBoardingState: () => OffBoardingUI(),
     };

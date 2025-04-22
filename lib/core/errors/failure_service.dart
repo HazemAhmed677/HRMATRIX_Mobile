@@ -47,7 +47,7 @@ class FailureService {
         dioExecption.response?.data['message'] ?? 'Something went wrong',
       );
     } else if (statusCode == 404) {
-      return FailureService(dioExecption.response!.data);
+      return FailureService(dioExecption.response!.data['message']);
     } else {
       return FailureService(e.toString());
     }

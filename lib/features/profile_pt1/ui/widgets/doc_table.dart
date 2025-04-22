@@ -79,11 +79,6 @@ class DocTable extends StatelessWidget {
 
           // Data rows
           ...documents.map((doc) {
-            final bool isExpired =
-                DateTime.tryParse(
-                  doc.expirationDate ?? '',
-                )?.isBefore(DateTime.now()) ??
-                false;
             final bool isApproved = doc.status?.toLowerCase() == 'Approved';
 
             return TableRow(

@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helper/spacing.dart';
-import 'package:hrmatrix/core/theming/app_color.dart';
-import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/save_as_widget.dart';
+import 'package:hrmatrix/core/helpers/employee_model_helpers.dart';
+import 'package:hrmatrix/features/profile_pt2/data/models/get_my_contracts_model/get_my_contracts_model.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/app_color.dart';
+import '../../../../core/widgets/custom_search_text_field.dart';
+import '../../../profile_pt1/ui/widgets/common_container_profile.dart';
+import '../../../profile_pt1/ui/widgets/save_as_widget.dart';
 
 class ContractsTable extends StatelessWidget {
-  const ContractsTable({super.key});
-
-  final List<Map<String, String>> contractData = const [
-    {
-      'name': 'Njzjzjd',
-      'fees': '100',
-      'start': '29-03-2025',
-      'end': '29-03-2026',
-      'type': 'Part Time',
-      'attachment': 'file',
-    },
-  ];
-
+  const ContractsTable({super.key, required this.getMyContractsModel});
+  final GetMyContractsModel getMyContractsModel;
   @override
   Widget build(BuildContext context) {
     return CommonContainerProfile(
@@ -61,15 +53,15 @@ class ContractsTable extends StatelessWidget {
                   ],
                 ),
                 // Data rows
-                ...contractData.map((row) {
+                ...getMyContractsModel.data!.contracts!.map((row) {
                   return TableRow(
                     children: [
-                      _buildCell(row['name']!),
-                      _buildCell(row['fees']!),
-                      _buildCell(row['start']!),
-                      _buildCell(row['end']!),
-                      _buildCell(row['type']!),
-                      _buildAttachmentIcon(),
+                      _buildCell(row.contractname!),
+                      _buildCell(row.terminationFees!.toString()),
+                      _buildCell(convertTimeStmpToDate(row.startDate!)),
+                      _buildCell(convertTimeStmpToDate(row.endDate!)),
+                      _buildCell(row.contractType!),
+                      _buildAttachmentIcon(attachURL: row.attachment!),
                     ],
                   );
                 }),
@@ -96,7 +88,7 @@ class ContractsTable extends StatelessWidget {
     );
   }
 
-  Widget _buildAttachmentIcon() {
+  Widget _buildAttachmentIcon({required String attachURL}) {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: GestureDetector(

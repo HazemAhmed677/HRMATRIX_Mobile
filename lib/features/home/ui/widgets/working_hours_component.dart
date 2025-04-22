@@ -4,7 +4,7 @@ import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/features/home/ui/widgets/top_half_circle_progress_painter.dart';
 
-import '../../../../core/helper/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/typography/font_weight_helper.dart';
 import 'home_common_container.dart';
 import 'working_hours_linear_progress.dart'; // Add this package
