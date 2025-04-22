@@ -6,4 +6,6 @@ abstract class ApiEndpoints {
   static const getMyDocuments = 'employees/documents/MyDocuments';
   static const getMyAssets = 'assets/myAssets';
   static const getMyAirTickets = 'my-air-ticket-allowance-transactions/getAll';
+  static const getMyFinancialTransactions =
+      'financialTransaction/dashboard/myApprovedFinancialTransactions';
 }
