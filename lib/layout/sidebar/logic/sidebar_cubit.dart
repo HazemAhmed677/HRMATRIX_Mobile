@@ -12,7 +12,16 @@ class SidebarCubit extends Cubit<SidebarState> {
 
   void selectIndex(int index) {
     emit(state.copyWith(selectedIndex: index));
-    // DON'T close the drawer here
+  }
+
+  void toggleExpand(String title) {
+    final expanded = Set<String>.from(state.expandedTitles);
+    if (expanded.contains(title)) {
+      expanded.remove(title);
+    } else {
+      expanded.add(title);
+    }
+    emit(state.copyWith(expandedTitles: expanded));
   }
 
   void updateAppBarVisibility(bool isVisible) {
