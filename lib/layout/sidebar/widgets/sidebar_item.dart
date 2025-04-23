@@ -66,8 +66,8 @@ class SidebarItem extends StatelessWidget {
                   isExpanded
                       ? Icons.keyboard_arrow_down
                       : Icons.keyboard_arrow_right,
-                  size: 16.sp,
-                  color: AppColors.grey300,
+                  size: isLandacape ? 8.sp : 22.sp,
+                  color: AppColors.grey900,
                 ),
             ],
           ),

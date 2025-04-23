@@ -253,8 +253,10 @@ class _TimeOffDialogState extends State<TimeOffDialog> {
                           },
                           builder: (context, state) {
                             if (state is PostTimeOffLoading) {
-                              return CircularProgressIndicator(
-                                color: AppColors.blue,
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.blue,
+                                ),
                               );
                             }
                             return CustomActionButton(
