@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/no_data_available.dart';
 import 'package:hrmatrix/features/profile_pt2/logic/get_my_air_tickets/get_my_air_tickets_cubit.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/air_ticket_table.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/air_tickets_request_dialog.dart';
+import 'package:hrmatrix/features/requests/ui/widgets/helpers/profile_common_dialog.dart';
 
 import '../../../profile_pt1/ui/widgets/loading_widget.dart';
 import '../../../profile_pt1/ui/widgets/profile_common_row.dart';

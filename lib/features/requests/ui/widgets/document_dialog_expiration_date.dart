@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/helpers/logger.dart';
 import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/widgets/custom_text_form_field.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/show_calendar_dialog.dart';
+import 'package:hrmatrix/features/requests/ui/widgets/helpers/show_calendar_dialog.dart';
 
 import '../../../../core/theming/app_styles.dart';
 
@@ -59,14 +59,18 @@ class _DocumentDialogExpirationDateState
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           widget.label,
-          style: AppStyles.secondaryStyle.copyWith(fontSize: 7.sp),
+          style: AppStyles.secondaryStyle.copyWith(
+            fontSize: isLandscape ? 7.sp : 12.sp,
+          ),
         ),
-        verticalSpace(24),
+        isLandscape ? verticalSpace(24) : verticalSpace(12),
         CustomTextFormField(
           hint: _selectedDate != null ? formattedDate : 'DD/MM/YY',
           readOnly: true,

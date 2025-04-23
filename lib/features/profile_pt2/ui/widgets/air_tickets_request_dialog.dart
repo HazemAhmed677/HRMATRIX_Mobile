@@ -7,7 +7,7 @@ import 'package:hrmatrix/core/widgets/custom_text_form_field.dart';
 
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/close_widget.dart';
-import '../../../profile_pt1/ui/widgets/document_dialog_expiration_date.dart';
+import '../../../requests/ui/widgets/document_dialog_expiration_date.dart';
 
 class AirTicketsRequestDialog extends StatefulWidget {
   const AirTicketsRequestDialog({super.key});
