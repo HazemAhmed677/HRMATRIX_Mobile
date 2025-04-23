@@ -13,6 +13,7 @@ import 'package:hrmatrix/layout/sidebar/logic/sidebar_state.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_sidebar_items.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/sidebar_item.dart';
 
+import '../../features/profile_pt1/ui/widgets/over_time_dialog_widget.dart';
 import '../../features/profile_pt2/ui/widgets/time_off_dialog.dart';
 import '../../features/requests/ui/widgets/helpers/profile_common_dialog.dart';
 
@@ -32,6 +33,11 @@ class _SidebarState extends State<Sidebar> {
       case SidebarTitles.timeOff:
         showProfileCommonDialog(child: TimeOffDialog(), context: context);
         break;
+      case SidebarTitles.overTime:
+        showProfileCommonDialog(
+          child: OverTimeDialogWidget(),
+          context: context,
+        );
     }
   }
 

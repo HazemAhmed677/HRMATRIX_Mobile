@@ -13,5 +13,5 @@ abstract class ApiEndpoints {
   static const getMyDisciplinaryAtions =
       'disciplinary-actions/my-disciplinary-actions';
   static const getMyContracts = 'contracts/get/myContracts';
-  static const postTimeOffRequest = 'requests';
+  static const postRequest = 'requests';
 }

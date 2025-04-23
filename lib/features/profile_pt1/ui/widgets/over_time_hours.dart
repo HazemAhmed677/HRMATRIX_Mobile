@@ -13,7 +13,7 @@ class OverTimeHours extends StatefulWidget {
 }
 
 class _OverTimeHoursState extends State<OverTimeHours> {
-  double overtime = 1.0;
+  double overtime = 0.0;
 
   void _increment() {
     setState(() {
@@ -33,13 +33,17 @@ class _OverTimeHoursState extends State<OverTimeHours> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
         Text(
           "Overtime Hours:",
-          style: AppStyles.secondaryStyle.copyWith(fontSize: 7.sp),
+          style: AppStyles.secondaryStyle.copyWith(
+            fontSize: isLandscape ? 7.sp : 12.sp,
+          ),
         ),
         verticalSpace(24),
         Container(
@@ -53,18 +57,26 @@ class _OverTimeHoursState extends State<OverTimeHours> {
             children: [
               Text(
                 overtime.toStringAsFixed(1),
-                style: AppStyles.primaryStyle.copyWith(fontSize: 9.sp),
+                style: AppStyles.primaryStyle.copyWith(
+                  fontSize: isLandscape ? 9.sp : 12.sp,
+                ),
               ),
               const Spacer(),
               Column(
                 children: [
                   GestureDetector(
                     onTap: _increment,
-                    child: Icon(LucideIcons.chevronUp, size: 10.sp),
+                    child: Icon(
+                      LucideIcons.chevronUp,
+                      size: isLandscape ? 10.sp : 12.sp,
+                    ),
                   ),
                   GestureDetector(
                     onTap: _decrement,
-                    child: Icon(LucideIcons.chevronDown, size: 10.sp),
+                    child: Icon(
+                      LucideIcons.chevronDown,
+                      size: isLandscape ? 10.sp : 12.sp,
+                    ),
                   ),
                 ],
               ),
