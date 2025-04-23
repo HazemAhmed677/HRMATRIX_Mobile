@@ -8,7 +8,7 @@ import 'package:hrmatrix/features/profile_pt1/ui/widgets/over_time_start_date.da
 
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/close_widget.dart';
-import '../../../profile_pt1/ui/widgets/document_dialog_expiration_date.dart';
+import '../../../requests/ui/widgets/document_dialog_expiration_date.dart';
 
 class TimeOffDialog extends StatefulWidget {
   const TimeOffDialog({super.key});
@@ -23,6 +23,8 @@ class _TimeOffDialogState extends State<TimeOffDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
@@ -38,12 +40,16 @@ class _TimeOffDialogState extends State<TimeOffDialog> {
                   children: [
                     Text(
                       "Add Time Off Request",
-                      style: AppStyles.primaryStyle.copyWith(fontSize: 12.sp),
+                      style: AppStyles.primaryStyle.copyWith(
+                        fontSize: isLandscape ? 12.sp : 16.sp,
+                      ),
                     ),
-                    verticalSpace(8),
+                    isLandscape ? verticalSpace(8) : verticalSpace(4),
                     Text(
                       "Add a new time off request.",
-                      style: AppStyles.secondaryStyle.copyWith(fontSize: 7.sp),
+                      style: AppStyles.secondaryStyle.copyWith(
+                        fontSize: isLandscape ? 7.sp : 12.sp,
+                      ),
                     ),
                   ],
                 ),
@@ -51,10 +57,10 @@ class _TimeOffDialogState extends State<TimeOffDialog> {
                 CloseWidget(),
               ],
             ),
-            verticalSpace(38),
+            isLandscape ? verticalSpace(38) : verticalSpace(18),
             DocumentDialogExpirationDate(label: 'Time Off Date'),
 
-            verticalSpace(48),
+            isLandscape ? verticalSpace(48) : verticalSpace(28),
             Row(
               children: [
                 OverTimeStartAndEndDate(title: 'From Hour', hint: '3:20 PM'),
@@ -62,10 +68,10 @@ class _TimeOffDialogState extends State<TimeOffDialog> {
                 OverTimeStartAndEndDate(title: 'To Hour', hint: '5:20 PM'),
               ],
             ),
-            verticalSpace(48),
+            isLandscape ? verticalSpace(48) : verticalSpace(28),
             CustomTextFormField(hint: '', label: "Description", maxLines: 2),
 
-            verticalSpace(52),
+            isLandscape ? verticalSpace(52) : verticalSpace(32),
             Row(
               children: [
                 Expanded(
@@ -77,14 +83,18 @@ class _TimeOffDialogState extends State<TimeOffDialog> {
                     edgeColor: AppColors.grey300,
                     backgroundColor: AppColors.white,
                     textColor: AppColors.black,
-                    fontSize: 8,
                     overlayColor: AppColors.customActionButton,
-                    size: Size(MediaQuery.sizeOf(context).width, 90.h),
+                    size: Size(
+                      MediaQuery.sizeOf(context).width,
+                      isLandscape ? 90.h : 40.h,
+                    ),
+                    fontSize: isLandscape ? 8 : 12,
                   ),
                 ),
                 horizontalSpace(12),
                 Expanded(
                   child: CustomActionButton(
+                    verticalPadding: isLandscape ? 0 : 4,
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         Navigator.pop(context);
@@ -99,8 +109,11 @@ class _TimeOffDialogState extends State<TimeOffDialog> {
                     backgroundColor: AppColors.customActionButton,
                     textColor: AppColors.white,
                     overlayColor: AppColors.white,
-                    size: Size(MediaQuery.sizeOf(context).width, 90.h),
-                    fontSize: 8,
+                    size: Size(
+                      MediaQuery.sizeOf(context).width,
+                      isLandscape ? 90.h : 36.h,
+                    ),
+                    fontSize: isLandscape ? 8 : 12,
                   ),
                 ),
               ],

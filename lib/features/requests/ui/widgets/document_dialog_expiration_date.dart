@@ -59,14 +59,18 @@ class _DocumentDialogExpirationDateState
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           widget.label,
-          style: AppStyles.secondaryStyle.copyWith(fontSize: 7.sp),
+          style: AppStyles.secondaryStyle.copyWith(
+            fontSize: isLandscape ? 7.sp : 12.sp,
+          ),
         ),
-        verticalSpace(24),
+        isLandscape ? verticalSpace(24) : verticalSpace(12),
         CustomTextFormField(
           hint: _selectedDate != null ? formattedDate : 'DD/MM/YY',
           readOnly: true,

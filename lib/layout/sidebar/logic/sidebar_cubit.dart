@@ -10,8 +10,20 @@ class SidebarCubit extends Cubit<SidebarState> {
 
   void closeDrawer() => emit(state.copyWith(isDrawerOpen: false));
 
-  void selectIndex(int index) {
-    emit(state.copyWith(selectedIndex: index));
+  void selectIndex(int index) =>
+      emit(state.copyWith(selectedIndex: index, selectedSubIndex: null));
+
+  void selectSubIndex(int parentIndex, int subIndex) => emit(
+    state.copyWith(selectedIndex: parentIndex, selectedSubIndex: subIndex),
+  );
+  void selectSubItem(int parentIndex, int subIndex) {
+    emit(
+      state.copyWith(
+        selectedIndex: parentIndex,
+        selectedParentIndex: parentIndex,
+        selectedSubIndex: subIndex,
+      ),
+    );
   }
 
   void toggleExpand(String title) {

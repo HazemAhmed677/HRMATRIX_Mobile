@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrmatrix/features/profile_pt1/logic/get_my_documents/get_my_documents_cubit.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/doc_table.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/loading_widget.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/no_data_available.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_row.dart';
+import 'package:hrmatrix/features/requests/ui/widgets/helpers/profile_common_dialog.dart';
 
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/custom_search_text_field.dart';
-import 'document_add_dialog_widget.dart';
+import '../../../requests/ui/widgets/document_add_dialog_widget.dart';
 
 class DocumentsTableContainer extends StatefulWidget {
   const DocumentsTableContainer({super.key});

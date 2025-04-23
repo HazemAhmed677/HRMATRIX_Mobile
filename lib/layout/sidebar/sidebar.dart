@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hrmatrix/core/helpers/sidebar_titles.dart';
 import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
@@ -9,8 +10,11 @@ import 'package:hrmatrix/core/typography/app_padding.dart';
 import 'package:hrmatrix/layout/sidebar/data/models/sidebar_model.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_state.dart';
-import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_headlins.dart';
+import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_sidebar_items.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/sidebar_item.dart';
+
+import '../../features/profile_pt2/ui/widgets/time_off_dialog.dart';
+import '../../features/requests/ui/widgets/helpers/profile_common_dialog.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({super.key});
@@ -21,6 +25,16 @@ class Sidebar extends StatefulWidget {
 
 class _SidebarState extends State<Sidebar> {
   double _sidebarLeft = 0.0;
+
+  void _handleSubItemTap(String title, int parentIndex, int subIndex) {
+    context.read<SidebarCubit>().selectSubItem(parentIndex, subIndex);
+    switch (title) {
+      case SidebarTitles.timeOff:
+        showProfileCommonDialog(child: TimeOffDialog(), context: context);
+        break;
+      // Add other sub-item dialogs here
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +52,22 @@ class _SidebarState extends State<Sidebar> {
         List<Widget> buildMenu(
           List<SidebarItemModel> models, {
           int indent = 0,
+          String? parentTitle,
         }) {
           return models.expand((item) {
             final isExpanded = state.expandedTitles.contains(item.title);
-            final hasChildren = item.children?.isNotEmpty ?? false;
+            final hasSubItems = item.subItems?.isNotEmpty ?? false;
+            final isSubItem = parentTitle != null;
+
+            final parentIndex = items.indexWhere((e) => e.title == parentTitle);
+            final itemIndex = items.indexOf(item);
+            final isActive =
+                (hasSubItems && state.selectedIndex == itemIndex) ||
+                (!hasSubItems &&
+                    !isSubItem &&
+                    state.selectedIndex == itemIndex) ||
+                (isSubItem && state.selectedParentIndex == parentIndex);
+
             return [
               Padding(
                 padding: EdgeInsets.only(bottom: 12.h),
@@ -49,22 +75,32 @@ class _SidebarState extends State<Sidebar> {
                   title: item.title,
                   iconData: item.icon,
                   onTap: () {
-                    if (hasChildren) {
+                    if (hasSubItems) {
                       context.read<SidebarCubit>().toggleExpand(item.title);
-                    } else {
-                      context.read<SidebarCubit>().selectIndex(
-                        items.indexOf(item),
+                    } else if (isSubItem) {
+                      final parentIdx = items.indexWhere(
+                        (e) => e.title == parentTitle,
                       );
+                      final subIdx = items[parentIdx].subItems!.indexWhere(
+                        (e) => e.title == item.title,
+                      );
+                      _handleSubItemTap(item.title, parentIdx, subIdx);
+                    } else {
+                      context.read<SidebarCubit>().selectIndex(itemIndex);
                     }
                   },
-                  isActive: state.selectedIndex == items.indexOf(item),
+                  isActive: isActive,
                   indent: indent,
-                  isExpandable: hasChildren,
+                  isExpandable: hasSubItems,
                   isExpanded: isExpanded,
                 ),
               ),
-              if (hasChildren && isExpanded)
-                ...buildMenu(item.children!, indent: indent + 1),
+              if (hasSubItems && isExpanded)
+                ...buildMenu(
+                  item.subItems!,
+                  indent: indent + 1,
+                  parentTitle: item.title,
+                ),
             ];
           }).toList();
         }

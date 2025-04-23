@@ -44,23 +44,24 @@ class _OverTimeStartAndEndDateState extends State<OverTimeStartAndEndDate> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           widget.title,
-          style: AppStyles.secondaryStyle.copyWith(fontSize: 7.sp),
+          style: AppStyles.secondaryStyle.copyWith(
+            fontSize: isLandscape ? 7.sp : 12.sp,
+          ),
         ),
-        verticalSpace(24),
+        isLandscape ? verticalSpace(24) : verticalSpace(12),
 
         GestureDetector(
           onTap: _pickTime,
           child: Container(
             padding: EdgeInsets.symmetric(
-              horizontal:
-                  MediaQuery.orientationOf(context) == Orientation.landscape
-                      ? 10.w
-                      : 16.w,
+              horizontal: isLandscape ? 10.w : 16.w,
               vertical: 14.h,
             ),
             decoration: BoxDecoration(
@@ -73,14 +74,16 @@ class _OverTimeStartAndEndDateState extends State<OverTimeStartAndEndDate> {
                 Icon(
                   LucideIcons.clock,
                   color: const Color(0xFF6B7280),
-                  size: 8.sp,
+                  size: isLandscape ? 8.sp : 12.sp,
                 ),
-                horizontalSpace(2.w),
+                isLandscape ? horizontalSpace(2) : horizontalSpace(10),
                 Text(
                   selectedTime == null
                       ? widget.hint
                       : _formatTime(selectedTime!),
-                  style: AppStyles.primaryStyle.copyWith(fontSize: 9.sp),
+                  style: AppStyles.primaryStyle.copyWith(
+                    fontSize: isLandscape ? 9.sp : 12.sp,
+                  ),
                 ),
               ],
             ),

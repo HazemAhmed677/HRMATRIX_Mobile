@@ -9,7 +9,7 @@ import 'package:hrmatrix/features/profile_pt1/ui/widgets/over_time_start_date.da
 
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/close_widget.dart';
-import 'document_dialog_expiration_date.dart';
+import '../../../requests/ui/widgets/document_dialog_expiration_date.dart';
 
 class OverTimeDialogWidget extends StatefulWidget {
   const OverTimeDialogWidget({super.key});

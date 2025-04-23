@@ -8,8 +8,8 @@ import 'package:hrmatrix/features/profile_pt2/ui/widgets/financial_transaction_a
 
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/close_widget.dart';
-import '../../../profile_pt1/ui/widgets/document_dialog_choose_one.dart';
-import '../../../profile_pt1/ui/widgets/document_dialog_expiration_date.dart';
+import '../../../requests/ui/widgets/document_dialog_choose_one.dart';
+import '../../../requests/ui/widgets/document_dialog_expiration_date.dart';
 
 class FinancialTransactionDialog extends StatefulWidget {
   const FinancialTransactionDialog({super.key});
