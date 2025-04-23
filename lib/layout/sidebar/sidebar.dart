@@ -13,6 +13,7 @@ import 'package:hrmatrix/layout/sidebar/logic/sidebar_state.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_sidebar_items.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/sidebar_item.dart';
 
+import '../../features/profile_pt1/ui/widgets/over_time_dialog_widget.dart';
 import '../../features/profile_pt2/ui/widgets/time_off_dialog.dart';
 import '../../features/requests/ui/widgets/helpers/profile_common_dialog.dart';
 
@@ -32,7 +33,11 @@ class _SidebarState extends State<Sidebar> {
       case SidebarTitles.timeOff:
         showProfileCommonDialog(child: TimeOffDialog(), context: context);
         break;
-      // Add other sub-item dialogs here
+      case SidebarTitles.overTime:
+        showProfileCommonDialog(
+          child: OverTimeDialogWidget(),
+          context: context,
+        );
     }
   }
 
@@ -59,14 +64,22 @@ class _SidebarState extends State<Sidebar> {
             final hasSubItems = item.subItems?.isNotEmpty ?? false;
             final isSubItem = parentTitle != null;
 
-            final parentIndex = items.indexWhere((e) => e.title == parentTitle);
+            int parentIndex = -1;
+            int subItemIndex = -1;
+
+            if (isSubItem) {
+              parentIndex = items.indexWhere((e) => e.title == parentTitle);
+              final subItems = items[parentIndex].subItems ?? [];
+              subItemIndex = subItems.indexWhere((e) => e.title == item.title);
+            }
+
             final itemIndex = items.indexOf(item);
             final isActive =
-                (hasSubItems && state.selectedIndex == itemIndex) ||
-                (!hasSubItems &&
-                    !isSubItem &&
-                    state.selectedIndex == itemIndex) ||
-                (isSubItem && state.selectedParentIndex == parentIndex);
+                isSubItem
+                    ? (state.selectedParentIndex == parentIndex &&
+                        state.selectedSubIndex == subItemIndex)
+                    : (hasSubItems && state.selectedIndex == itemIndex) ||
+                        (!hasSubItems && state.selectedIndex == itemIndex);
 
             return [
               Padding(
@@ -76,15 +89,20 @@ class _SidebarState extends State<Sidebar> {
                   iconData: item.icon,
                   onTap: () {
                     if (hasSubItems) {
+                      final wasExpanded = state.expandedTitles.contains(
+                        item.title,
+                      );
                       context.read<SidebarCubit>().toggleExpand(item.title);
+                      if (!wasExpanded) {
+                        final parentIndex = items.indexWhere(
+                          (e) => e.title == item.title,
+                        );
+                        context.read<SidebarCubit>().clearSubSelection(
+                          parentIndex,
+                        );
+                      }
                     } else if (isSubItem) {
-                      final parentIdx = items.indexWhere(
-                        (e) => e.title == parentTitle,
-                      );
-                      final subIdx = items[parentIdx].subItems!.indexWhere(
-                        (e) => e.title == item.title,
-                      );
-                      _handleSubItemTap(item.title, parentIdx, subIdx);
+                      _handleSubItemTap(item.title, parentIndex, subItemIndex);
                     } else {
                       context.read<SidebarCubit>().selectIndex(itemIndex);
                     }

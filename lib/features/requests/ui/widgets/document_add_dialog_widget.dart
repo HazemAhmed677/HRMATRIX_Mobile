@@ -60,7 +60,7 @@ class _DocumentAddDialogWidgetState extends State<DocumentAddDialogWidget> {
             verticalSpace(48),
             CustomTextFormField(hint: '', label: "Description", maxLines: 3),
             verticalSpace(48),
-            DocumentDialogExpirationDate(),
+            DocumentDialogExpirationDate(hint: ''),
             verticalSpace(52),
             Row(
               children: [
