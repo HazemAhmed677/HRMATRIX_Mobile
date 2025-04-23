@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 
-import '../../../auth/data/models/employee_model/over_time_request_model.dart';
+import '../../data/models/over_time_request_model.dart';
 import '../../data/repo/request_repo_impl.dart';
 
 part 'post_over_time_state.dart';
