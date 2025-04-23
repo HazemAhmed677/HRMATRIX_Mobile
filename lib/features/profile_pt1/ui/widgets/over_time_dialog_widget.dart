@@ -57,7 +57,7 @@ class _OverTimeDialogWidgetState extends State<OverTimeDialogWidget> {
             verticalSpace(48),
             OverTimeHours(),
             verticalSpace(48),
-            DocumentDialogExpirationDate(),
+            DocumentDialogExpirationDate(hint: ''),
             verticalSpace(48),
             OverTimeStartAndEndDate(title: 'Start Time', hint: '3:20 AM'),
             verticalSpace(48),

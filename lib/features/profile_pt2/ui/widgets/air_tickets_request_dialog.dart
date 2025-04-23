@@ -64,7 +64,7 @@ class _AirTicketsRequestDialogState extends State<AirTicketsRequestDialog> {
 
             verticalSpace(48),
 
-            DocumentDialogExpirationDate(label: 'Dropping Date'),
+            DocumentDialogExpirationDate(label: 'Dropping Date', hint: ''),
             verticalSpace(52),
             Row(
               children: [

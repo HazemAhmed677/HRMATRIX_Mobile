@@ -58,7 +58,7 @@ class _FinancialTransactionDialogState
             CustomTextFormField(hint: 'Enter transaction name', label: "Name"),
 
             verticalSpace(48),
-            DocumentDialogExpirationDate(label: 'Effective Date'),
+            DocumentDialogExpirationDate(label: 'Effective Date', hint: ''),
             verticalSpace(48),
             FinancialTransactionAmount(),
             verticalSpace(48),

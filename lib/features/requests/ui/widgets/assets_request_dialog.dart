@@ -81,11 +81,17 @@ class _AssetsRequestDialogState extends State<AssetsRequestDialog> {
             Row(
               children: [
                 Expanded(
-                  child: DocumentDialogExpirationDate(label: 'Holding Date'),
+                  child: DocumentDialogExpirationDate(
+                    label: 'Holding Date',
+                    hint: '',
+                  ),
                 ),
                 horizontalSpace(10),
                 Expanded(
-                  child: DocumentDialogExpirationDate(label: 'Dropping Date'),
+                  child: DocumentDialogExpirationDate(
+                    label: 'Dropping Date',
+                    hint: '',
+                  ),
                 ),
               ],
             ),

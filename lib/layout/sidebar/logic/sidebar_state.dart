@@ -7,6 +7,7 @@ class SidebarState extends Equatable {
   final bool isAppBarVisible;
   final Set<String> expandedTitles;
   final int? selectedParentIndex;
+  final String? selectedParentTitle;
 
   const SidebarState({
     this.selectedIndex = 0,
@@ -15,6 +16,7 @@ class SidebarState extends Equatable {
     this.isAppBarVisible = true,
     this.expandedTitles = const {},
     this.selectedParentIndex,
+    this.selectedParentTitle,
   });
 
   SidebarState copyWith({
@@ -24,6 +26,7 @@ class SidebarState extends Equatable {
     bool? isAppBarVisible,
     Set<String>? expandedTitles,
     int? selectedParentIndex,
+    String? selectedParentTitle,
   }) {
     return SidebarState(
       selectedIndex: selectedIndex ?? this.selectedIndex,

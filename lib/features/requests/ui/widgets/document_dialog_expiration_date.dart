@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helpers/logger.dart';
 import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/widgets/custom_text_form_field.dart';
-import 'package:hrmatrix/features/requests/ui/widgets/helpers/show_calendar_dialog.dart';
 
 import '../../../../core/theming/app_styles.dart';
 
@@ -11,8 +9,14 @@ class DocumentDialogExpirationDate extends StatefulWidget {
   const DocumentDialogExpirationDate({
     super.key,
     this.label = 'Expiration Date',
+    this.validator,
+    this.onTap,
+    required this.hint,
   });
   final String label;
+  final String? Function(String?)? validator;
+  final void Function()? onTap;
+  final String hint;
   @override
   State<DocumentDialogExpirationDate> createState() =>
       _DocumentDialogExpirationDateState();
@@ -20,43 +24,6 @@ class DocumentDialogExpirationDate extends StatefulWidget {
 
 class _DocumentDialogExpirationDateState
     extends State<DocumentDialogExpirationDate> {
-  DateTime? _selectedDate;
-
-  String get formattedDate {
-    if (_selectedDate == null) return '';
-    return _formatDate(_selectedDate!);
-  }
-
-  String _formatDate(DateTime date) {
-    // Format: "Tuesday 09/07/2024"
-    return "${_getWeekdayName(date.weekday)} ${_twoDigits(date.day)}/${_twoDigits(date.month)}/${date.year}";
-  }
-
-  String _twoDigits(int n) => n.toString().padLeft(2, '0');
-
-  String _getWeekdayName(int weekday) {
-    const names = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
-    ];
-    return names[weekday - 1];
-  }
-
-  void _pickDate(BuildContext context) async {
-    final picked = await showTableCalendarDialog(context);
-    if (picked != null && picked is DateTime) {
-      setState(() {
-        _selectedDate = picked;
-      });
-    }
-    loggerError(_selectedDate.toString());
-  }
-
   @override
   Widget build(BuildContext context) {
     final isLandscape =
@@ -72,10 +39,10 @@ class _DocumentDialogExpirationDateState
         ),
         isLandscape ? verticalSpace(24) : verticalSpace(12),
         CustomTextFormField(
-          hint: _selectedDate != null ? formattedDate : 'DD/MM/YY',
+          hint: widget.hint,
           readOnly: true,
-          onTap: () => _pickDate(context),
-          textEditingController: TextEditingController(text: formattedDate),
+          onTap: widget.onTap,
+          validator: widget.validator,
         ),
       ],
     );
