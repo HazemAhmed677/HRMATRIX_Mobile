@@ -62,7 +62,7 @@ class ProfilePt2RepoImpl extends ProfilePt2Repo {
   }
 
   @override
-  Future<Either<FailureService, GetMyRequestsModel>> getMyTimeOff() async {
+  Future<Either<FailureService, GetMyRequestsModel>> getMyRequestsOff() async {
     try {
       String token = await loadToken();
       Response response = await apiService.get(

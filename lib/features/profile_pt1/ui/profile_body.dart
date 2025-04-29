@@ -27,7 +27,7 @@ import '../../profile_pt2/logic/get_my_air_tickets/get_my_air_tickets_cubit.dart
 import '../../profile_pt2/logic/get_my_contracts/get_my_contracts_cubit.dart';
 import '../../profile_pt2/logic/get_my_disciplinary_actions/get_my_disciplinary_actions_cubit.dart';
 import '../../profile_pt2/logic/get_my_financial_transaction/get_my_financial_transaction_cubit.dart';
-import '../../profile_pt2/logic/get_my_time_off/get_my_time_off_cubit.dart';
+import '../../profile_pt2/logic/get_my_requests/get_my_requests_cubit.dart';
 import '../logic/get_my_assets/get_my_assets_cubit.dart';
 import '../logic/get_my_documents/get_my_documents_cubit.dart';
 import '../logic/get_my_loans/get_my_loans_cubit.dart';
@@ -107,7 +107,14 @@ class _ProfileBodyState extends State<ProfileBody> {
                 ),
             child: LoansUI(),
           ),
-      OverTimeState: () => OverTimeUI(),
+      OverTimeState:
+          () => BlocProvider(
+            create:
+                (context) => GetMyRequestsCubit(
+                  profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
+                ),
+            child: OverTimeUI(),
+          ),
       AssetsState:
           () => BlocProvider(
             create:
@@ -135,7 +142,7 @@ class _ProfileBodyState extends State<ProfileBody> {
       TimeOffState:
           () => BlocProvider(
             create:
-                (context) => GetMyTimeOffCubit(
+                (context) => GetMyRequestsCubit(
                   profilePt2RepoImpl: getIt.get<ProfilePt2RepoImpl>(),
                 ),
             child: TimeOffUI(),

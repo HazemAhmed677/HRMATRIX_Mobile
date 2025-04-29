@@ -1,37 +1,20 @@
-import 'package:hive/hive.dart';
-
-part 'over_time_request_model.g.dart';
-
-@HiveType(typeId: 3)
 class OverTimeRequestModel {
-  @HiveField(0)
   int? id;
-  @HiveField(1)
   String? type;
-  @HiveField(2)
   String? content;
-  @HiveField(3)
   dynamic rejectionReason;
-  @HiveField(4)
   String? status;
-  @HiveField(5)
   String? suggestion;
   dynamic expectedSalary;
   dynamic vacationDays;
   dynamic vacationStartDate;
   dynamic vacationEndDate;
   dynamic timeOff;
-  @HiveField(6)
   int? overTime;
-  @HiveField(7)
   String? overTimeDate;
-  @HiveField(8)
   String? overTimeStart;
-  @HiveField(9)
   String? overTimeEnd;
-  @HiveField(10)
   int? requestedBy;
-  @HiveField(11)
   int? requestedTo;
   dynamic timeOffDate;
   dynamic timeOffFromHour;

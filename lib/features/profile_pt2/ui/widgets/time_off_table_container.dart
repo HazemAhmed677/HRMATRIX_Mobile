@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrmatrix/core/helpers/request_class.dart';
 import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_row.dart';
 import 'package:hrmatrix/features/profile_pt2/data/models/get_my_requests_model/request.dart';
-import 'package:hrmatrix/features/profile_pt2/logic/get_my_time_off/get_my_time_off_cubit.dart';
+import 'package:hrmatrix/features/profile_pt2/logic/get_my_requests/get_my_requests_cubit.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_dialog.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/time_off_table.dart';
 import 'package:hrmatrix/features/requests/ui/widgets/helpers/profile_common_dialog.dart';
@@ -24,9 +23,7 @@ class TimeOffTableContainer extends StatefulWidget {
 class _TimeOffTableContainerState extends State<TimeOffTableContainer> {
   @override
   void initState() {
-    if (RequestClass.timeOffRequest == null) {
-      BlocProvider.of<GetMyTimeOffCubit>(context).getMyTimeOff();
-    }
+    BlocProvider.of<GetMyRequestsCubit>(context).getMyRequests();
     super.initState();
   }
 
@@ -48,55 +45,28 @@ class _TimeOffTableContainerState extends State<TimeOffTableContainer> {
               },
             ),
           verticalSpace(28),
-          (RequestClass.timeOffRequest != null)
-              ? (RequestClass.timeOffRequest!.isEmpty)
-                  ? NoDataAvailable()
-                  : TimeOffTable(timeOffRequests: RequestClass.timeOffRequest!)
-              : BlocBuilder<GetMyTimeOffCubit, GetMyTimeOffState>(
-                builder: (context, state) {
-                  if (state is GetMyTimeOffLoading) {
-                    return LoadingWidget();
-                  } else if (state is GetMyTimeOffSuccess) {
-                    if (state.getMyRequestsModel.data!.requests!.isEmpty) {
-                      return NoDataAvailable();
-                    } else {
-                      if (RequestClass.vacationRequest == null) {
-                        List<Request> vacations =
-                            state.getMyRequestsModel.data!.requests!
-                                .where(
-                                  (element) =>
-                                      element.type == 'Paid Vacation' ||
-                                      element.type == 'Sick Vacation',
-                                )
-                                .toList();
-                        RequestClass.vacationRequest = vacations;
-                      }
-                      if (RequestClass.overTimeRequest == null) {
-                        List<Request> overTimes =
-                            state.getMyRequestsModel.data!.requests!
-                                .where((element) => element.type == 'Over Time')
-                                .toList();
-                        RequestClass.overTimeRequest = overTimes;
-                      }
-                      List<Request> data =
-                          state.getMyRequestsModel.data!.requests!
-                              .where((element) => element.type == 'Time Off')
-                              .toList();
-                      RequestClass.timeOffRequest = data;
-                      if (data.isEmpty) {
-                        return NoDataAvailable();
-                      }
-                      {
-                        return TimeOffTable(timeOffRequests: data);
-                      }
-                    }
-                  } else if (state is GetMyTimeOffFailure) {
-                    return Text(state.errorMsg);
-                  } else {
-                    return SizedBox.shrink();
-                  }
-                },
-              ),
+          BlocBuilder<GetMyRequestsCubit, GetMyRequestsState>(
+            builder: (context, state) {
+              if (state is GetMyRequestsLoading) {
+                return LoadingWidget();
+              } else if (state is GetMyRequestsSuccess) {
+                List<Request> data =
+                    state.getMyRequestsModel.data!.requests!
+                        .where((element) => element.type == 'Time Off')
+                        .toList();
+                if (data.isEmpty) {
+                  return NoDataAvailable();
+                }
+                {
+                  return TimeOffTable(timeOffRequests: data);
+                }
+              } else if (state is GetMyRequestsFailure) {
+                return Text(state.errorMsg);
+              } else {
+                return SizedBox.shrink();
+              }
+            },
+          ),
 
           // Table Widget with the new columns
         ],
