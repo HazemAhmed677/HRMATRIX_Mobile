@@ -8,7 +8,7 @@ class SidebarItem extends StatelessWidget {
   const SidebarItem({
     super.key,
     required this.title,
-    required this.iconData,
+    this.iconData,
     required this.onTap,
     required this.isActive,
     this.indent = 0,
@@ -17,7 +17,7 @@ class SidebarItem extends StatelessWidget {
   });
 
   final String title;
-  final IconData iconData;
+  final IconData? iconData;
   final bool isActive;
   final Function() onTap;
   final int indent;
@@ -45,11 +45,12 @@ class SidebarItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(
-                iconData,
-                size: isLandacape ? 8.sp : 18.sp,
-                color: isActive ? AppColors.blue : AppColors.grey300,
-              ),
+              if (iconData != null)
+                Icon(
+                  iconData,
+                  size: isLandacape ? 8.sp : 18.sp,
+                  color: isActive ? AppColors.blue : AppColors.grey300,
+                ),
               horizontalSpace(12),
               Expanded(
                 child: Text(

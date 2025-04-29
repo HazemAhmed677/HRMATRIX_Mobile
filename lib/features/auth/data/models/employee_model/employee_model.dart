@@ -104,12 +104,11 @@ class EmployeeModel {
   @HiveField(35)
   dynamic directManager;
   List<dynamic>? timeOffRequests;
-  @HiveField(36)
   List<OverTimeRequestModel>? overTimeRequests;
   List<dynamic>? airTicketAllowances;
-  @HiveField(37)
+  @HiveField(36)
   SalaryDetailsModel? salaryDetails;
-  @HiveField(38)
+  @HiveField(37)
   String? subRole;
   EmployeeModel({
     this.id,

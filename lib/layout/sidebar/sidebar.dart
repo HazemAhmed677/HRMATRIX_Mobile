@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helpers/sidebar_titles.dart';
 import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
@@ -11,11 +10,8 @@ import 'package:hrmatrix/layout/sidebar/data/models/sidebar_model.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_state.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_sidebar_items.dart';
+import 'package:hrmatrix/layout/sidebar/widgets/helpers/handle_sub_items_tap.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/sidebar_item.dart';
-
-import '../../features/profile_pt1/ui/widgets/over_time_dialog_widget.dart';
-import '../../features/profile_pt2/ui/widgets/time_off_dialog.dart';
-import '../../features/requests/ui/widgets/helpers/profile_common_dialog.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({super.key});
@@ -26,20 +22,6 @@ class Sidebar extends StatefulWidget {
 
 class _SidebarState extends State<Sidebar> {
   double _sidebarLeft = 0.0;
-
-  void _handleSubItemTap(String title, int parentIndex, int subIndex) {
-    context.read<SidebarCubit>().selectSubItem(parentIndex, subIndex);
-    switch (title) {
-      case SidebarTitles.timeOff:
-        showProfileCommonDialog(child: TimeOffDialog(), context: context);
-        break;
-      case SidebarTitles.overTime:
-        showProfileCommonDialog(
-          child: OverTimeDialogWidget(),
-          context: context,
-        );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +84,12 @@ class _SidebarState extends State<Sidebar> {
                         );
                       }
                     } else if (isSubItem) {
-                      _handleSubItemTap(item.title, parentIndex, subItemIndex);
+                      handleRequestsSubItemsTap(
+                        title: item.title,
+                        parentIndex: parentIndex,
+                        subIndex: subItemIndex,
+                        context: context,
+                      );
                     } else {
                       context.read<SidebarCubit>().selectIndex(itemIndex);
                     }
