@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:either_dart/src/either.dart';
 import 'package:hrmatrix/core/errors/failure_service.dart';
 import 'package:hrmatrix/core/networking/api_service.dart';
+import 'package:hrmatrix/features/auth/data/models/employee_model/employee_model.dart';
+import 'package:hrmatrix/features/profile_pt1/data/models/edit_profile_request_model.dart';
 import 'package:hrmatrix/features/profile_pt1/data/models/get_my_asset_model/get_my_asset_model.dart';
 import 'package:hrmatrix/features/profile_pt1/data/models/get_my_document_model/get_my_document_model.dart';
 import 'package:hrmatrix/features/profile_pt1/data/models/get_my_loans_model/get_my_loans_model.dart';
@@ -109,6 +111,32 @@ class ProfilePt1RepoImpl extends ProfilePt1Repo {
         headers: {'Authorization': 'Bearer $token'},
       );
       return Right(null);
+    } on DioException catch (e) {
+      return Left(
+        FailureService.fromDioException(
+          dioExecption: e,
+          statusCode: e.response?.statusCode,
+          dioExecptionType: e.type,
+        ),
+      );
+    } catch (e) {
+      return Left(FailureService(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<FailureService, EmployeeModel>> editProfile({
+    required EditProfileRequestModel editProfileRequestModel,
+  }) async {
+    try {
+      String token = await loadToken();
+
+      Response response = await apiService.put(
+        endpoint: ApiEndpoints.editProfile,
+        data: await editProfileRequestModel.toJson(),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(EmployeeModel.fromJson(response.data['employee']));
     } on DioException catch (e) {
       return Left(
         FailureService.fromDioException(
