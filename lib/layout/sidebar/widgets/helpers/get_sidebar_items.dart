@@ -1,4 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hrmatrix/layout/sidebar/widgets/helpers/sub_items_lists.dart';
+import 'package:hrmatrix/main.dart';
 
 import '../../../../core/helpers/sidebar_titles.dart';
 import '../../data/models/sidebar_model.dart';
@@ -6,87 +8,62 @@ import '../../data/models/sidebar_model.dart';
 List<SidebarItemModel> getSidebarItems() => [
   SidebarItemModel(title: SidebarTitles.home, icon: FontAwesomeIcons.house),
   SidebarItemModel(
-    title: SidebarTitles.calendar,
-    icon: FontAwesomeIcons.calendarDays,
-  ),
-  SidebarItemModel(
     title: SidebarTitles.userProfile,
     icon: FontAwesomeIcons.user,
   ),
   SidebarItemModel(
+    title: SidebarTitles.calendar,
+    icon: FontAwesomeIcons.calendarDays,
+  ),
+
+  SidebarItemModel(
     title: SidebarTitles.employees,
     icon: FontAwesomeIcons.users,
+    subItems: getEmployeesSubItems(),
   ),
   SidebarItemModel(
     title: SidebarTitles.tasks,
     icon: FontAwesomeIcons.clipboardCheck,
   ),
-  SidebarItemModel(
-    title: SidebarTitles.reports,
-    icon: FontAwesomeIcons.chartColumn,
-  ),
-  SidebarItemModel(
-    title: SidebarTitles.massAction,
-    icon: FontAwesomeIcons.bolt,
-  ),
+  if (employeeModel!.role != 'Member')
+    SidebarItemModel(
+      title: SidebarTitles.reports,
+      icon: FontAwesomeIcons.chartColumn,
+      subItems: getReportsSubItems(),
+    ),
+  if (employeeModel!.role != 'Member')
+    SidebarItemModel(
+      title: SidebarTitles.massAction,
+      icon: FontAwesomeIcons.bolt,
+      subItems: getMassActionsSubItems(),
+    ),
   SidebarItemModel(
     title: SidebarTitles.salary,
     icon: FontAwesomeIcons.moneyBillWave,
+    subItems: getSalarySubItems(),
   ),
-  SidebarItemModel(
-    title: SidebarTitles.requests,
-    icon: FontAwesomeIcons.envelopeOpenText,
-    subItems: [
-      SidebarItemModel(
-        title: SidebarTitles.timeOff,
-        icon: FontAwesomeIcons.clock,
-      ),
-      SidebarItemModel(
-        title: SidebarTitles.overTime,
-        icon: FontAwesomeIcons.businessTime,
-      ),
-      SidebarItemModel(
-        title: SidebarTitles.clockIn,
-        icon: FontAwesomeIcons.rightToBracket,
-      ),
-      SidebarItemModel(
-        title: SidebarTitles.clockOut,
-        icon: FontAwesomeIcons.rightFromBracket,
-      ),
-      SidebarItemModel(
-        title: SidebarTitles.loans,
-        icon: FontAwesomeIcons.handHoldingDollar,
-      ),
-      SidebarItemModel(
-        title: SidebarTitles.financialTransaction,
-        icon: FontAwesomeIcons.fileInvoiceDollar,
-      ),
-      SidebarItemModel(
-        title: SidebarTitles.airTicket,
-        icon: FontAwesomeIcons.plane,
-      ),
-      SidebarItemModel(
-        title: SidebarTitles.vacation,
-        icon: FontAwesomeIcons.umbrellaBeach,
-      ),
-      SidebarItemModel(
-        title: SidebarTitles.assets,
-        icon: FontAwesomeIcons.boxOpen,
-      ),
-    ],
-  ),
-  SidebarItemModel(
-    title: SidebarTitles.approvals,
-    icon: FontAwesomeIcons.thumbsUp,
-  ),
+  if (employeeModel!.role != 'Super Admin')
+    SidebarItemModel(
+      title: SidebarTitles.requests,
+      icon: FontAwesomeIcons.envelopeOpenText,
+      subItems: getRequestsSubItems(),
+    ),
+
+  if (employeeModel!.role != 'Member')
+    SidebarItemModel(
+      title: SidebarTitles.approvals,
+      icon: FontAwesomeIcons.thumbsUp,
+      subItems: getApprovalsSubItems(),
+    ),
   SidebarItemModel(
     title: SidebarTitles.companyDocs,
     icon: FontAwesomeIcons.folderOpen,
   ),
-  SidebarItemModel(
-    title: SidebarTitles.commission,
-    icon: FontAwesomeIcons.coins,
-  ),
+  if (employeeModel!.role != 'Member' && employeeModel!.role != 'Super Admin')
+    SidebarItemModel(
+      title: SidebarTitles.commission,
+      icon: FontAwesomeIcons.coins,
+    ),
   SidebarItemModel(
     title: SidebarTitles.hierarchicalTree,
     icon: FontAwesomeIcons.sitemap,
