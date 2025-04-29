@@ -50,6 +50,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.textEditingController,
       maxLines: widget.maxLines,
       onTap: widget.onTap,
       readOnly: widget.readOnly ?? false,

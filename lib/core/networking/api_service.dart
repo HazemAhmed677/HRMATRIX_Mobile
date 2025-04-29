@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:either_dart/either.dart';
-import 'package:hrmatrix/core/errors/failure_service.dart';
 import 'package:hrmatrix/core/networking/api_structure.dart';
 
 class ApiService {
@@ -48,7 +46,28 @@ class ApiService {
     return response;
   }
 
-  Future<Either<FailureService, Response>> delete({
+  Future<Response> put({
+    required String endpoint,
+    Map<String, dynamic>? data,
+    Map<String, String>? headers,
+  }) {
+    _dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestBody: true,
+        responseBody: true,
+        error: true,
+      ),
+    );
+    final response = _dio.put(
+      '${ApiStructure.baseURL}$endpoint',
+      data: data,
+      options: Options(headers: headers),
+    );
+    return response;
+  }
+
+  Future<Response> delete({
     required String endpoint,
     Map<String, dynamic>? data,
     Map<String, String>? headers,
@@ -66,6 +85,6 @@ class ApiService {
       data: data,
       options: Options(headers: headers),
     );
-    return Right(response);
+    return response;
   }
 }

@@ -10,6 +10,7 @@ import 'package:hrmatrix/features/profile_pt1/data/repo/profile_pt1_repo.dart';
 
 import '../../../../core/helpers/load_token.dart';
 import '../../../../core/networking/api_endpoints.dart';
+import '../models/reset_passwrd_request.dart';
 
 class ProfilePt1RepoImpl extends ProfilePt1Repo {
   final ApiService apiService;
@@ -82,6 +83,32 @@ class ProfilePt1RepoImpl extends ProfilePt1Repo {
           jsonList.map((json) => GetMyAssetModel.fromJson(json)).toList();
 
       return Right(assets);
+    } on DioException catch (e) {
+      return Left(
+        FailureService.fromDioException(
+          dioExecption: e,
+          statusCode: e.response?.statusCode,
+          dioExecptionType: e.type,
+        ),
+      );
+    } catch (e) {
+      return Left(FailureService(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<FailureService, void>> resetPassword({
+    required ResetPasswrdRequestModel resetPasswordModel,
+  }) async {
+    try {
+      String token = await loadToken();
+
+      await apiService.put(
+        endpoint: ApiEndpoints.resetPassword,
+        data: resetPasswordModel.toJson(),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(null);
     } on DioException catch (e) {
       return Left(
         FailureService.fromDioException(
