@@ -1,31 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hrmatrix/core/helpers/employee_model_helpers.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/profile_common_dialog.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/no_data_available.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/over_time_dialog_widget.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_common_row.dart';
-import 'package:hrmatrix/main.dart';
 
+import '../../../../core/helpers/employee_model_helpers.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/custom_search_text_field.dart';
+import '../../../profile_pt2/data/models/get_my_requests_model/request.dart';
+import '../../../requests/ui/widgets/helpers/profile_common_dialog.dart';
 
-class OverTimeTable extends StatefulWidget {
-  const OverTimeTable({super.key});
-
-  @override
-  State<OverTimeTable> createState() => _OverTimeTableState();
-}
-
-class _OverTimeTableState extends State<OverTimeTable> {
-  late bool isThereOverTime;
-  @override
-  void initState() {
-    isThereOverTime = employeeModel!.overTimeRequests!.isNotEmpty;
-    super.initState();
-  }
-
+class OverTimeTable extends StatelessWidget {
+  const OverTimeTable({super.key, required this.overTimeRequests});
+  final List<Request> overTimeRequests;
   @override
   Widget build(BuildContext context) {
     return CommonContainerProfile(
@@ -45,55 +32,53 @@ class _OverTimeTableState extends State<OverTimeTable> {
             ),
           verticalSpace(28),
           // Table Widget
-          (isThereOverTime)
-              ? Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Table(
-                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  columnWidths: const {
-                    0: FlexColumnWidth(2),
-                    1: FlexColumnWidth(1.5),
-                    2: FlexColumnWidth(2),
-                    3: FlexColumnWidth(1.5),
-                    4: FlexColumnWidth(1.5),
-                    5: FlexColumnWidth(1.5),
-                  },
-                  border: TableBorder.symmetric(
-                    inside: BorderSide(color: Colors.grey.shade300),
-                  ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Table(
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              columnWidths: const {
+                0: FlexColumnWidth(2),
+                1: FlexColumnWidth(1.5),
+                2: FlexColumnWidth(2),
+                3: FlexColumnWidth(1.5),
+                4: FlexColumnWidth(1.5),
+                5: FlexColumnWidth(1.5),
+              },
+              border: TableBorder.symmetric(
+                inside: BorderSide(color: Colors.grey.shade300),
+              ),
+              children: [
+                // Header row
+                TableRow(
+                  decoration: BoxDecoration(color: Colors.grey.shade200),
                   children: [
-                    // Header row
-                    TableRow(
-                      decoration: BoxDecoration(color: Colors.grey.shade200),
-                      children: [
-                        _buildCell('Content', isHeader: true),
-                        _buildCell('Over Time', isHeader: true),
-                        _buildCell('Over Time Date', isHeader: true),
-                        _buildCell('Start Time', isHeader: true),
-                        _buildCell('End Time', isHeader: true),
-                        _buildCell('Status', isHeader: true),
-                      ],
-                    ),
-                    // Data rows (dummy)
-                    ...employeeModel!.overTimeRequests!.map((row) {
-                      return TableRow(
-                        children: [
-                          _buildCell(row.content!),
-                          _buildCell(row.overTime!.toString()),
-                          _buildCell(convertTimeStmpToDate(row.overTimeDate!)),
-                          _buildCell(row.overTimeStart!),
-                          _buildCell(row.overTimeEnd!),
-                          _buildStatusCell(row.status!),
-                        ],
-                      );
-                    }),
+                    _buildCell('Content', isHeader: true),
+                    _buildCell('Over Time', isHeader: true),
+                    _buildCell('Over Time Date', isHeader: true),
+                    _buildCell('Start Time', isHeader: true),
+                    _buildCell('End Time', isHeader: true),
+                    _buildCell('Status', isHeader: true),
                   ],
                 ),
-              )
-              : NoDataAvailable(),
+                // Data rows (dummy)
+                ...overTimeRequests.map((row) {
+                  return TableRow(
+                    children: [
+                      _buildCell(row.content!),
+                      _buildCell(row.overTime!.toString()),
+                      _buildCell(convertTimeStmpToDate(row.overTimeDate!)),
+                      _buildCell(row.overTimeStart!),
+                      _buildCell(row.overTimeEnd!),
+                      _buildStatusCell(row.status!),
+                    ],
+                  );
+                }),
+              ],
+            ),
+          ),
         ],
       ),
     );

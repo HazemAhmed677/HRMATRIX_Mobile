@@ -4,7 +4,7 @@ import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/widgets/custom_logout_button.dart';
 import 'package:hrmatrix/core/widgets/custom_text_form_field.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/document_dialog_choose_one.dart';
+import 'package:hrmatrix/features/requests/ui/widgets/document_dialog_choose_one.dart';
 
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/close_widget.dart';
@@ -60,7 +60,7 @@ class _DocumentAddDialogWidgetState extends State<DocumentAddDialogWidget> {
             verticalSpace(48),
             CustomTextFormField(hint: '', label: "Description", maxLines: 3),
             verticalSpace(48),
-            DocumentDialogExpirationDate(),
+            DocumentDialogExpirationDate(hint: ''),
             verticalSpace(52),
             Row(
               children: [

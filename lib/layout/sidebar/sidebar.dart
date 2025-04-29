@@ -3,16 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
+import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/core/typography/app_images.dart';
 import 'package:hrmatrix/core/typography/app_padding.dart';
+import 'package:hrmatrix/layout/sidebar/data/models/sidebar_model.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_cubit.dart';
 import 'package:hrmatrix/layout/sidebar/logic/sidebar_state.dart';
-import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_headlins.dart';
-import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_icons.dart';
+import 'package:hrmatrix/layout/sidebar/widgets/helpers/get_sidebar_items.dart';
+import 'package:hrmatrix/layout/sidebar/widgets/helpers/handle_sub_items_tap.dart';
 import 'package:hrmatrix/layout/sidebar/widgets/sidebar_item.dart';
-
-import '../../core/theming/app_styles.dart';
-import '../../core/typography/font_weight_helper.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({super.key});
@@ -22,23 +21,95 @@ class Sidebar extends StatefulWidget {
 }
 
 class _SidebarState extends State<Sidebar> {
-  final List<String> items = getHeadlines();
-  final List<IconData> icons = getIcons();
   double _sidebarLeft = 0.0;
-  bool _isOpen = true;
 
   @override
   Widget build(BuildContext context) {
-    // Calculate sidebar width based on orientation.
-    final bool isLandscape =
+    final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
-    final double sidebarWidth =
+    final sidebarWidth =
         isLandscape
             ? MediaQuery.of(context).size.width * 0.4
             : MediaQuery.of(context).size.width * 0.7;
 
     return BlocBuilder<SidebarCubit, SidebarState>(
       builder: (context, state) {
+        List<SidebarItemModel> items = getSidebarItems();
+
+        List<Widget> buildMenu(
+          List<SidebarItemModel> models, {
+          int indent = 0,
+          String? parentTitle,
+        }) {
+          return models.expand((item) {
+            final isExpanded = state.expandedTitles.contains(item.title);
+            final hasSubItems = item.subItems?.isNotEmpty ?? false;
+            final isSubItem = parentTitle != null;
+
+            int parentIndex = -1;
+            int subItemIndex = -1;
+
+            if (isSubItem) {
+              parentIndex = items.indexWhere((e) => e.title == parentTitle);
+              final subItems = items[parentIndex].subItems ?? [];
+              subItemIndex = subItems.indexWhere((e) => e.title == item.title);
+            }
+
+            final itemIndex = items.indexOf(item);
+            final isActive =
+                isSubItem
+                    ? (state.selectedParentIndex == parentIndex &&
+                        state.selectedSubIndex == subItemIndex)
+                    : (hasSubItems && state.selectedIndex == itemIndex) ||
+                        (!hasSubItems && state.selectedIndex == itemIndex);
+
+            return [
+              Padding(
+                padding: EdgeInsets.only(bottom: 12.h),
+                child: SidebarItem(
+                  title: item.title,
+                  iconData: item.icon,
+                  onTap: () {
+                    if (hasSubItems) {
+                      final wasExpanded = state.expandedTitles.contains(
+                        item.title,
+                      );
+                      context.read<SidebarCubit>().toggleExpand(item.title);
+                      if (!wasExpanded) {
+                        final parentIndex = items.indexWhere(
+                          (e) => e.title == item.title,
+                        );
+                        context.read<SidebarCubit>().clearSubSelection(
+                          parentIndex,
+                        );
+                      }
+                    } else if (isSubItem) {
+                      handleRequestsSubItemsTap(
+                        title: item.title,
+                        parentIndex: parentIndex,
+                        subIndex: subItemIndex,
+                        context: context,
+                      );
+                    } else {
+                      context.read<SidebarCubit>().selectIndex(itemIndex);
+                    }
+                  },
+                  isActive: isActive,
+                  indent: indent,
+                  isExpandable: hasSubItems,
+                  isExpanded: isExpanded,
+                ),
+              ),
+              if (hasSubItems && isExpanded)
+                ...buildMenu(
+                  item.subItems!,
+                  indent: indent + 1,
+                  parentTitle: item.title,
+                ),
+            ];
+          }).toList();
+        }
+
         return AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
@@ -56,15 +127,10 @@ class _SidebarState extends State<Sidebar> {
             },
             onHorizontalDragEnd: (details) {
               setState(() {
-                if (_sidebarLeft.abs() > sidebarWidth / 2) {
-                  _sidebarLeft = -sidebarWidth;
-                  _isOpen = false;
-                } else {
-                  _sidebarLeft = 0;
-                  _isOpen = true;
-                }
+                _sidebarLeft =
+                    _sidebarLeft.abs() > sidebarWidth / 2 ? -sidebarWidth : 0;
               });
-              BlocProvider.of<SidebarCubit>(context).closeDrawer();
+              context.read<SidebarCubit>().closeDrawer();
             },
             child: Container(
               decoration: BoxDecoration(
@@ -91,21 +157,10 @@ class _SidebarState extends State<Sidebar> {
                         style: AppStyles.boldNoColor18.copyWith(
                           color: AppColors.grey400,
                           fontSize: isLandscape ? 10.sp : 14.sp,
-                          fontWeight: FontWeightHelper.bold,
                         ),
                       ),
                       verticalSpace(12),
-                      ...List.generate(items.length, (index) {
-                        final selected = state.selectedIndex == index;
-                        return SidebarItem(
-                          title: items[index],
-                          iconData: icons[index],
-                          onTap: () {
-                            context.read<SidebarCubit>().selectIndex(index);
-                          },
-                          isActive: selected,
-                        );
-                      }),
+                      ...buildMenu(items),
                       (isLandscape) ? verticalSpace(85) : verticalSpace(45),
                     ],
                   ),

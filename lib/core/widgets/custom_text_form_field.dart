@@ -50,6 +50,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.textEditingController,
       maxLines: widget.maxLines,
       onTap: widget.onTap,
       readOnly: widget.readOnly ?? false,
@@ -112,8 +113,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         ),
         enabledBorder: buildBorder(color: AppColors.grey100),
         focusedBorder: buildBorder(color: AppColors.grey100),
-        errorBorder: buildBorder(color: Colors.redAccent.shade100),
-        focusedErrorBorder: buildBorder(color: Colors.redAccent.shade100),
+        errorBorder: buildBorder(color: AppColors.red),
+        focusedErrorBorder: buildBorder(color: AppColors.red),
       ),
     );
   }

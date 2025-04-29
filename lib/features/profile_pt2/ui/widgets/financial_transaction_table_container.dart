@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/widgets/custom_search_text_field.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/features/profile_pt2/logic/get_my_financial_transaction/get_my_financial_transaction_cubit.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/financial_transaction_dialog.dart';
 import 'package:hrmatrix/features/profile_pt2/ui/widgets/financial_transaction_table.dart';
+import 'package:hrmatrix/features/requests/ui/widgets/helpers/profile_common_dialog.dart';
 
 import '../../../profile_pt1/ui/widgets/loading_widget.dart';
 import '../../../profile_pt1/ui/widgets/no_data_available.dart';

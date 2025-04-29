@@ -6,8 +6,10 @@ import 'package:hrmatrix/core/helpers/spacing.dart';
 import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/theming/app_styles.dart';
 import 'package:hrmatrix/core/typography/font_weight_helper.dart';
+import 'package:hrmatrix/features/profile_pt1/data/models/edit_profile_request_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:provider/provider.dart';
 
 class ProfileDropYourImage extends StatefulWidget {
   const ProfileDropYourImage({super.key});
@@ -26,6 +28,7 @@ class _ProfileDropYourImageState extends State<ProfileDropYourImage> {
     if (image != null) {
       setState(() {
         pickedImage = File(image.path);
+        context.read<EditProfileRequestModel>().imageFile = pickedImage;
       });
     }
   }

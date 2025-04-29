@@ -4,6 +4,7 @@ import "package:hrmatrix/features/auth/data/repo/auth_repo_impl.dart";
 import "package:hrmatrix/features/profile_pt1/data/repo/profile_pt1_repo_impl.dart";
 
 import "../../features/profile_pt2/data/repo/profile_pt2_repo_impl.dart";
+import "../../features/requests/data/repo/request_repo_impl.dart";
 
 final GetIt getIt = GetIt.instance;
 void setup() {
@@ -17,4 +18,5 @@ void setup() {
   getIt.registerSingleton(
     ProfilePt2RepoImpl(apiService: getIt.get<ApiService>()),
   );
+  getIt.registerSingleton(RequestRepoImpl(apiService: getIt.get<ApiService>()));
 }

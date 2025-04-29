@@ -9,8 +9,8 @@ import '../../../features/profile_pt1/logic/bar_ui/bar_ui_cubit.dart';
 Widget buildContent(int index) {
   List<Widget> pages = [
     HomeViewBody(),
-    Center(child: Text("Calendar Page")),
     BlocProvider(create: (context) => BarUiCubit(), child: ProfileBody()),
+    Center(child: Text("Calendar Page")),
     Center(child: Text("Employees Page")),
     Center(child: Text("Tasks Page")),
     Center(child: Text("Reports Page")),

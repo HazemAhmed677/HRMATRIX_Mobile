@@ -8,63 +8,69 @@ class SidebarItem extends StatelessWidget {
   const SidebarItem({
     super.key,
     required this.title,
-    required this.iconData,
+    this.iconData,
     required this.onTap,
     required this.isActive,
+    this.indent = 0,
+    this.isExpandable = false,
+    this.isExpanded = false,
   });
+
   final String title;
-  final IconData iconData;
+  final IconData? iconData;
   final bool isActive;
   final Function() onTap;
+  final int indent;
+  final bool isExpandable;
+  final bool isExpanded;
 
   @override
   Widget build(BuildContext context) {
+    bool isLandacape =
+        MediaQuery.orientationOf(context) == Orientation.landscape;
     return InkWell(
       onTap: onTap,
       splashColor: Colors.blue,
-      child: Padding(
-        padding: EdgeInsets.only(bottom: 12.h),
-        child: AnimatedContainer(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.r),
-            color: isActive ? AppColors.blue.withValues(alpha: 0.1) : null,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.r),
+          color: isActive ? AppColors.blue.withValues(alpha: 0.1) : null,
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(
+            bottom: 6.h,
+            left: (16 + indent * 12).w,
+            right: 16.w,
+            top: 6.h,
           ),
-          duration: Duration(milliseconds: 120),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-            child: Row(
-              children: [
+          child: Row(
+            children: [
+              if (iconData != null)
                 Icon(
                   iconData,
-                  size:
-                      MediaQuery.of(context).orientation ==
-                              Orientation.landscape
-                          ? 10.sp
-                          : 18.sp,
+                  size: isLandacape ? 8.sp : 18.sp,
                   color: isActive ? AppColors.blue : AppColors.grey300,
                 ),
-                horizontalSpace(12),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    title,
-                    style: AppStyles.boldSecondaryColor22.copyWith(
-                      color:
-                          isActive
-                              ? AppColors.blue
-                              : AppColors.fontPrimaryColor,
-                      fontSize:
-                          MediaQuery.of(context).orientation ==
-                                  Orientation.landscape
-                              ? 8.sp
-                              : 14.sp,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+              horizontalSpace(12),
+              Expanded(
+                child: Text(
+                  title,
+                  style: AppStyles.boldSecondaryColor22.copyWith(
+                    color:
+                        isActive ? AppColors.blue : AppColors.fontPrimaryColor,
+                    fontSize: isLandacape ? 8.sp : 14.sp,
                   ),
                 ),
-              ],
-            ),
+              ),
+              if (isExpandable)
+                Icon(
+                  isExpanded
+                      ? Icons.keyboard_arrow_down
+                      : Icons.keyboard_arrow_right,
+                  size: isLandacape ? 8.sp : 22.sp,
+                  color: AppColors.grey900,
+                ),
+            ],
           ),
         ),
       ),

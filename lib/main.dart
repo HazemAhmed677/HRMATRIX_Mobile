@@ -7,7 +7,6 @@ import 'package:hrmatrix/core/typography/simple_bloc_observer.dart';
 import 'package:hrmatrix/features/auth/data/models/employee_model/department_model.dart';
 import 'package:hrmatrix/features/auth/data/models/employee_model/employee_model.dart';
 import 'package:hrmatrix/features/auth/data/models/employee_model/family_info_model.dart';
-import 'package:hrmatrix/features/auth/data/models/employee_model/over_time_request_model.dart';
 import 'package:hrmatrix/features/auth/data/models/employee_model/salary_details_model.dart';
 import 'package:hrmatrix/hrmatrix.dart';
 
@@ -21,7 +20,6 @@ void main() async {
   Hive.registerAdapter(EmployeeModelAdapter());
   Hive.registerAdapter(DepartmentModelAdapter());
   Hive.registerAdapter(SalaryDetailsModelAdapter());
-  Hive.registerAdapter(OverTimeRequestModelAdapter());
   Hive.registerAdapter(FamilyInfoModelAdapter());
   runApp(const Hrmatrix());
 }

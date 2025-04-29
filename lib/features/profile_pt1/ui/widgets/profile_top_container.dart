@@ -4,9 +4,9 @@ import 'package:hrmatrix/core/theming/app_color.dart';
 import 'package:hrmatrix/core/typography/font_weight_helper.dart';
 import 'package:hrmatrix/core/widgets/custom_logout_button.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/common_container_profile.dart';
-import 'package:hrmatrix/features/profile_pt1/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_edit_dialog_widget.dart';
 import 'package:hrmatrix/features/profile_pt1/ui/widgets/profile_reset_button_dialog_widget.dart';
+import 'package:hrmatrix/features/requests/ui/widgets/helpers/profile_common_dialog.dart';
 import 'package:hrmatrix/main.dart';
 
 import '../../../../core/helpers/spacing.dart';

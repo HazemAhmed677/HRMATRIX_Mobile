@@ -12,7 +12,7 @@ abstract class ProfilePt2Repo {
 
   Future<Either<FailureService, GetMyFinancialTransactionModel>>
   getMyFinancialTransaction();
-  Future<Either<FailureService, GetMyRequestsModel>> getMyTimeOff();
+  Future<Either<FailureService, GetMyRequestsModel>> getMyRequestsOff();
 
   Future<Either<FailureService, List<GetMyDisciplinaryAtionsModel>>>
   getMyDisciplinaryActions();
